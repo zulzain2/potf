@@ -1,0 +1,97 @@
+.c {
+  position: fixed;
+  z-index: 10;
+  width: 100%;
+  float: left;
+  background: #F2F5F8;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  color: #434651;
+  margin-top: -20px;
+}
+
+.c .chat-header {
+  padding: 20px;
+  border-bottom: 2px solid #aab2bd ;
+}
+.c .chat-header img {
+  float: left;
+}
+.c .chat-header .chat-about {
+  float: left;
+  padding-left: 10px;
+  margin-top: 6px;
+}
+.c .chat-header .chat-with {
+  margin-left: 100px;
+  margin-top: -35px;
+  font-weight: bold;
+  font-size: 16px;
+}
+.c .chat-header .chat-num-messages {
+  color: #92959E;
+}
+.c .chat-header .fa-chevron-left {
+  float: left;
+  margin-right: 25px;
+  color: #D8DADF;
+  font-size: 32px;
+  margin-top: 15px;
+}
+.c .chat-header .name-image {
+  margin-top: 0.5%;
+  width: 45px;
+  height: 45px;
+  color: #ffffff;
+  border-radius: 50%;
+  font-weight: bold;
+  padding-top: 10px;
+  display: inline-block;
+  text-align: center;
+}
+
+
+
+/* body {
+      overscroll-behavior-y: contain;
+  } */
+
+  .ph-no-space {
+    padding: unset;
+    margin: unset;
+}
+
+.ph-no-border {
+    border: unset;
+}
+
+.ph-item {
+
+    background-color: rgba(255, 255, 255, 0);
+
+}
+
+.off-btn {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+input[type=date], input[type=time] {
+    line-height: initial !important;
+    padding-top: 16px !important;
+    height: 100% !important;
+    padding-bottom: 16px !important;
+}
+
+.snackbar-toast {
+    padding: 15px 18px;
+    line-height: unset;
+}
+
+ul.no-bullet{
+  list-style-type:none;
+  padding:0;
+  margin: 0;
+}
+
+
