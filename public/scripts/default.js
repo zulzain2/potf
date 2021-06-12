@@ -1614,37 +1614,37 @@ document['addEventListener']('DOMContentLoaded', () => {
         }  
     }
 
-    function unload() {
+    // function unload() {
        
-    }
+    // }
 
     if ('scrollRestoration' in window['history']) {
         window['history']['scrollRestoration'] = 'manual'
     };
 
-    if (_0xce56x3 === true) {
-        if (window['location']['protocol'] !== 'file:') {
-            const swupOtions = {
-                containers: ['#page'],
-                cache: false,
-                animateHistoryBrowsing: false,
-                plugins: [
-                    new SwupPreloadPlugin()
-                ],
-                linkSelector: 'a:not(.external-link):not(.default-link):not([href^=\"https\"]):not([href^=\"http\"]):not([data-gallery])',
-            };
-            swup = new Swup(swupOtions);
-            document['addEventListener']('swup:pageView', (_0xce56xb) => {
-                _init()
-                _initCopyBtn();
-                _initBtnLoader();
-            })
+    // if (_0xce56x3 === true) {
+    //     if (window['location']['protocol'] !== 'file:') {
+    //         const swupOtions = {
+    //             containers: ['#page'],
+    //             cache: false,
+    //             animateHistoryBrowsing: false,
+    //             plugins: [
+    //                 new SwupPreloadPlugin()
+    //             ],
+    //             linkSelector: 'a:not(.external-link):not(.default-link):not([href^=\"https\"]):not([href^=\"http\"]):not([data-gallery])',
+    //         };
+    //         swup = new Swup(swupOtions);
+    //         document['addEventListener']('swup:pageView', (_0xce56xb) => {
+    //             _init()
+    //             _initCopyBtn();
+    //             _initBtnLoader();
+    //         })
             
-            swup.on('willReplaceContent', () => {
-                unload();
-            });
-        }
-    } 
+    //         swup.on('willReplaceContent', () => {
+    //             unload();
+    //         });
+    //     }
+    // } 
   
     _init();
     _initCopyBtn();
