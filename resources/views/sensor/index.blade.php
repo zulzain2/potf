@@ -1,4 +1,8 @@
-
+<div class="row">
+  <div class="col-md-12">
+    <h4>List of Sensors</h4>
+  </div>
+</div>
 @foreach($sensor as $sensor)
 <div class="widget lazur-bg p-xl">
 <hr style="color:#00A19C">
