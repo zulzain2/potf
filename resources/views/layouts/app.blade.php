@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en">
+<html lang="en"> 
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -134,7 +134,7 @@
                         
                         <div class="d-flex">
                 
-                                <a href="#" data-active="" data-bs-toggle="collapse" data-bs-target="#tab-environment" class="sidebar-active pt-1 sidebar-item flex-fill icon icon-m text-center border-bottom border-right" style="color: unset !important;border-top: 1px solid rgba(255, 255, 255, .05) !important;border-right:none !important;border-radius: 5px;">
+                                <a href="#" data-active="" data-bs-toggle="collapse" data-bs-target="#tab-terrain" class="sidebar-active pt-1 sidebar-item flex-fill icon icon-m text-center border-bottom border-right" style="color: unset !important;border-top: 1px solid rgba(255, 255, 255, .05) !important;border-right:none !important;border-radius: 5px;">
                                     <img src="images/icons/earth.png" style="height:40px;width:40px;padding:3px" alt="">
                                     <br>
                                     <strong style="font-size:9px">Environment</strong>
