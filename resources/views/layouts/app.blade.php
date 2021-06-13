@@ -159,6 +159,15 @@
                                 </a>  
                          
                         </div>
+                        <div class="d-flex">
+                        
+                            <a href="#" data-bs-toggle="collapse" data-bs-target="#tab-create_pipeline" class="pt-1 sidebar-item flex-fill icon icon-m text-center border-bottom border-right" style="color: unset !important;border-right:none !important;border-radius: 5px;">
+                                <img src="images/icons/pipe_create.png" style="height:40px;width:40px;padding:3px" alt="">
+                                <br>
+                                <strong style="font-size:9px">Create Pipeline</strong>
+                            </a>
+                      
+                        </div>
                     </td>
                 </tr>
             </table>

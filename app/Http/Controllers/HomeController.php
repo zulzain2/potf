@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Sensor;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -19,7 +20,9 @@ class HomeController extends Controller
     {
         $topBarTitle = "PIPELINE OF THE FUTURE (PotF)";
 
-        return view('home.index')->with(compact('topBarTitle'));
+        $sensor = Sensor::all();
+
+        return view('home.index')->with(compact('topBarTitle','sensor'));
     }
 
     /**
