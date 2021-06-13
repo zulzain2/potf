@@ -37,7 +37,6 @@ class SensorController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
         
         $add = new Sensor;
         $add->id = Uuid::uuid4()->getHex();
