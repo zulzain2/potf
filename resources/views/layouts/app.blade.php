@@ -49,10 +49,10 @@
 
         <div class="header header-fixed header-logo-center">
             <div class="row">
-                <div class="col-4 text-center">
+                <div id="topbar-left" class="d-none col-4 text-center">
                     <a href="#" class="text-center"><h6 class="color-highlight" style="line-height: 50px;padding-left: 50px;">CONFIGURATION</h6></a>
                 </div>
-                <div class="col-8 text-center">
+                <div id="topbar-right" class="col-12 text-center">
                     <a href="#" class="text-center"><h6 class="color-highlight" style="line-height: 50px">{{$topBarTitle ? $topBarTitle : ''}}</h6></a>
                 </div>
             </div>
@@ -72,8 +72,6 @@
            
 
         </div>
-
-        {{-- @yield('content2') --}}
 
         @stack('content2')
 
@@ -132,45 +130,67 @@
                 </div>
           
             
-        <div style="height:80%">
+        <div style="height:90%">
             <table class="align-middle h-100 w-100" style="border:none;background-color: transparent !important;">
                 <tr>
                     <td style="background-color: transparent !important;">
-                        {{-- <div class="tab-controls tabs-small tabs-rounded" data-highlight="bg-highlight">
-                            <a href="#" data-active="" data-bs-toggle="collapse" data-bs-target="#tab-1">Tab 1</a>
-                            <a href="#" data-bs-toggle="collapse" data-bs-target="#tab-2">Tab 2</a>
-                        </div> --}}
                         
+                         
                         <div class="d-flex">
                 
-                                <a href="#" data-active="" data-bs-toggle="collapse" data-bs-target="#tab-terrain" class="sidebar-active pt-1 sidebar-item flex-fill icon icon-m text-center border-bottom border-right" style="color: unset !important;border-top: 1px solid rgba(255, 255, 255, .05) !important;border-right:none !important;border-radius: 5px;">
+                            <a href="#" data-active="" data-content="page-potf" class="sidebar-active pt-1 sidebar-item flex-fill icon icon-m text-center border-bottom border-right" style="color: unset !important;border-top: 1px solid rgba(255, 255, 255, .05) !important;border-right:none !important;border-radius: 5px;">
+                                <img src="images/icons/link.png" style="height:50px;width:50px;padding:3px" alt="">
+                                <br>
+                                <strong style="font-size:9px">PotF</strong>
+                            </a>
+                     
+                        </div>
+
+                     
+                        <div class="d-flex">
+                    
+                            <a href="#" data-active="" data-content="page-concept" class="pt-1 sidebar-item flex-fill icon icon-m text-center border-bottom border-right" style="color: unset !important;border-top: 1px solid rgba(255, 255, 255, .05) !important;border-right:none !important;border-radius: 5px;">
+                                <img src="images/icons/templates.png" style="height:40px;width:40px;padding:3px" alt="">
+                                <br>
+                                <strong style="font-size:9px">Concept</strong>
+                            </a>
+                    
+                        </div>
+
+
+                        <div class="d-flex">
+                
+                                <a href="#" data-active="" data-content="page-main" data-bs-toggle="collapse" data-bs-target="#tab-terrain" class="pt-1 sidebar-item flex-fill icon icon-m text-center border-bottom border-right" style="color: unset !important;border-top: 1px solid rgba(255, 255, 255, .05) !important;border-right:none !important;border-radius: 5px;">
                                     <img src="images/icons/earth.png" style="height:40px;width:40px;padding:3px" alt="">
                                     <br>
                                     <strong style="font-size:9px">Environment</strong>
                                 </a>
                          
                         </div>
+
                         <div class="d-flex">
                         
-                                <a href="#" data-bs-toggle="collapse" data-bs-target="#tab-pipeline" class="pt-1 sidebar-item flex-fill icon icon-m text-center border-bottom border-right" style="color: unset !important;border-right:none !important;border-radius: 5px;">
+                                <a href="#" data-content="page-main" data-bs-toggle="collapse" data-bs-target="#tab-pipeline" class="pt-1 sidebar-item flex-fill icon icon-m text-center border-bottom border-right" style="color: unset !important;border-right:none !important;border-radius: 5px;">
                                     <img src="images/icons/pipe.png" style="height:40px;width:40px;padding:3px" alt="">
                                     <br>
                                     <strong style="font-size:9px">Pipeline</strong>
                                 </a>
                           
                         </div>
+
                         <div class="d-flex">
                    
-                                <a href="#" data-bs-toggle="collapse" data-bs-target="#tab-sensor" class="sidebar-item flex-fill icon icon-m text-center border-bottom border-right" style="color: unset !important;border-right:none !important;border-radius: 5px;">
+                                <a href="#" data-content="page-main" data-bs-toggle="collapse" data-bs-target="#tab-sensor" class="sidebar-item flex-fill icon icon-m text-center border-bottom border-right" style="color: unset !important;border-right:none !important;border-radius: 5px;">
                                     <img src="images/icons/sensor.png" style="height:40px;width:40px;padding:3px" alt="">
                                     <br>
                                     <strong style="font-size:9px">Sensor</strong>
                                 </a>  
                          
                         </div>
+
                         <div class="d-flex">
                         
-                            <a href="#" data-bs-toggle="collapse" data-bs-target="#tab-create_pipeline" class="pt-1 sidebar-item flex-fill icon icon-m text-center border-bottom border-right" style="color: unset !important;border-right:none !important;border-radius: 5px;">
+                            <a href="#" data-content="page-main" data-bs-toggle="collapse" data-bs-target="#tab-create_pipeline" class="pt-1 sidebar-item flex-fill icon icon-m text-center border-bottom border-right" style="color: unset !important;border-right:none !important;border-radius: 5px;">
                                 <img src="images/icons/pipe_create.png" style="height:40px;width:40px;padding:3px" alt="">
                                 <br>
                                 <strong style="font-size:9px">Create Pipeline</strong>

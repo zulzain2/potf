@@ -268,13 +268,15 @@ if (document.querySelector('#selectTerrain')) {
 $('#add-terrain').on('click' , function(event){
 
     if (navigator.onLine) {
-        var fsm = $("#addTerrainForm");
+        var form = $("#addTerrainForm");
 
          // Loop over them and prevent submission
-         Array.prototype.slice.call(fsm)
+         Array.prototype.slice.call(form)
          .forEach(function (form) {
             if (!form.checkValidity()) 
             {
+              
+       
                 event.preventDefault()
                 event.stopPropagation()
             }
@@ -334,8 +336,10 @@ $('#add-terrain').on('click' , function(event){
                     console.log('Error Add New Terrain: ' + err);
                 });
 
-                form.classList.add('was-validated');
+                
             }
+
+            form.classList.add('was-validated');
         });
     }
     else{
@@ -428,8 +432,9 @@ $('#add-terrain-param').on('click' , function(event){
                     console.log('Error Add New Terrain Parameter: ' + err);
                 });
 
-                form.classList.add('was-validated');
+                
             }
+            form.classList.add('was-validated');
         });
     }
     else{
@@ -512,8 +517,9 @@ $('#add-terrain-simulation').on('click' , function(event){
                     console.log('Error Add New Terrain Simulation: ' + err);
                 });
 
-                form.classList.add('was-validated');
+                
             }
+            form.classList.add('was-validated');
         });
     }
     else{
@@ -589,8 +595,9 @@ $('#delete-terrain').on('click' , function(event){
                     console.log(err);
                 });
 
-                form.classList.add('was-validated');
+                
             }
+            form.classList.add('was-validated');
         });
     }
     else{

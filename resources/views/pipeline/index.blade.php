@@ -150,7 +150,7 @@
       <div class="input-style input-style-always-active has-borders mb-4">
         <label class="color-theme opacity-50 text-uppercase font-700 font-10">Select Parameter Type</label>
         <select id="pipelineParameterType" name="pipelineParameterType" val="" required>
-          <option value="default" disabled="" selected="">Select a paramater type</option>
+          <option value="" disabled="" selected="">Select a paramater type</option>
           <option value="integer">Integer</option>
           <option value="decimal">Decimal</option>
           <option value="string">String</option>
