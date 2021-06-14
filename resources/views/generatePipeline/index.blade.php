@@ -67,7 +67,7 @@
   </div>
   <div class="content mt-2">
     <div class="divider mb-3"></div>
-    <form action="{{ route('sensor.store') }}" method="post">
+    <form action="{{ route('generatepipeline.store') }}" method="post">
       @csrf
       <input type="hidden" name="kmRange" id="kmRange">
       
@@ -123,7 +123,7 @@
                   <tr>
                     <th scope="row">${j}</th>
                     <td>
-                      <select>
+                      <select class="form-select" name="environment[]" id="environment" >
                       <option value="default" disabled="" selected="">Select Environment</option>
                       @if(count($terrains) > 0)
                         @foreach ($terrains as $terrain)
@@ -133,7 +133,7 @@
                      </select>
                     </td>
                     <td>
-                      <select>
+                      <select class="form-select" name="pipeline[]" id="pipeline" >
                       <option value="default" disabled="" selected="">Select Pipeline</option>
                       @if(count($pipelines) > 0)
                         @foreach ($pipelines as $pipeline)

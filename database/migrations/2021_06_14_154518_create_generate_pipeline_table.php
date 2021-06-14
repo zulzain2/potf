@@ -16,7 +16,10 @@ class CreateGeneratePipelineTable extends Migration
         Schema::create('generate_pipeline', function (Blueprint $table) {
             $table->char('id' , 32);
             $table->primary('id');
+            $table->text('name')->nullable();
             $table->text('km')->nullable();
+            $table->text('environments')->nullable();
+            $table->text('pipelines')->nullable();
             $table->integer('id_status');
             $table->timestamps();
         });
