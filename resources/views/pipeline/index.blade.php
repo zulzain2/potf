@@ -72,10 +72,10 @@
 </div>
 
 
-@section('content2')
+@push('content2')
 
 
-<div id="menu-add-pipeline" class="menu menu-box-modal menu-box-detached rounded-m" data-menu-height="400" data-menu-width="500">
+<div id="menu-add-pipeline" class="menu menu-box-modal menu-box-detached rounded-m" style="max-height:600px" data-menu-height="600" data-menu-width="500">
   <div class="menu-title mt-n1">
     <h1>Add Pipeline</h1>
     <p class="color-highlight">Add pipeline to the list.</p>
@@ -105,6 +105,27 @@
         </div>
       </div>
     </form>
+
+    <div class="card card-style">
+      <div class="content mb-2" style="height: 260px;overflow-y: scroll;">
+        <h3 class="mb-2">List of Pipeline</h3>
+        <table class="table table-borderless text-center rounded-sm shadow-l" style="overflow: hidden;">
+          <thead>
+            <tr>
+              <th scope="col" class="bg-dark-dark border-dark-dark color-white">Pipeline</th>
+              <th scope="col" class="bg-dark-dark border-dark-dark color-white">Description</th>
+              <th scope="col" class="bg-dark-dark border-dark-dark color-white" style="width: 60px;">Action</th>
+            </tr>
+          </thead>
+          <tbody id="tbl-pipeline">
+           
+            
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
   </div>
 </div>
 
@@ -204,4 +225,4 @@
   </div>
 </div>
 
-@endsection
+@endpush

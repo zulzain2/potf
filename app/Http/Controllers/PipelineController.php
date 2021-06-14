@@ -115,6 +115,13 @@ class PipelineController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $pipeline = Pipeline::find($id);
+        $pipeline->delete();
+
+        $data = [
+            'status' => 'success', 
+            'message' => 'Successfully delete pipeline.'
+        ];
+        return json_encode($data);
     }
 }

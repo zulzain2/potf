@@ -73,7 +73,9 @@
 
         </div>
 
-        @yield('content2')
+        {{-- @yield('content2') --}}
+
+        @stack('content2')
 
         <div id="menu-sidebar-config" class="bg-white menu menu-box-right" data-menu-width="320" data-menu-effect="menu-push">
             <div class="me-3 ms-3 mt-4 pt-2">
