@@ -125,7 +125,10 @@ class GeneratePipelineController extends Controller
         foreach($configPipeline as $cp){
            $env = $cp->getEnvironments($cp->environments);
            foreach($env as $k=>$e){
-            $envParam = TerrainParameter::where('id_terrain','=' , $e->id_terrain)->where('id_status','=' , 1)->get();
+            $envParam = TerrainParameter::where('id_terrain','=' , $e->id_terrain)->where('id_status','=' , 1)
+            ->with(array('terrain' => function($query) {
+                $query->select('id','name');
+            }))->get();
             array_push($arr_env, $envParam);
            }
         }
@@ -142,12 +145,20 @@ class GeneratePipelineController extends Controller
         foreach($configPipeline as $cp){
            $pipe = $cp->getPipelines($cp->pipelines);
            foreach($pipe as $k=>$e){
-            $pipeParam = PipelineParameter::where('id_pipeline','=' , $e->id_pipeline)->where('id_status','=' , 1)->get();
+            $pipeParam = PipelineParameter::where('id_pipeline','=' , $e->id_pipeline)->where('id_status','=' , 1)->where('id_status','=' , 1)
+            ->with(array('pipeline' => function($query) {
+                $query->select('id','name');
+            }))->get();
                array_push($arr_pipe, $pipeParam);
            }
         }
-        
-        return json_encode($arr_pipe);
+        $data = [
+            'status' => 'success', 
+            'message' => 'Successfully get terrain parameters.',
+            'data' => $arr_pipe,
+            'configPipeline' => $configPipeline
+        ];
+        return json_encode($data);
     }
 
 }

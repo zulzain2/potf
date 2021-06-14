@@ -20,4 +20,5 @@ class GeneratePipeline extends Model
         
         return json_decode($val);
     }
+    
 }
