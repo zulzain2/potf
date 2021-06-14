@@ -34,8 +34,6 @@ function getAllPipeline(){
                             <th scope="row">${pipeline.name}</th>
                             <td>${pipeline.desc ? pipeline.desc : ''}</td>
                             <td>
-                            <a class="" data-idpipeline="${pipeline.id}" href="#"><i class="far fa-edit color-yellow-dark"></i></a>
-                            &nbsp;&nbsp;&nbsp;
                             <a class="deletePipeline" data-idpipeline="${pipeline.id}" href="#"><i class="far fa-trash-alt color-red-dark"></i></a>
                             </td>
                             </tr>
@@ -591,6 +589,31 @@ $('#delete-pipeline').on('click' , function(event){
     }
     else{
         menu('menu-offline', 'show', 250);
+    }
+});
+///////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////
+//Check if idPipeline already assign into the modal
+$('#btn-menu-add-pipeline-parameter').on('click' , function(){
+    let idPipeline = $('#menu-add-pipeline-parameter').find('.selected-pipeline').html();
+    console.log(idPipeline);
+    if(idPipeline){
+        menu('menu-add-pipeline-parameter', 'show', 250);
+    }else{
+        snackbar('warning' , 'Please select pipeline first.')
+    }
+});
+///////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////
+//Check if idTerrain already assign into the modal
+$('#btn-menu-add-pipeline-simulation').on('click' , function(){
+    let idPipeline = $('#menu-add-pipeline-simulation').find('.selected-pipeline').html();
+    if(idPipeline){
+        menu('menu-add-pipeline-simulation', 'show', 250);
+    }else{
+        snackbar('warning' , 'Please select pipeline first.')
     }
 });
 ///////////////////////////////////////////////////////////////////////

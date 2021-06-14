@@ -34,8 +34,6 @@ function getAllTerrain(){
                             <th scope="row">${terrain.name}</th>
                             <td>${terrain.desc ? terrain.desc : ''}</td>
                             <td>
-                            <a class="" data-idterrain="${terrain.id}" href="#"><i class="far fa-edit color-yellow-dark"></i></a>
-                            &nbsp;&nbsp;&nbsp;
                             <a class="deleteTerrain" data-idterrain="${terrain.id}" href="#"><i class="far fa-trash-alt color-red-dark"></i></a>
                             </td>
                             </tr>
@@ -602,6 +600,31 @@ $('#delete-terrain').on('click' , function(event){
     }
     else{
         menu('menu-offline', 'show', 250);
+    }
+});
+///////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////
+//Check if idTerrain already assign into the modal
+$('#btn-menu-add-terrain-parameter').on('click' , function(){
+    let idTerrain = $('#menu-add-terrain-parameter').find('.selected-terrain').html();
+    console.log(idTerrain);
+    if(idTerrain){
+        menu('menu-add-terrain-parameter', 'show', 250);
+    }else{
+        snackbar('warning' , 'Please select environment first.')
+    }
+});
+///////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////
+//Check if idTerrain already assign into the modal
+$('#btn-menu-add-terrain-simulation').on('click' , function(){
+    let idTerrain = $('#menu-add-terrain-simulation').find('.selected-terrain').html();
+    if(idTerrain){
+        menu('menu-add-terrain-simulation', 'show', 250);
+    }else{
+        snackbar('warning' , 'Please select environment first.')
     }
 });
 ///////////////////////////////////////////////////////////////////////
