@@ -74,7 +74,7 @@
 </div>
 
 
-@section('content2')
+@push('content2')
 
 <div id="menu-add-terrain" class="menu menu-box-modal menu-box-detached rounded-m" style="max-height:600px" data-menu-height="600" data-menu-width="500">
   <div class="menu-title mt-n1">
@@ -116,7 +116,7 @@
             <tr>
               <th scope="col" class="bg-dark-dark border-dark-dark color-white">Environment</th>
               <th scope="col" class="bg-dark-dark border-dark-dark color-white">Description</th>
-              <th scope="col" class="bg-dark-dark border-dark-dark color-white">Action</th>
+              <th scope="col" class="bg-dark-dark border-dark-dark color-white" style="width: 60px;">Action</th>
             </tr>
           </thead>
           <tbody id="tbl-terrain">
@@ -244,4 +244,4 @@
   </form>
 </div>
 
-@endsection
+@endpush

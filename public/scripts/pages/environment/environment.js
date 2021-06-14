@@ -1,5 +1,3 @@
-
-
 function getAllTerrain(){
     fetch('/terrain').then(function(response) {
         return response.json();
@@ -28,8 +26,6 @@ function getAllTerrain(){
                     }
 
                     if (document.querySelector('#tbl-terrain')) {
-
-                      
                         $('#tbl-terrain').html('');
 
                         results.data.map(terrain => {
@@ -313,12 +309,12 @@ $('#add-terrain').on('click' , function(event){
                         
                         $('#add-terrain').removeClass('off-btn').trigger('classChange');
 
-                        menu('menu-add-terrain', 'hide', 250);
+                        // menu('menu-add-terrain', 'hide', 250);
 
                         snackbar(results.status , results.message)
 
                         $('#terrainName').val('');
-                        $('#terrainDesc').html('');
+                        $('#terrainDesc').val('');
 
                     }
                     else{

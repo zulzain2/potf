@@ -9,18 +9,46 @@ function getAllPipeline(){
             
             if (results.data){
                 if (results.data.length) {
-                    $('#selectPipeline').html('');
 
-                    $('#selectPipeline').append(`
-                        <option value="default" disabled="" selected="">Select a Pipeline</option>
-                    `);
-
-                    results.data.map(pipeline => {
+                    if (document.querySelector('#selectPipeline')) {
+                        $('#selectPipeline').html('');
 
                         $('#selectPipeline').append(`
-                            <option value="${pipeline.id}">${pipeline.name}</option>
-                        `)
-                    })
+                            <option value="default" disabled="" selected="">Select a Pipeline</option>
+                        `);
+
+                        results.data.map(pipeline => {
+
+                            $('#selectPipeline').append(`
+                                <option value="${pipeline.id}">${pipeline.name}</option>
+                            `)
+                        })
+                    }
+
+                    if (document.querySelector('#tbl-pipeline')) {
+                        $('#tbl-pipeline').html('');
+
+                        results.data.map(pipeline => {
+                            $('#tbl-pipeline').append(`
+                            <tr class="bg-dark-light">
+                            <th scope="row">${pipeline.name}</th>
+                            <td>${pipeline.desc ? pipeline.desc : ''}</td>
+                            <td>
+                            <a class="deletePipeline" data-idpipeline="${pipeline.id}" href="#"><i class="far fa-edit color-yellow-dark"></i></a>
+                            &nbsp;&nbsp;&nbsp;
+                            <a class="deletePipeline" data-idpipeline="${pipeline.id}" href="#"><i class="far fa-trash-alt color-red-dark"></i></a>
+                            </td>
+                            </tr>
+                        `);
+                        });
+
+                        $('.deletePipeline').on('click' , function() {
+                            let idPipeline = $(this).data('idpipeline');
+                            $('#idPipelineDelete').val(idPipeline);
+                            menu('menu-delete-pipeline', 'show', 250);
+                        })
+
+                    }
 
                 }
                 else{
@@ -29,6 +57,8 @@ function getAllPipeline(){
                     $('#selectPipeline').append(`
                     <option value="default" disabled="" selected="">Select a Pipeline</option>
                     `);
+
+                    $('#tbl-pipeline').html('');
                 }
             }
 
@@ -270,7 +300,7 @@ $('#add-pipeline').on('click' , function(event){
                         
                         $('#add-pipeline').removeClass('off-btn').trigger('classChange');
 
-                        menu('menu-add-pipeline', 'hide', 250);
+                        // menu('menu-add-pipeline', 'hide', 250);
 
                         snackbar(results.status , results.message)
 
@@ -472,6 +502,83 @@ $('#add-pipeline-simulation').on('click' , function(event){
                 })
                 .catch(function(err) {
                     console.log('Error Add New Pipeline Simulation: ' + err);
+                });
+
+                form.classList.add('was-validated');
+            }
+        });
+    }
+    else{
+        menu('menu-offline', 'show', 250);
+    }
+});
+///////////////////////////////////////////////////////////////////////
+
+
+///////////////////////////////////////////////////////////////////////
+//for delete pipeline
+$('#delete-pipeline').on('click' , function(event){
+
+    if (navigator.onLine) {
+        var fsm = $("#deletePipelineForm");
+
+        var formdata = new FormData();
+        formdata.append("_method", "DELETE");
+
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(fsm)
+        .forEach(function (form) {
+            if (!form.checkValidity()) 
+            {
+                event.preventDefault()
+                event.stopPropagation()
+            }
+            else
+            {
+                $('#delete-pipeline').addClass('off-btn').trigger('classChange');
+
+                var deletePipelineId = $('#idPipelineDelete').val();
+
+                fetch("pipeline/"+deletePipelineId+"/", {
+                    method: 'DELETE',
+                    credentials: "same-origin",
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                })
+                .then(function(response){
+                    return response.json();
+                }).then(function(resultsJSON){
+
+                    var results = resultsJSON
+
+                    if(results.status == 'success'){
+
+
+                        $('#delete-pipeline').removeClass('off-btn').trigger('classChange');
+
+                        menu('menu-delete-pipeline', 'hide', 250);
+
+                        snackbar(results.status , results.message)
+
+                        getAllPipeline();
+
+                    }
+                    else{
+                        if(results.type == 'Validation Error')
+                        {
+                            $('#delete-pipeline').removeClass('off-btn').trigger('classChange');
+
+                            validationErrorBuilder(results);
+                        }
+                        else{
+                            snackbar(results.status , results.message)
+                        }
+                    }
+
+                })
+                .catch(function(err) {
+                    console.log(err);
                 });
 
                 form.classList.add('was-validated');
