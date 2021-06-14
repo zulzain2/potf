@@ -70,7 +70,13 @@
     <form action="{{ route('generatepipeline.store') }}" method="post">
       @csrf
       <input type="hidden" name="kmRange" id="kmRange">
-      
+      <div class="input-style input-style-always-active has-borders no-icon validate-field mb-4">
+        <input type="name" class="form-control validate-name" name="name" id="name" placeholder="Name">
+        <label for="form1ab" class="color-theme opacity-50 text-uppercase font-700 font-10">Config Name</label>
+        <i class="fa fa-times disabled invalid color-red-dark"></i>
+        <i class="fa fa-check disabled valid color-green-dark"></i>
+        <em>(required)</em>
+        </div>
       <div class="row">
         <div class="col-12 text-center">
           <div class="card card-style">

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Ramsey\Uuid\Uuid;
 use Illuminate\Http\Request;
+use App\Models\GeneratePipeline;
 
 class GeneratePipelineController extends Controller
 {
@@ -34,7 +36,37 @@ class GeneratePipelineController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        $add = new GeneratePipeline;
+        $add->id = Uuid::uuid4()->getHex();
+        $add->name = $request->name;
+        $add->km = $request->kmRange;
+
+        $environment = [];
+        foreach($request->environment as $key=>$part){
+            $obj = (Object)[
+                'km' => $key++,
+                'id_terrain' => $part
+            ];
+            array_push($environment, $obj);
+        }
+        $environment = json_encode($environment);
+        $add->environments = $environment;
+
+        $pipeline = [];
+        foreach($request->pipeline as $key=>$part){
+            $obj = (Object)[
+                'km' => $key++,
+                'id_pipeline' => $part
+            ];
+            array_push($pipeline, $obj);
+        }
+        $pipeline = json_encode($pipeline);
+        $add->pipelines = $pipeline;
+        $add->id_status = '1';
+        $add->save();
+
+        return redirect()->back()->with('success', 'New pipeline config added');  
+
     }
 
     /**
