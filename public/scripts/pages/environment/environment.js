@@ -616,3 +616,15 @@ $('#btn-menu-add-terrain-parameter').on('click' , function(){
     }
 });
 ///////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////
+//Check if idTerrain already assign into the modal
+$('#btn-menu-add-terrain-simulation').on('click' , function(){
+    let idTerrain = $('#menu-add-terrain-simulation').find('.selected-terrain').html();
+    if(idTerrain){
+        menu('menu-add-terrain-simulation', 'show', 250);
+    }else{
+        snackbar('warning' , 'Please select environment first.')
+    }
+});
+///////////////////////////////////////////////////////////////////////

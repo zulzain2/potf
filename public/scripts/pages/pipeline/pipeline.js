@@ -605,3 +605,15 @@ $('#btn-menu-add-pipeline-parameter').on('click' , function(){
     }
 });
 ///////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////
+//Check if idTerrain already assign into the modal
+$('#btn-menu-add-pipeline-simulation').on('click' , function(){
+    let idPipeline = $('#menu-add-pipeline-simulation').find('.selected-pipeline').html();
+    if(idPipeline){
+        menu('menu-add-pipeline-simulation', 'show', 250);
+    }else{
+        snackbar('warning' , 'Please select environment first.')
+    }
+});
+///////////////////////////////////////////////////////////////////////

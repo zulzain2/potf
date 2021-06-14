@@ -56,7 +56,7 @@
           <h4 class="font-700 text-uppercase font-12 opacity-30 mb-1 mt-2">Simulation Models List</h4>
         </div>
         <div class="col-4" style="text-align:right">
-          <a href="#" data-menu="menu-add-terrain-simulation"
+          <a href="#" id="btn-menu-add-terrain-simulation"
             class="icon icon-xs rounded-sm shadow-l me-1 bg-highlight"><i class="fas fa-plus"></i></a>
         </div>
       </div>
@@ -198,7 +198,7 @@
   data-menu-width="500">
   <div class="menu-title mt-n1">
     <h1>Add Environment Simulation Model</h1>
-    <p class="color-highlight selected-terrain">Add simlation model to the list.</p>
+    <p class="color-highlight selected-terrain"></p>
     <a href="#" class="close-menu"><i class="fa fa-times"></i></a>
   </div>
   <div class="content mt-2">
