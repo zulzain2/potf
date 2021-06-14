@@ -2,17 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pipeline;
-use App\Models\Sensor;
-use App\Models\Terrain;
+use Ramsey\Uuid\Uuid;
+use App\Models\SensorParams;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class SensorParameterController extends Controller
 {
-    public function __construct() {
-        $this->middleware('auth');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -20,13 +15,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $topBarTitle = "PIPELINE OF THE FUTURE (PotF)";
-
-        $pipelines = Pipeline::where('id_status' , 1)->get();
-        $terrains = Terrain::where('id_status' , 1)->get();
-        $sensors = Sensor::where('id_status' , 1)->get();
-
-        return view('home.index')->with(compact('topBarTitle','sensors','terrains','pipelines'));
+        //
     }
 
     /**
@@ -47,7 +36,25 @@ class HomeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if($request->idSensor){
+            $terrain = New SensorParams;
+            $terrain->id = Uuid::uuid4()->getHex();
+            $terrain->id_sensors = $request->idSensor;
+            $terrain->name = $request->sensorParameterName;
+            $terrain->type = $request->sensorParameterType;
+            if($request->sensorParameterRequired){
+                $terrain->required = '1';
+            }else{
+                $terrain->required = '0';
+            }
+            $terrain->id_status = '1';
+            $terrain->save();
+        }
+        else{
+            return redirect()->back()->withErrors(['msg', 'Please select sensor first!']);
+        }
+        return redirect()->back()->with('success', 'New sensor parameter added');  
+
     }
 
     /**
@@ -58,7 +65,7 @@ class HomeController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -93,5 +100,18 @@ class HomeController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function fetch(Request $request){
+        
+        $id = $request->idSensor;
+        $sensorparams = SensorParams::where('id_sensors','=' , $id)->where('id_status','=' , 1)->get();
+
+        $data = [
+            'status' => 'success', 
+            'message' => 'Successfully get terrain parameters.',
+            'data' => $sensorparams
+        ];
+        return json_encode($data);
     }
 }
