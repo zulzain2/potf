@@ -325,8 +325,9 @@ $('#add-pipeline').on('click' , function(event){
                     console.log('Error Add New Pipeline: ' + err);
                 });
 
-                form.classList.add('was-validated');
+                
             }
+            form.classList.add('was-validated');
         });
     }
     else{
@@ -420,8 +421,9 @@ $('#add-pipeline-param').on('click' , function(event){
                     console.log('Error Add New Pipeline Parameter: ' + err);
                 });
 
-                form.classList.add('was-validated');
+                
             }
+            form.classList.add('was-validated');
         });
     }
     else{
@@ -504,8 +506,9 @@ $('#add-pipeline-simulation').on('click' , function(event){
                     console.log('Error Add New Pipeline Simulation: ' + err);
                 });
 
-                form.classList.add('was-validated');
+                
             }
+            form.classList.add('was-validated');
         });
     }
     else{
@@ -581,8 +584,9 @@ $('#delete-pipeline').on('click' , function(event){
                     console.log(err);
                 });
 
-                form.classList.add('was-validated');
+                
             }
+            form.classList.add('was-validated'); 
         });
     }
     else{
