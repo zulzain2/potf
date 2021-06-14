@@ -132,7 +132,8 @@ function textErrorBuilder(id_element , textErr){
 }
 
 
-document['addEventListener']('DOMContentLoaded', () => {
+// document['addEventListener']('DOMContentLoaded', () => {
+    $( document ).ready(function() {
     
     'use strict';
     let _0xce56x2 = true;
@@ -468,6 +469,9 @@ document['addEventListener']('DOMContentLoaded', () => {
             };
             localStorage['setItem'](_0xce56x4 + '-Theme', 'dark-mode')
             $('#logo-sidebar').attr("src","images/icons/petronas_white.png");
+            console.log('sdfsdf');
+            
+            
         }
 
         function _0xce56x53() {
@@ -478,6 +482,7 @@ document['addEventListener']('DOMContentLoaded', () => {
             };
             localStorage['setItem'](_0xce56x4 + '-Theme', 'light-mode')
             $('#logo-sidebar').attr("src","images/icons/petronas.png");
+            
         }
 
         function _0xce56x54() {
@@ -522,6 +527,7 @@ document['addEventListener']('DOMContentLoaded', () => {
                     if (document['body']['className'] == 'theme-dark') {
                         _0xce56x54();
                         _0xce56x53()
+                        
                     }
                 };
                 setTimeout(function() {
@@ -536,11 +542,13 @@ document['addEventListener']('DOMContentLoaded', () => {
             };
             document['body']['className'] = 'theme-dark'
             $('#logo-sidebar').attr("src","images/icons/petronas_white.png");
+        
         };
 
         if (localStorage['getItem'](_0xce56x4 + '-Theme') == 'light-mode') {
             document['body']['className'] = 'theme-light'
             $('#logo-sidebar').attr("src","images/icons/petronas.png");
+          
         };
 
         if (document['body']['className'] == 'detect-theme') {
@@ -1509,9 +1517,14 @@ document['addEventListener']('DOMContentLoaded', () => {
                 trigger: '#custom'
             },
             {
-                id: 'auth',
-                call: 'scripts/pages/auth/auth.js',
-                trigger: '#auth'
+                id: 'environment',
+                call: 'scripts/pages/environment/environment.js',
+                trigger: '#environment'
+            },
+            {
+                id: 'pipeline',
+                call: 'scripts/pages/pipeline/pipeline.js',
+                trigger: '#pipeline'
             },
             //SCRIPTS/STYLES FOR PLUGINS
             {

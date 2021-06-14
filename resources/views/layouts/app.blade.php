@@ -7,6 +7,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover">
     <meta name="theme-color" content="#000">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Pipeline of the Future (PotF)</title>
 
     <!-- App favicon -->
@@ -22,6 +23,12 @@
     <style>
         .sidebar-active{
             background-color:#9292924a !important
+        }
+
+        .theme-dark select option {
+        
+            background: #1b1d21;
+           
         }
     </style>
 
@@ -281,16 +288,15 @@
             </div>
         </div>
 
-        <div id="snackbar-sucess" class="snackbar-toast bg-green-dark" data-bs-delay="1200" data-bs-autohide="true">
+        <div id="snackbar-sucess" class="snackbar-toast bg-green-dark" data-bs-delay="1200" data-bs-autohide="true" style="z-index:999">
         </div>
-        <div id="snackbar-warning" class="snackbar-toast bg-yellow-dark" data-bs-delay="1200" data-bs-autohide="true">
+        <div id="snackbar-warning" class="snackbar-toast bg-yellow-dark" data-bs-delay="1200" data-bs-autohide="true" style="z-index:999">
         </div>
-        <div id="snackbar-error" class="snackbar-toast bg-red-dark" data-bs-delay="1200" data-bs-autohide="true"></div>
+        <div id="snackbar-error" class="snackbar-toast bg-red-dark" data-bs-delay="1200" data-bs-autohide="true" style="z-index:999"></div>
 
     </div>
-
-    <script type="text/javascript" src="{{ URL::to('scripts/plugins/bootstrap/bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ URL::to('scripts/plugins/jquery/jquery-3.6.0.min.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::to('scripts/plugins/bootstrap/bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ URL::to('scripts/plugins/moment/moment.js') }}"></script>
     <script type="text/javascript" src="{{ URL::to('scripts/plugins/meet/external_api.js') }}"></script>
     <script type="text/javascript" src="{{ URL::to('scripts/plugins/clipboard/clipboard.min.js') }}"></script>

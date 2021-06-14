@@ -16293,12 +16293,12 @@ input[type=number] {
     border-radius: 8px;
     overflow: hidden;
     z-index: 95;
-    transform: translateY(100px);
+    transform: translateY(110px);
     transition: all 350ms ease
 }
 
 .snackbar-toast.show {
-    transform: translateY(0px)
+    transform: translateY(60px)
 }
 
 .snackbar-toast-low {
