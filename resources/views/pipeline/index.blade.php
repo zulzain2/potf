@@ -225,4 +225,17 @@
   </div>
 </div>
 
+<div id="menu-delete-pipeline" class="menu menu-box-modal rounded-m" data-menu-width="310" data-menu-height="270">
+  <div class="text-center"><i class="fal fa-times-circle color-red-light mt-4" style="font-size: 45px;"></i></div>
+  <h1 class="text-center mt-3">Are You Sure?</h1>
+  <p class="ps-3 pe-3 text-center color-theme opacity-60">
+      Do you realy want to delete the record ? This action cannot be undone.
+  </p>
+  <form class="needs-validation" novalidate id="deletePipelineForm">
+      <input type="hidden" name="idPipelineDelete" id="idPipelineDelete">
+      <a href="#" id="delete-pipeline"
+          class="btn btn-m font-900 text-uppercase bg-highlight rounded-sm btn-center-l">Confirm</a>
+  </form>
+</div>
+
 @endpush
