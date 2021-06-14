@@ -613,7 +613,7 @@ $('#btn-menu-add-pipeline-simulation').on('click' , function(){
     if(idPipeline){
         menu('menu-add-pipeline-simulation', 'show', 250);
     }else{
-        snackbar('warning' , 'Please select environment first.')
+        snackbar('warning' , 'Please select pipeline first.')
     }
 });
 ///////////////////////////////////////////////////////////////////////
