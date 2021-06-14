@@ -1,4 +1,4 @@
-<form action="{{ route('sensor.store') }}" method="post">
+{{--  <form action="{{ route('sensor.store') }}" method="post">
   @csrf
   <div class="row">
     <div class="col-md-12">
@@ -80,4 +80,4 @@
 
   })
 </script>
-@endpush
+@endpush  --}}

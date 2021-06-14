@@ -11,7 +11,7 @@ class SensorParams extends Model
     protected $table = 'sensor_params';
     public $incrementing = FALSE;
 
-    public function meetinglog()
+    public function sensor()
     {
         return $this->belongsTo('App\Models\Sensor', 'id_sensors', 'id');
     }

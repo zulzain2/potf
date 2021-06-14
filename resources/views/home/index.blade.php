@@ -22,24 +22,9 @@
           </div>
 
           <div data-bs-parent="#tab-group-sidebar" class="collapse" id="tab-sensor">
-            <div class="content m-1" id="tab-group-3">
-              <h4 class="text-center mt-2 mb-3">SENSOR</h4>
-
-              <div class="tab-controls tabs-small tabs-rounded" data-highlight="bg-highlight">
-                <a href="#" data-active="" data-bs-toggle="collapse" data-bs-target="#tab-1-sensor">List of Sensors</a>
-                <a href="#" data-bs-toggle="collapse" data-bs-target="#tab-2-sensor">Add new Sensor</a>
-              </div>
-              <div class="clearfix mb-3"></div>
-              <div data-bs-parent="#tab-group-3" class="collapse show" id="tab-1-sensor">
-                <p class="bottom-0">
-                  @include('sensor/index')
-
-                </p>
-              </div>
-              <div data-bs-parent="#tab-group-3" class="collapse" id="tab-2-sensor">
-                @include('sensor/create')
-              </div>
-            </div>
+            
+            @include('sensor/index')
+            
           </div>
 
           <div data-bs-parent="#tab-group-sidebar" class="collapse" id="tab-create_pipeline">
