@@ -30,7 +30,6 @@
 
   <div class="tab-controls tabs-small tabs-rounded" data-highlight="bg-highlight">
     <a href="#" data-active="" data-bs-toggle="collapse" data-bs-target="#tab-1-sensor">Parameters</a>
-    <a href="#" data-bs-toggle="collapse" data-bs-target="#tab-2-sensor">List of Sensors</a>
   </div>
   <div class="clearfix mb-3"></div>
   <div data-bs-parent="#tab-group-3" class="collapse show" id="tab-1-sensor">
@@ -53,10 +52,6 @@
 
       <div class="divider"></div>
     </div>
-  </div>
-
-  <div data-bs-parent="#tab-group-3" class="collapse" id="tab-2-sensor">
-    
   </div>
 
 </div>

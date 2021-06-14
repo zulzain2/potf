@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\GeneratePipeline;
 use App\Models\Pipeline;
 use App\Models\Sensor;
 use App\Models\Terrain;
@@ -25,8 +26,9 @@ class HomeController extends Controller
         $pipelines = Pipeline::where('id_status' , 1)->get();
         $terrains = Terrain::where('id_status' , 1)->get();
         $sensors = Sensor::where('id_status' , 1)->get();
-
-        return view('home.index')->with(compact('topBarTitle','sensors','terrains','pipelines'));
+        $configPipeline = GeneratePipeline::where('id_status' , 1)->get();
+        
+        return view('home.index')->with(compact('topBarTitle','sensors','terrains','pipelines','configPipeline'));
     }
 
     /**

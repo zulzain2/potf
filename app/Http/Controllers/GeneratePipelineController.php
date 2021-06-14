@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Ramsey\Uuid\Uuid;
 use Illuminate\Http\Request;
 use App\Models\GeneratePipeline;
+use App\Models\PipelineParameter;
+use App\Models\TerrainParameter;
 
 class GeneratePipelineController extends Controller
 {
@@ -15,7 +17,7 @@ class GeneratePipelineController extends Controller
      */
     public function index()
     {
-        //
+        // dd('lol');
     }
 
     /**
@@ -38,7 +40,7 @@ class GeneratePipelineController extends Controller
     {
         $add = new GeneratePipeline;
         $add->id = Uuid::uuid4()->getHex();
-        $add->name = $request->name;
+        $add->name = $request->nameConfig;
         $add->km = $request->kmRange;
 
         $environment = [];
@@ -113,4 +115,39 @@ class GeneratePipelineController extends Controller
     {
         //
     }
+
+    public function fetchEnv(Request $request){
+        
+        $id = $request->id_cp;
+        $configPipeline = GeneratePipeline::where('id','=' , $id)->where('id_status','=' , 1)->get();
+
+        $arr_env = [];
+        foreach($configPipeline as $cp){
+           $env = $cp->getEnvironments($cp->environments);
+           foreach($env as $k=>$e){
+            $envParam = TerrainParameter::where('id_terrain','=' , $e->id_terrain)->where('id_status','=' , 1)->get();
+            array_push($arr_env, $envParam);
+           }
+        }
+    
+        return json_encode($arr_env);
+    }
+
+    public function fetchPipe(Request $request){
+        
+        $id = $request->id_cp;
+        $configPipeline = GeneratePipeline::where('id','=' , $id)->where('id_status','=' , 1)->get();
+
+        $arr_pipe = [];
+        foreach($configPipeline as $cp){
+           $pipe = $cp->getPipelines($cp->pipelines);
+           foreach($pipe as $k=>$e){
+            $pipeParam = PipelineParameter::where('id_pipeline','=' , $e->id_pipeline)->where('id_status','=' , 1)->get();
+               array_push($arr_pipe, $pipeParam);
+           }
+        }
+        
+        return json_encode($arr_pipe);
+    }
+
 }
