@@ -149,7 +149,6 @@
                 <thead>
                 <tr class="bg-gray-dark">
                 <th scope="col" class="color-white" style="width:30%">Environment</th>
-                <th scope="col" class="color-white" style="width:10%">KM</th>
                 <th scope="col" class="color-white" style="width:30%">Parameter</th>
                 <th scope="col" class="color-white" style="width:30%">Value</th>
                 </tr>
@@ -176,7 +175,6 @@
                 <thead>
                 <tr class="bg-gray-dark">
                 <th scope="col" class="color-white" style="width:30%">Pipeline</th>
-                <th scope="col" class="color-white" style="width:10%">KM</th>
                 <th scope="col" class="color-white" style="width:30%">Parameter</th>
                 <th scope="col" class="color-white" style="width:30%">Value</th>
                 </tr>
@@ -191,11 +189,11 @@
         </div>
       
       </div>
-      {{--  <div class="row">
+       <div class="row">
         <div class="col-12 text-center">
         <button type="submit" id="submitGeneratePipeline" class="btn btn-s rounded-s text-uppercase font-900 shadow-s border-highlight bg-highlight"><i class="fas fa-plus"></i>&nbsp;&nbsp;Add</button>
         </div>
-      </div>  --}}
+      </div> 
     </form>
   </div>
 </div>
@@ -277,8 +275,7 @@
               a.forEach(el => {
                 $('#envParamList').append(`
                 <tr>
-                  <th scope="row"></th>
-                  <th scope="row"></th>
+                  <th scope="row">${el.terrain.name}</th>
                   <td scope="row">${el.name}</td>
                   <td scope="row">
                   <input type="text" class="form-control" id="value-${el.id}" name="value"">
@@ -309,12 +306,14 @@
           success: (resultsJSON) =>{
           
             let results = JSON.parse(resultsJSON);
-            results.map(a => {
+            results.configPipeline.map(b =>{
+              
+            })
+            results.data.map(a => {
               a.forEach(el => {
                 $('#pipeParamList').append(`
                 <tr>
-                  <th scope="row"></th>
-                  <th scope="row"></th>
+                  <th scope="row">${el.pipeline.name}</th>
                   <td scope="row">${el.name}</td>
                   <td scope="row">
                   <input type="text" class="form-control" id="value-${el.id}" name="value"">
