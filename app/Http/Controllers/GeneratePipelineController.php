@@ -2,17 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pipeline;
-use App\Models\Sensor;
-use App\Models\Terrain;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class GeneratePipelineController extends Controller
 {
-    public function __construct() {
-        $this->middleware('auth');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -20,13 +13,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $topBarTitle = "PIPELINE OF THE FUTURE (PotF)";
-
-        $pipelines = Pipeline::where('id_status' , 1)->get();
-        $terrains = Terrain::where('id_status' , 1)->get();
-        $sensors = Sensor::where('id_status' , 1)->get();
-
-        return view('home.index')->with(compact('topBarTitle','sensors','terrains','pipelines'));
+        //
     }
 
     /**
