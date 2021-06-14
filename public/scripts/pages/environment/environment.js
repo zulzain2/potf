@@ -34,7 +34,7 @@ function getAllTerrain(){
                             <th scope="row">${terrain.name}</th>
                             <td>${terrain.desc ? terrain.desc : ''}</td>
                             <td>
-                            <a class="deleteTerrain" data-idterrain="${terrain.id}" href="#"><i class="far fa-edit color-yellow-dark"></i></a>
+                            <a class="" data-idterrain="${terrain.id}" href="#"><i class="far fa-edit color-yellow-dark"></i></a>
                             &nbsp;&nbsp;&nbsp;
                             <a class="deleteTerrain" data-idterrain="${terrain.id}" href="#"><i class="far fa-trash-alt color-red-dark"></i></a>
                             </td>

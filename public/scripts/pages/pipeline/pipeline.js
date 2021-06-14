@@ -34,7 +34,7 @@ function getAllPipeline(){
                             <th scope="row">${pipeline.name}</th>
                             <td>${pipeline.desc ? pipeline.desc : ''}</td>
                             <td>
-                            <a class="deletePipeline" data-idpipeline="${pipeline.id}" href="#"><i class="far fa-edit color-yellow-dark"></i></a>
+                            <a class="" data-idpipeline="${pipeline.id}" href="#"><i class="far fa-edit color-yellow-dark"></i></a>
                             &nbsp;&nbsp;&nbsp;
                             <a class="deletePipeline" data-idpipeline="${pipeline.id}" href="#"><i class="far fa-trash-alt color-red-dark"></i></a>
                             </td>
