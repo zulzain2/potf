@@ -1,33 +1,23 @@
 ///////////////////////////////////////////////////////////////////////
-//for footer
-if (document.querySelector('#footer-bar')) {
-    if (window.location.href.indexOf("home") > -1) 
-    {
-        $('#notification-footer').removeClass('color-highlight');
-        $('#home-footer').addClass('active-nav');
-        $('#chat-footer').removeClass('active-nav');
-        $('#meet-footer').removeClass('active-nav');
-        $('#file-footer').removeClass('active-nav');
-        $('#setting-footer').removeClass('active-nav');
-    }
-    
-    else if(window.location.href.indexOf("setting") > -1)
-    {
-        $('#notification-footer').removeClass('color-highlight');
-        $('#home-footer').removeClass('active-nav');
-        $('#chat-footer').removeClass('active-nav');
-        $('#meet-footer').removeClass('active-nav');
-        $('#file-footer').removeClass('active-nav');
-        $('#setting-footer').addClass('active-nav');
-    }
-  
-}
-///////////////////////////////////////////////////////////////////////
-
-
-///////////////////////////////////////////////////////////////////////
 // Sidebar Functionality
 $('.sidebar-item').on('click' , function() {
+
+    let content = $(this).data('content');
+    $('.main-content').addClass('d-none');
+    $('#'+content+'').removeClass('d-none');
+
+    if(content != 'page-main'){
+        $('#topbar-left').addClass('d-none');
+        $('#topbar-right').removeClass('col-8');
+        $('#topbar-right').addClass('col-12');
+    }
+    else
+    {
+        $('#topbar-right').removeClass('col-12');
+        $('#topbar-right').addClass('col-8');
+        $('#topbar-left').removeClass('d-none');
+    }
+
     $('.sidebar-item').removeClass('sidebar-active');
     $(this).addClass('sidebar-active');
 });
