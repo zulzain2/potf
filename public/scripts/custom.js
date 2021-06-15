@@ -56,13 +56,23 @@ if (document.querySelector('#loginPage') || document.querySelector('#registerOtp
 }
 ///////////////////////////////////////////////////////////////////////
 
+///////////////////////////////////////////////////////////////////////
+// Enter & Exit Fullscreen function (VR Function)
 $('#enterFullScreen').on('click' , function(){
-    console.log('sdfsdfs');
     openFullscreen();
 })
 
-var elem = document.getElementById("potf3d");
+$('#exitFullScreen').on('click' , function(){
+    closeFullscreen();
+})
+
 function openFullscreen() {
+    var elem = document.getElementById("potf3d");
+    $('#enterFullScreen').hide();
+    $('#exitFullScreen').show();
+
+    $('#menu-ar-not-support').appendTo("#potf3d");
+
   if (elem.requestFullscreen) {
     elem.requestFullscreen();
   } else if (elem.webkitRequestFullscreen) { /* Safari */
@@ -72,20 +82,21 @@ function openFullscreen() {
   }
 }
               
+function closeFullscreen() {
+    $('#enterFullScreen').show();
+    $('#exitFullScreen').hide();
 
-if (document.querySelector('#ar-support')) {
-    let arsupport = $('#ar-support').attr('slot');
-    console.log(arsupport);
-    if(arsupport){
-        $('#ar-not-support').hide();
+    $('#menu-ar-not-support').appendTo("body");
+
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) { /* Safari */
+      document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) { /* IE11 */
+      document.msExitFullscreen();
     }
-    else{
-        $('#ar-not-support').show();
-    }
-   
-}
-
-
+  }
+///////////////////////////////////////////////////////////////////////
 
 
 
