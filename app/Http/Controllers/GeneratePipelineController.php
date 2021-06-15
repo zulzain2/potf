@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ConfigPipeline;
+use App\Models\ConfigTerrain;
 use Ramsey\Uuid\Uuid;
 use Illuminate\Http\Request;
 use App\Models\GeneratePipeline;
 use App\Models\PipelineParameter;
 use App\Models\TerrainParameter;
+use App\Models\Terrain;
 
 class GeneratePipelineController extends Controller
 {
@@ -41,29 +44,42 @@ class GeneratePipelineController extends Controller
         $add = new GeneratePipeline;
         $add->id = Uuid::uuid4()->getHex();
         $add->name = $request->nameConfig;
-        $add->km = $request->kmRange;
+        $add->total_km = $request->kmRange;
 
-        $environment = [];
         foreach($request->environment as $key=>$part){
-            $obj = (Object)[
-                'km' => $key++,
-                'id_terrain' => $part
-            ];
-            array_push($environment, $obj);
+            $envParam = TerrainParameter::where('id_terrain', $part)
+            ->with(array('terrain' => function($query) {
+                $query->select('id','name');
+            }))->get();
+            foreach($envParam as $param){
+                $new = new ConfigTerrain;
+                $new->id = Uuid::uuid4()->getHex();
+                $new->id_generate_pipeline = $add->id;
+                $new->id_terrain = $param->terrain->id;
+                $new->id_terrain_parameter = $param->id;
+                $new->km = $key;
+                $new->id_status = '1';
+                $new->save();
+            }
         }
-        $environment = json_encode($environment);
-        $add->environments = $environment;
 
-        $pipeline = [];
         foreach($request->pipeline as $key=>$part){
-            $obj = (Object)[
-                'km' => $key++,
-                'id_pipeline' => $part
-            ];
-            array_push($pipeline, $obj);
+            $pipeParam = PipelineParameter::where('id_pipeline', $part)
+            ->with(array('pipeline' => function($query) {
+                $query->select('id','name');
+            }))->get();
+            foreach($pipeParam as $param){
+                $newP = new ConfigPipeline;
+                $newP->id = Uuid::uuid4()->getHex();
+                $newP->id_generate_pipeline = $add->id;
+                $newP->id_pipeline = $param->pipeline->id;
+                $newP->id_pipeline_parameter = $param->id;
+                $newP->km = $key;
+                $newP->id_status = '1';
+                $newP->save();
+            }
         }
-        $pipeline = json_encode($pipeline);
-        $add->pipelines = $pipeline;
+        
         $add->id_status = '1';
         $add->save();
 
@@ -116,49 +132,60 @@ class GeneratePipelineController extends Controller
         //
     }
 
+    public function storeValue(Request $request){
+      dd($request);
+    }
+
     public function fetchEnv(Request $request){
         
-        $id = $request->id_cp;
-        $configPipeline = GeneratePipeline::where('id','=' , $id)->where('id_status','=' , 1)->get();
-
+        $generatePipeline = GeneratePipeline::where('id','=' , $request->id_cp)->where('id_status','=' , 1)->get();
+       
         $arr_env = [];
-        foreach($configPipeline as $cp){
-           $env = $cp->getEnvironments($cp->environments);
-           foreach($env as $k=>$e){
-            $envParam = TerrainParameter::where('id_terrain','=' , $e->id_terrain)->where('id_status','=' , 1)
-            ->with(array('terrain' => function($query) {
-                $query->select('id','name');
-            }))->get();
-            array_push($arr_env, $envParam);
-           }
+        foreach($generatePipeline as $cp){
+          $configEnv = ConfigTerrain::where('id_generate_pipeline','=' , $cp->id)->where('id_status','=' , 1)
+          ->with(array('terrain' => function($query) {
+              $query->select('id','name');
+          }))
+          ->with(array('terrain_parameter' => function($query) {
+            $query->select('id','name');
+          }))
+          ->get();
+            array_push($arr_env,$configEnv);
         }
-    
-        return json_encode($arr_env);
+        
+        $data = [
+            'status' => 'success', 
+            'message' => 'Successfully get terrain parameters.',
+            'data' => $arr_env
+        ];
+        return json_encode($data);
     }
 
     public function fetchPipe(Request $request){
         
-        $id = $request->id_cp;
-        $configPipeline = GeneratePipeline::where('id','=' , $id)->where('id_status','=' , 1)->get();
+      $generatePipeline = GeneratePipeline::where('id','=' , $request->id_cp)->where('id_status','=' , 1)->get();
+       
+      $arr_pipe = [];
+      foreach($generatePipeline as $cp){
+        $configPipe = ConfigPipeline::where('id_generate_pipeline','=' , $cp->id)->where('id_status','=' , 1)
+        ->with(array('pipeline' => function($query) {
+            $query->select('id','name');
+        }))
+        ->with(array('pipeline_parameter' => function($query) {
+          $query->select('id','name');
+        }))
+        ->get();
+          array_push($arr_pipe,$configPipe);
 
-        $arr_pipe = [];
-        foreach($configPipeline as $cp){
-           $pipe = $cp->getPipelines($cp->pipelines);
-           foreach($pipe as $k=>$e){
-            $pipeParam = PipelineParameter::where('id_pipeline','=' , $e->id_pipeline)->where('id_status','=' , 1)->where('id_status','=' , 1)
-            ->with(array('pipeline' => function($query) {
-                $query->select('id','name');
-            }))->get();
-               array_push($arr_pipe, $pipeParam);
-           }
-        }
-        $data = [
-            'status' => 'success', 
-            'message' => 'Successfully get terrain parameters.',
-            'data' => $arr_pipe,
-            'configPipeline' => $configPipeline
-        ];
-        return json_encode($data);
+        // dd($configPipe);
+      }
+      // dd($arr_pipe);
+      $data = [
+          'status' => 'success', 
+          'message' => 'Successfully get pipeline parameters.',
+          'data' => $arr_pipe
+      ];
+      return json_encode($data);
     }
 
 }

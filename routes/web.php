@@ -90,6 +90,7 @@ Route::post('/sensorParam/store', 'App\Http\Controllers\SensorParameterControlle
 // Generate Pipeline Controller
 //////////////////////////////////////////////////////////////////////////////////////////////////
 Route::resource('generatepipeline', 'App\Http\Controllers\GeneratePipelineController');
+Route::post('/generatepipeline/storeValue', 'App\Http\Controllers\GeneratePipelineController@storeValue')->name('generatepipeline.storeValue');
 Route::post('/generatepipeline/fetchEnv', 'App\Http\Controllers\GeneratePipelineController@fetchEnv')->name('generatepipeline.fetchEnv');
 Route::post('/generatepipeline/fetchPipe', 'App\Http\Controllers\GeneratePipelineController@fetchPipe')->name('generatepipeline.fetchPipe');
 

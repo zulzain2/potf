@@ -10,4 +10,8 @@ class Pipeline extends Model
     use Notifiable;
     protected $table = 'pipelines';
     public $incrementing = FALSE;
+
+    public function pipeParams(){
+        return $this->hasMany('App\Models\PipelineParameter', 'id_pipeline', 'id');
+    }
 }
