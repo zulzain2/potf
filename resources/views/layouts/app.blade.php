@@ -56,8 +56,7 @@
 
                     
                 </div>
-                <div id="" class="col-2 text-center">
-                    
+                <div id="theme-switch" class="col-2 text-center">
                     <div class="custom-control scale-switch ios-switch float-right
                     " style="text-align: right;margin-right: unset;position: unset;padding-left: unset;transform: scale(.7, .7);">
                         <input data-toggle-theme="" type="checkbox" class="ios-input" id="switch-dark-mode">
