@@ -47,12 +47,21 @@
   </div>
   <div class="col-8 pb-1 pt-2 h-100 ps-0">
 
-    <div style="position: absolute;
+    <div class="text-center" style="position: absolute;
     top: 8%;
     left: 34%;
     font-size: large;z-index:9">
-      <a id="enterFullScreen" href="#" class="">
-        <i class="fas fa-vr-cardboard color-highlight"></i>
+      <a id="enterFullScreen" href="#" class="text-center">
+        <i class="fas fa-vr-cardboard fa-lg color-highlight"><p class="text-center w-100 color-highlight" style="font-size:12px;font-family: roboto, sans-serif !important;">VR</p></i> 
+      </a>
+    </div>
+
+    <div class="text-center" style="position: absolute;
+    top: 8%;
+    right: 1%;
+    font-size: large;z-index:9">
+      <a id="" href="#" class="text-center">
+        <i class="fas fa-vr-cardboard fa-lg color-highlight"><p class="text-center w-100 color-highlight" style="font-size:12px;font-family: roboto, sans-serif !important;">AR</p></i>
       </a>
     </div>
  
