@@ -48,7 +48,7 @@
   <div class="col-8 pb-1 pt-2 h-100 ps-0">
 
     <div class="text-center" style="position: absolute;
-    top: 8%;
+    top: 9%;
     left: 34%;
     font-size: large;z-index:9">
       <a id="enterFullScreen" href="#" class="text-center">
@@ -57,7 +57,7 @@
     </div>
 
     <div class="text-center" style="position: absolute;
-    top: 8%;
+    top: 9%;
     right: 1%;
     font-size: large;z-index:9">
       <a id="" href="#" class="text-center">
