@@ -57,15 +57,7 @@
       </a>
     </div>
 
-    <div id="ar-not-support" data-menu="menu-ar-not-support" class="text-center" style="position: absolute;
-    top: 9%;
-    right: 1%;
-    font-size: large;z-index:9">
-      <a id="" href="#" class="text-center color-highlight">
-        <i class="material-icons color-highlight font-36">view_in_ar</i>
-        <p class="font-800 text-center w-100 color-highlight" style="font-size:12px;font-family: roboto, sans-serif !important;margin-top: -10px;">AR</p>
-      </a>
-    </div>
+   
  
 
     <div id="potf3d" style="height:64%;border-radius:5px">
@@ -84,8 +76,23 @@
       class="w-100" 
       style="height:100%">
     
-      <button id="ar-support" slot="ar-button" href="#" class="text-center color-highlight" style="position: absolute;
+ 
+
+      {{-- <div id="ar-failure" data-menu="menu-ar-not-support" class="text-center" style="position: absolute;
       top: 9%;
+      right: 1%;
+      font-size: large;z-index:9"> --}}
+        <button id="" href="#" data-menu="menu-ar-not-support" class="text-center color-highlight" style="position: absolute;
+        top: 1%;
+        right: 1%;
+        font-size: large;z-index:9">
+          <i class="material-icons color-highlight font-36">view_in_ar</i>
+          <p class="font-800 text-center w-100 color-highlight" style="font-size:12px;font-family: roboto, sans-serif !important;margin-top: -10px;">AR</p>
+        </button>
+      {{-- </div> --}}
+
+      <button id="ar-support" slot="ar-button" href="#" class="text-center color-highlight" style="position: absolute;
+      top: 1%;
       right: 1%;
       font-size: large;z-index:10">
         <i class="material-icons color-highlight font-36">view_in_ar</i>

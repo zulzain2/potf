@@ -32,6 +32,8 @@
             background: #1b1d21;
            
         }
+
+        
     </style>
 
     @stack('styles')

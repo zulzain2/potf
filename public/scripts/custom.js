@@ -73,9 +73,17 @@ function openFullscreen() {
 }
               
 
-// if (document.querySelector('#ar-support')) {
-//     $('#ar-not-support').hide();
-// }
+if (document.querySelector('#ar-support')) {
+    let arsupport = $('#ar-support').attr('slot');
+    console.log(arsupport);
+    if(arsupport){
+        $('#ar-not-support').hide();
+    }
+    else{
+        $('#ar-not-support').show();
+    }
+   
+}
 
 
 
