@@ -133,7 +133,17 @@ class GeneratePipelineController extends Controller
     }
 
     public function storeValue(Request $request){
-      dd($request);
+        $index = 0;
+        foreach($request->id as $id){
+          $update = ConfigPipeline::find($id);
+          if($update == null){
+              $update = ConfigTerrain::find($id);
+          }
+          $update->value = $request->value[$index];
+          $index++;
+          $update->save(); 
+        }
+        return redirect()->back()->with('success', 'New pipeline config added');  
     }
 
     public function fetchEnv(Request $request){

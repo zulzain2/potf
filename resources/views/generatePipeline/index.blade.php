@@ -283,7 +283,8 @@
                       <th scope="row">${el.terrain.name}</th>
                       <td scope="row">${el.terrain_parameter.name}</td>
                       <td scope="row">
-                      <input type="text" class="form-control" id="value-${el.id}" ${el.required == 1 ? 'required' : ''} name="value[]"">
+                      <input type="text" class="form-control" id="value-${el.id}" ${el.required == 1 ? 'required' : ''} name="value[]"" value="${el.value ? el.value : ''}">
+                      <input type="hidden" name="id[]" id="${el.id}" value="${el.id}">
                       </td>
 
                     </tr>
@@ -318,7 +319,8 @@
                       <th scope="row">${el.pipeline.name}</th>
                       <td scope="row">${el.pipeline_parameter.name}</td>
                       <td scope="row">
-                      <input type="text" class="form-control" id="value-${el.id}" ${el.required == 1 ? 'required' : ''} name="value[]"">
+                      <input type="text" class="form-control" id="value-${el.id}" ${el.required == 1 ? 'required' : ''} name="value[]"" value="${el.value ? el.value : ''}">
+                      <input type="hidden" name="id[]" id="${el.id}" value="${el.id}">
                       </td>
 
                     </tr>
