@@ -73,7 +73,9 @@ function openFullscreen() {
 }
               
 
-
+// if (document.querySelector('#ar-support')) {
+//     $('#ar-not-support').hide();
+// }
 
 
 

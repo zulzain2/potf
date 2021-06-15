@@ -57,14 +57,14 @@
       </a>
     </div>
 
-    <div class="text-center" style="position: absolute;
+    <div id="ar-not-support" data-menu="menu-ar-not-support" class="text-center" style="position: absolute;
     top: 9%;
     right: 1%;
     font-size: large;z-index:9">
-      {{-- <a id="" href="#" class="text-center color-highlight">
+      <a id="" href="#" class="text-center color-highlight">
         <i class="material-icons color-highlight font-36">view_in_ar</i>
         <p class="font-800 text-center w-100 color-highlight" style="font-size:12px;font-family: roboto, sans-serif !important;margin-top: -10px;">AR</p>
-      </a> --}}
+      </a>
     </div>
  
 
@@ -84,7 +84,10 @@
       class="w-100" 
       style="height:100%">
     
-      <button slot="ar-button" href="#" class="text-center color-highlight">
+      <button id="ar-support" slot="ar-button" href="#" class="text-center color-highlight" style="position: absolute;
+      top: 9%;
+      right: 1%;
+      font-size: large;z-index:10">
         <i class="material-icons color-highlight font-36">view_in_ar</i>
         <p class="font-800 text-center w-100 color-highlight" style="font-size:12px;font-family: roboto, sans-serif !important;margin-top: -10px;">AR</p>
       </button>
@@ -307,11 +310,22 @@
 
   </div>
 </div>
-
-
 @endsection
 
+@push('content2')
+<div id="menu-ar-not-support" class="menu menu-box-modal rounded-m" data-menu-width="310" data-menu-height="280">
+  <h1 class="text-center color-theme mt-4">AR Not Support</h1>
+  <p class="ps-3 pe-3 text-center color-theme opacity-60">
+      This action requires device with AR features enabled. Please try again if you have the device. Best AR experience with VR Headset like Oculus Go, Rift or any other VR Headset.
+  </p>
+  <a href="#" class="close-menu btn btn-m font-900 text-uppercase bg-highlight rounded-sm btn-center-l">Close
+      Message</a>
+  <p class="text-center font-9 color-theme mt-3">Continue with other task.</p>
+</div>
+@endpush
+
 @push('scripts')
+
 <!-- Import the component -->
 <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
