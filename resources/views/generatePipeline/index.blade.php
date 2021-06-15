@@ -41,6 +41,7 @@
               <i class="fa fa-angle-right bg-green-dark rounded-s"></i>
                 <span>{{$cp->name}}</span>
                 <strong>Click to enter the parameter value</strong>
+                <small class="float-right"> {{$cp->total_km}} km</small>
               </a>
               <hr>
           @endforeach
@@ -117,7 +118,7 @@
   </div>
   <div class="content mt-2">
     <div class="divider mb-3"></div>
-    <form action="{{ route('generatepipeline.store') }}" method="post">
+    <form action="{{ route('generatepipeline.storeValue') }}" method="post">
       @csrf
       <input type="hidden" name="id_cp" id="id_cp">
       
@@ -148,6 +149,7 @@
               <table class="table table-borderless text-center rounded-sm shadow-l" style="overflow: hidden;" >
                 <thead>
                 <tr class="bg-gray-dark">
+                <th scope="col" class="color-white" style="width:10%">KiloMeter</th>
                 <th scope="col" class="color-white" style="width:30%">Environment</th>
                 <th scope="col" class="color-white" style="width:30%">Parameter</th>
                 <th scope="col" class="color-white" style="width:30%">Value</th>
@@ -174,6 +176,7 @@
               <table class="table table-borderless text-center rounded-sm shadow-l" style="overflow: hidden;" >
                 <thead>
                 <tr class="bg-gray-dark">
+                <th scope="col" class="color-white" style="width:10%">KiloMeter</th>
                 <th scope="col" class="color-white" style="width:30%">Pipeline</th>
                 <th scope="col" class="color-white" style="width:30%">Parameter</th>
                 <th scope="col" class="color-white" style="width:30%">Value</th>
@@ -191,7 +194,7 @@
       </div>
        <div class="row">
         <div class="col-12 text-center">
-        <button type="submit" id="submitGeneratePipeline" class="btn btn-s rounded-s text-uppercase font-900 shadow-s border-highlight bg-highlight"><i class="fas fa-plus"></i>&nbsp;&nbsp;Add</button>
+        <button type="submit" id="submitGeneratePipelineValue" class="btn btn-s rounded-s text-uppercase font-900 shadow-s border-highlight bg-highlight"><i class="fas fa-plus"></i>&nbsp;&nbsp;Add</button>
         </div>
       </div> 
     </form>
@@ -271,23 +274,25 @@
           },
           success: (resultsJSON) =>{
             let results = JSON.parse(resultsJSON);
-            results.map(a => {
-              a.forEach(el => {
-                $('#envParamList').append(`
-                <tr>
-                  <th scope="row">${el.terrain.name}</th>
-                  <td scope="row">${el.name}</td>
-                  <td scope="row">
-                  <input type="text" class="form-control" id="value-${el.id}" name="value"">
-                  </td>
+            
+            results.data.map(a =>{
+                a.forEach(el =>{
+                  $('#envParamList').append(`
+                    <tr>
+                      <th scope="row">${++el.km}</th>
+                      <th scope="row">${el.terrain.name}</th>
+                      <td scope="row">${el.terrain_parameter.name}</td>
+                      <td scope="row">
+                      <input type="text" class="form-control" id="value-${el.id}" ${el.required == 1 ? 'required' : ''} name="value[]"" value="${el.value ? el.value : ''}">
+                      <input type="hidden" name="id[]" id="${el.id}" value="${el.id}">
+                      </td>
 
-                </tr>
-              `)
-              });
-              
+                    </tr>
+                  `)
+                })
+              })
+          
 
-              
-            })
           },
           error: err => console.error(err)
         })
@@ -306,24 +311,22 @@
           success: (resultsJSON) =>{
           
             let results = JSON.parse(resultsJSON);
-            results.configPipeline.map(b =>{
-              
-            })
-            results.data.map(a => {
-              a.forEach(el => {
-                $('#pipeParamList').append(`
-                <tr>
-                  <th scope="row">${el.pipeline.name}</th>
-                  <td scope="row">${el.name}</td>
-                  <td scope="row">
-                  <input type="text" class="form-control" id="value-${el.id}" name="value"">
-                  </td>
+            results.data.map(a =>{
+                a.forEach(el =>{
+                  $('#pipeParamList').append(`
+                    <tr>
+                      <th scope="row">${++el.km}</th>
+                      <th scope="row">${el.pipeline.name}</th>
+                      <td scope="row">${el.pipeline_parameter.name}</td>
+                      <td scope="row">
+                      <input type="text" class="form-control" id="value-${el.id}" ${el.required == 1 ? 'required' : ''} name="value[]"" value="${el.value ? el.value : ''}">
+                      <input type="hidden" name="id[]" id="${el.id}" value="${el.id}">
+                      </td>
 
-                </tr>
-              `)
-              });
-              
-            })
+                    </tr>
+                  `)
+                })
+              })
           },
           error: err => console.error(err)
         })

@@ -13,6 +13,6 @@ class PipelineParameter extends Model
 
     public function pipeline(){
         return $this->belongsTo('App\Models\Pipeline', 'id_pipeline', 'id');
-
     }
+    
 }
