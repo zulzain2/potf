@@ -51,11 +51,21 @@
                 <div id="topbar-left" class="col-4 text-center">
                     <a href="#" class="text-center"><h6 class="color-highlight" style="line-height: 50px;padding-left: 50px;">CONFIGURATION</h6></a>
                 </div>
-                <div id="topbar-right" class="col-8 text-center">
+                <div id="topbar-right" class="col-6 text-center">
                     <a href="#" class="text-center"><h6 class="color-highlight" style="line-height: 50px">{{$topBarTitle ? $topBarTitle : ''}}</h6></a>
+
+                    
+                </div>
+                <div id="" class="col-2 text-center">
+                    
+                    <div class="custom-control scale-switch ios-switch float-right
+                    " style="text-align: right;margin-right: unset;position: unset;padding-left: unset;transform: scale(.7, .7);">
+                        <input data-toggle-theme="" type="checkbox" class="ios-input" id="switch-dark-mode">
+                        <label class="custom-control-label" for="switch-dark-mode" style="background-color: transparent !important;"></label>
+                    </div>
                 </div>
             </div>
-            
+  
         </div>
       
 
