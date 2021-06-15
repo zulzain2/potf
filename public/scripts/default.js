@@ -212,6 +212,25 @@ function textErrorBuilder(id_element , textErr){
                     })['mount']()
                 })
             };
+
+            var _0xce56x26 = document['querySelectorAll']('.fifth-slider');
+            if (_0xce56x26['length']) {
+                _0xce56x26['forEach'](function(_0xce56xb) {
+                    var _0xce56x27 = new Splide('#' + _0xce56xb['id'], {
+                        type: 'slide',
+                        autoplay: false,
+                        padding: {
+                            left: '0px',
+                            right: '80px'
+                        },
+                        interval: 4000,
+                        arrows: false,
+                        perPage: 4,
+                        perMove: 1
+                    })['mount']()
+                })
+            };
+
         };
 
         const _0xce56x28 = document['querySelectorAll']('a[href=\"#\"]');
