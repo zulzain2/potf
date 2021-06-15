@@ -52,7 +52,8 @@
     left: 34%;
     font-size: large;z-index:9">
       <a id="enterFullScreen" href="#" class="text-center">
-        <i class="fas fa-vr-cardboard fa-lg color-highlight"><p class="text-center w-100 color-highlight" style="font-size:12px;font-family: roboto, sans-serif !important;">VR</p></i> 
+        <i class="fas fa-vr-cardboard fa-lg color-highlight"></i> 
+        <p class="font-800 text-center w-100 color-highlight" style="font-size:12px;font-family: roboto, sans-serif !important;margin-top: -5px;">VR</p>
       </a>
     </div>
 
@@ -60,9 +61,10 @@
     top: 9%;
     right: 1%;
     font-size: large;z-index:9">
-      <a id="" href="#" class="text-center">
-        <i class="fas fa-vr-cardboard fa-lg color-highlight"><p class="text-center w-100 color-highlight" style="font-size:12px;font-family: roboto, sans-serif !important;">AR</p></i>
-      </a>
+      {{-- <a id="" href="#" class="text-center color-highlight">
+        <i class="material-icons color-highlight font-36">view_in_ar</i>
+        <p class="font-800 text-center w-100 color-highlight" style="font-size:12px;font-family: roboto, sans-serif !important;margin-top: -10px;">AR</p>
+      </a> --}}
     </div>
  
 
@@ -80,7 +82,18 @@
       camera-orbit="180deg 70deg 60%"
       auto-rotate 
       class="w-100" 
-      style="height:100%"></model-viewer> 
+      style="height:100%">
+    
+      <button slot="ar-button" href="#" class="text-center color-highlight">
+        <i class="material-icons color-highlight font-36">view_in_ar</i>
+        <p class="font-800 text-center w-100 color-highlight" style="font-size:12px;font-family: roboto, sans-serif !important;margin-top: -10px;">AR</p>
+      </button>
+
+      {{-- <button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; top: 16px; right: 16px; ">
+        👋 Activate AR
+    </button> --}}
+
+    </model-viewer> 
       
 
 
