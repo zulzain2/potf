@@ -163,7 +163,7 @@
           <div class="d-flex no-effect collapsed" data-trigger-switch="pipelineParameterRequired" data-bs-toggle="collapse"
           href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample2">
           <div class="pt-1 ps-2">
-            <h5 class="font-600">Required ?</h5>
+            <h5 class="font-600">Optional ?</h5>
           </div>
           <div class="ms-auto me-4 pe-2 pt-2">
             <div class="custom-control ios-switch ios-switch-icon" style="margin-top:0px !important">

@@ -26,12 +26,12 @@
     
                         <div style="height:100%;border-radius:5px">
                           <!-- Use it like any other HTML element -->
-                          <model-viewer src="images/3d/pipe-red/scene.gltf" 
+                          <model-viewer src="images/3d/pipe.glb" 
                           alt="A 3D model of an astronaut" 
                           loading="lazy"
                           ar ar-modes="webxr scene-viewer quick-look" 
                           environment-image="neutral"
-                          auto-rotate 
+ 
                           class="w-100" 
                           style="height:100%"></model-viewer>
                         </div>
@@ -56,12 +56,11 @@
 
                     <div style="height:100%;border-radius:5px">
                       <!-- Use it like any other HTML element -->
-                      <model-viewer src="images/3d/pipe-grey/scene.gltf" 
+                      <model-viewer src="images/3d/pipe-2.glb" 
                       alt="A 3D model of an astronaut" 
                       loading="lazy"
                       ar ar-modes="webxr scene-viewer quick-look" 
-                      environment-image="neutral"
-                      auto-rotate 
+                      environment-image="neutral" 
                       class="w-100" 
                       style="height:100%"></model-viewer>
                     </div>
@@ -86,12 +85,11 @@
 
                     <div style="height:100%;border-radius:5px">
                       <!-- Use it like any other HTML element -->
-                      <model-viewer src="images/3d/pipe-grey/scene.gltf" 
+                      <model-viewer src="images/3d/pipe-3.glb" 
                       alt="A 3D model of an astronaut" 
                       loading="lazy"
                       ar ar-modes="webxr scene-viewer quick-look" 
-                      environment-image="neutral"
-                      auto-rotate 
+                      environment-image="neutral" 
                       class="w-100" 
                       style="height:100%"></model-viewer>
                     </div>
@@ -103,7 +101,7 @@
               </div>
               <div class="hvr-shrink splide__slide h-100">
                 <a href="#" class="">
-                    <div class="card card-style " style="height:100%">
+                    <div class="card card-style" style="height:100%">
 
                     <div class="card-top">
                         <strong class="float-end text-center">
@@ -116,12 +114,11 @@
 
                     <div style="height:100%;border-radius:5px">
                         <!-- Use it like any other HTML element -->
-                        <model-viewer src="images/3d/pipe-red/scene.gltf" 
+                        <model-viewer src="images/3d/pipe-4.glb" 
                         alt="A 3D model of an astronaut" 
                         loading="lazy"
                         ar ar-modes="webxr scene-viewer quick-look" 
-                        environment-image="neutral"
-                        auto-rotate 
+                        environment-image="neutral" 
                         class="w-100" 
                         style="height:100%"></model-viewer>
                     </div>
@@ -146,12 +143,11 @@
 
                         <div style="height:100%;border-radius:5px">
                         <!-- Use it like any other HTML element -->
-                        <model-viewer src="images/3d/pipe-grey/scene.gltf" 
+                        <model-viewer src="images/3d/pipe-4.glb" 
                         alt="A 3D model of an astronaut" 
                         loading="lazy"
                         ar ar-modes="webxr scene-viewer quick-look" 
-                        environment-image="neutral"
-                        auto-rotate 
+                        environment-image="neutral" 
                         class="w-100" 
                         style="height:100%"></model-viewer>
                         </div>

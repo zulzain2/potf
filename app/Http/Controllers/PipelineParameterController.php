@@ -59,7 +59,7 @@ class PipelineParameterController extends Controller
         $pipeline->id_pipeline = $request->idPipeline;
         $pipeline->name = $request->pipelineParameterName;
         $pipeline->type = $request->pipelineParameterType;
-        $pipeline->required = $request->pipelineParameterRequired;
+        $pipeline->required = $request->pipelineParameterRequired == 0 ? 1 : 0;
         $pipeline->id_status = '1';
         $pipeline->save();
     

@@ -30,6 +30,9 @@
         .theme-dark select option {
             background: #1b1d21;
         }
+        .color-invert{
+            color:black;
+        }
     </style>
 
     @stack('styles')
@@ -156,7 +159,7 @@
                         </div>
 
                      
-                        <div class="d-flex">
+                        {{-- <div class="d-flex">
                     
                             <a href="#" data-active="" data-content="page-concept" class="pt-1 sidebar-item flex-fill icon icon-m text-center border-bottom border-right" style="color: unset !important;border-top: 1px solid rgba(255, 255, 255, .05) !important;border-right:none !important;border-radius: 5px;">
                                 <img src="images/icons/templates.png" style="height:40px;width:40px;padding:3px" alt="">
@@ -164,7 +167,7 @@
                                 <strong style="font-size:9px">Concept</strong>
                             </a>
                     
-                        </div>
+                        </div> --}}
 
 
                         <div class="d-flex">

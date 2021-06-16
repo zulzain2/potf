@@ -628,3 +628,30 @@ $('#btn-menu-add-terrain-simulation').on('click' , function(){
     }
 });
 ///////////////////////////////////////////////////////////////////////
+
+
+
+  const modelViewer = $('#mainModelViewer');
+
+  $('#toggle-rotate').on('change' , function(){
+    if ($(this).is(":checked"))
+    {
+        modelViewer.attr('auto-rotate' , '')
+    }
+    else
+    {
+        modelViewer.removeAttr('auto-rotate')
+    }
+  })
+
+ 
+
+//   window.switchSrc = (element, name) => {
+//     const base = "../../assets/ShopifyModels/" + name;
+//     modelViewer.src = base + '.glb';
+//     modelViewer.poster = base + '.png';
+//     const slides = document.querySelectorAll(".slide");
+//     slides.forEach((element) => {element.classList.remove("selected");});
+//     element.classList.add("selected");
+//   };
+

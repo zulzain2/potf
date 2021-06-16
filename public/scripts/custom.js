@@ -72,6 +72,9 @@ function openFullscreen() {
     $('#enterFullScreen').hide();
     $('#exitFullScreen').show();
 
+    $('#ar-not-support').hide();
+    $('#ar-support').hide();
+
     $('#menu-ar-not-support').appendTo("#potf3d");
 
   if (elem.requestFullscreen) {
@@ -86,6 +89,9 @@ function openFullscreen() {
 function closeFullscreen() {
     $('#enterFullScreen').show();
     $('#exitFullScreen').hide();
+
+    $('#ar-not-support').show();
+    $('#ar-support').show();
 
     $('#menu-ar-not-support').appendTo("body");
 

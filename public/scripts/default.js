@@ -488,8 +488,7 @@ function textErrorBuilder(id_element , textErr){
             };
             localStorage['setItem'](_0xce56x4 + '-Theme', 'dark-mode')
             $('#logo-sidebar').attr("src","images/icons/petronas_white.png");
-            console.log('sdfsdf');
-            
+            $('.color-invert').css('color' , 'white');
             
         }
 
@@ -501,6 +500,7 @@ function textErrorBuilder(id_element , textErr){
             };
             localStorage['setItem'](_0xce56x4 + '-Theme', 'light-mode')
             $('#logo-sidebar').attr("src","images/icons/petronas.png");
+            $('.color-invert').css('color' , 'black');
             
         }
 
@@ -561,12 +561,14 @@ function textErrorBuilder(id_element , textErr){
             };
             document['body']['className'] = 'theme-dark'
             $('#logo-sidebar').attr("src","images/icons/petronas_white.png");
+            $('.color-invert').css('color' , 'white');
         
         };
 
         if (localStorage['getItem'](_0xce56x4 + '-Theme') == 'light-mode') {
             document['body']['className'] = 'theme-light'
             $('#logo-sidebar').attr("src","images/icons/petronas.png");
+            $('.color-invert').css('color' , 'black');
           
         };
 

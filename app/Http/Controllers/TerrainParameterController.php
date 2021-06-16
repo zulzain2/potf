@@ -60,7 +60,7 @@ class TerrainParameterController extends Controller
         $terrain->id_terrain = $request->idTerrain;
         $terrain->name = $request->terrainParameterName;
         $terrain->type = $request->terrainParameterType;
-        $terrain->required = $request->terrainParameterRequired;
+        $terrain->required = $request->terrainParameterRequired == 0 ? 1 : 0;
         $terrain->id_status = '1';
         $terrain->save();
     
