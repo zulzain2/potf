@@ -15,4 +15,5 @@ class SensorParams extends Model
     {
         return $this->belongsTo('App\Models\Sensor', 'id_sensors', 'id');
     }
+    
 }
