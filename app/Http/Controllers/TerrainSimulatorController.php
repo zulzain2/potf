@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Ramsey\Uuid\Uuid;
 use Illuminate\Http\Request;
 use App\Models\TerrainSimulator;
+use App\Models\TerrainSimulationFormula;
 use Illuminate\Support\Facades\Validator;
 
 class TerrainSimulatorController extends Controller
@@ -39,7 +40,8 @@ class TerrainSimulatorController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'idTerrain' 	            => 'required',
-            'terrainSimulationName' 	    => 'required'
+            'terrainSimulationName' 	    => 'required',
+            'terrainSimulationFormula' 	    => 'required',
         ]);
 
         if($validator->fails()){
@@ -51,6 +53,18 @@ class TerrainSimulatorController extends Controller
             ];
             return json_encode($data);
         }
+        
+        $first_explodes = explode('{{' , $request->terrainSimulationFormula); 
+
+        $arr_formulas = [];
+        foreach ($first_explodes as $key => $first_explode) {
+            
+            $sec_explodes = explode('}}' , $first_explode); 
+
+            foreach ($sec_explodes as $key => $sec_explode) {
+                array_push($arr_formulas,$sec_explode);
+            } 
+        }
 
         $terrain = New TerrainSimulator;
         $terrain->id = Uuid::uuid4()->getHex();
@@ -59,6 +73,18 @@ class TerrainSimulatorController extends Controller
         $terrain->desc = $request->terrainSimulationDesc;
         $terrain->id_status = '1';
         $terrain->save();
+
+        foreach ($arr_formulas as $key => $formula) {
+            if($formula){
+                $add = New TerrainSimulationFormula;
+                $add->id = Uuid::uuid4()->getHex();
+                $add->id_terrain_simulation = $terrain->id;
+                $add->id_terrain_parameter = $formula;
+                $add->order = $key;
+                $add->id_status = 1;
+                $add->save();
+            }
+        }
     
         $data = [
             'status' => 'success', 

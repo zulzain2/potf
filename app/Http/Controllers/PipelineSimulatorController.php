@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Ramsey\Uuid\Uuid;
 use Illuminate\Http\Request;
 use App\Models\PipelineSimulator;
+use App\Models\PipelineSimulationFormula;
 use Illuminate\Support\Facades\Validator;
 
 class PipelineSimulatorController extends Controller
@@ -39,7 +40,8 @@ class PipelineSimulatorController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'idPipeline' 	            => 'required',
-            'pipelineSimulationName' 	    => 'required'
+            'pipelineSimulationName' 	    => 'required',
+            'pipelineSimulationFormula' 	    => 'required',
         ]);
 
         if($validator->fails()){
@@ -52,6 +54,18 @@ class PipelineSimulatorController extends Controller
             return json_encode($data);
         }
 
+        $first_explodes = explode('{{' , $request->pipelineSimulationFormula); 
+
+        $arr_formulas = [];
+        foreach ($first_explodes as $key => $first_explode) {
+            
+            $sec_explodes = explode('}}' , $first_explode); 
+
+            foreach ($sec_explodes as $key => $sec_explode) {
+                array_push($arr_formulas,$sec_explode);
+            } 
+        }
+
         $pipeline = New PipelineSimulator;
         $pipeline->id = Uuid::uuid4()->getHex();
         $pipeline->id_pipeline = $request->idPipeline;
@@ -60,6 +74,18 @@ class PipelineSimulatorController extends Controller
         $pipeline->id_status = '1';
         $pipeline->save();
     
+        foreach ($arr_formulas as $key => $formula) {
+            if($formula){
+                $add = New PipelineSimulationFormula;
+                $add->id = Uuid::uuid4()->getHex();
+                $add->id_pipeline_simulation = $pipeline->id;
+                $add->id_pipeline_parameter = $formula;
+                $add->order = $key;
+                $add->id_status = 1;
+                $add->save();
+            }
+        }
+
         $data = [
             'status' => 'success', 
             'message' => 'Successfully store new pipeline simulator.'

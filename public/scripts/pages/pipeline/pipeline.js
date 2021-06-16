@@ -1,3 +1,104 @@
+function formulaParameterBuilder(results){
+    if (results.data){
+        if (results.data.length) {
+           
+            $('#pipelineFormulaParameter').html('');
+
+            results.data.map(pipelineparam => {
+
+                $('#pipelineFormulaParameter').append(`
+                    <div class="col-3">
+                    <a href="#" data-id-pipeline-param="${pipelineparam.id}" class="pipeline-formula-select btn btn-m btn-full mb-3 rounded-sm text-uppercase font-900 border-highlight-dark color-highlight-dark bg-theme">${pipelineparam.name}</a>
+                    </div>
+                `);
+                
+            })
+
+            $('.pipeline-formula-select').on('click' , function(){
+  
+              
+
+              // will give the current postion of the cursor
+              var curPos = document.getElementById("pipelineSimulationFormula").selectionStart; 
+            
+              // will get the value of the text area
+              let x= $('#pipelineSimulationFormula').val();
+            
+              // will get the value of the input box
+            //   let text_to_insert=$(this).html();
+              let idPipelineParam = $(this).data('id-pipeline-param');
+        
+              // setting the updated value in the text area
+              $('#pipelineSimulationFormula').val(x.slice(0,curPos)+'{{'+idPipelineParam+'}}'+x.slice(curPos));
+              $("#pipelineSimulationFormula").focus();
+            })
+
+        }
+        else{
+            $('#pipelineFormulaParameter').html('');
+
+            $('#pipelineFormulaParameter').append(`
+            <br>
+            <p class="text-center">Parameter is empty. Please add first at parameter tab.</p>
+            <br>
+            `);
+        }
+    }
+    else
+    {
+        $('#pipelineFormulaParameter').html('');
+
+        $('#pipelineFormulaParameter').append(`
+        <br>
+        <p class="text-center">Parameter is empty. Please add first at parameter tab.</p>
+        <br>
+        `);
+    }
+}
+
+function pipelineParameterListBuilder(results){
+    if (results.data){
+        if (results.data.length) {
+            $('#pipelineParameterList').html('');
+
+            results.data.map(pipelineparam => {
+
+                $('#pipelineParameterList').append(`
+                    <a href="#" data-menu="menu-transaction-1" class="d-flex mb-3">
+
+                        <div class="align-self-center">
+                        <h1 class="mb-n2 font-16">${pipelineparam.name}</h1>
+                        <p class="font-11 opacity-60">${pipelineparam.required === 1 ? 'required' : 'optional'}</p>
+                        </div>
+                        <div class="align-self-center ms-auto text-end">
+                        <h2 class="mb-n1 font-18 color-highlight">${pipelineparam.type}</h2>
+    
+                        </div>
+                    </a>
+                `)
+            })
+
+        }
+        else{
+            $('#pipelineParameterList').html('');
+
+            $('#pipelineParameterList').append(`
+            <br>
+            <p class="text-center">Parameter is empty. To add click on the plus button. To view other parameter, please select other Pipeline</p>
+            <br>
+            `);
+        }
+    }
+    else
+    {
+        $('#pipelineParameterList').html('');
+
+        $('#pipelineParameterList').append(`
+            
+        `);
+    }
+}
+
 function getAllPipeline(){
     fetch('/pipeline').then(function(response) {
         return response.json();
@@ -98,46 +199,12 @@ function getPipelineParameter(idPipeline){
 
         if(results.status == 'success'){
             
-            if (results.data){
-                if (results.data.length) {
-                    $('#pipelineParameterList').html('');
+            formulaParameterBuilder(results);
 
-                    results.data.map(pipelineparam => {
+            pipelineParameterListBuilder(results);
 
-                        $('#pipelineParameterList').append(`
-                            <a href="#" data-menu="menu-transaction-1" class="d-flex mb-3">
-
-                                <div class="align-self-center">
-                                <h1 class="mb-n2 font-16">${pipelineparam.name}</h1>
-                                <p class="font-11 opacity-60">${pipelineparam.required === 1 ? 'required' : 'optional'}</p>
-                                </div>
-                                <div class="align-self-center ms-auto text-end">
-                                <h2 class="mb-n1 font-18 color-highlight">${pipelineparam.type}</h2>
-            
-                                </div>
-                            </a>
-                        `)
-                    })
-
-                }
-                else{
-                    $('#pipelineParameterList').html('');
-
-                    $('#pipelineParameterList').append(`
-                    <br>
-                    <p class="text-center">Parameter is empty. To add click on the plus button. To view other parameter, please select other Pipeline</p>
-                    <br>
-                    `);
-                }
-            }
-            else
-            {
-                $('#pipelineParameterList').html('');
-
-                $('#pipelineParameterList').append(`
-                    
-                `);
-            }
+           
+           
 
         }
         else{
@@ -453,11 +520,13 @@ $('#add-pipeline-simulation').on('click' , function(event){
                 var idPipeline = $('#idPipeline4Simulation').val();
                 var pipelineSimulationName = $('#pipelineSimulationName').val();
                 var pipelineSimulationDesc = $('#pipelineSimulationDesc').val();
+                var pipelineSimulationFormula = $('#pipelineSimulationFormula').val();
 
                 var dataForm = new URLSearchParams();
                 dataForm.append('idPipeline', idPipeline);
                 dataForm.append('pipelineSimulationName', pipelineSimulationName);
                 dataForm.append('pipelineSimulationDesc', pipelineSimulationDesc);
+                dataForm.append('pipelineSimulationFormula', pipelineSimulationFormula);
 
                 fetch("pipelinesimulator", {
                     method: 'post',
@@ -483,6 +552,7 @@ $('#add-pipeline-simulation').on('click' , function(event){
 
                         $('#pipelineSimulationName').val('');
                         $('#pipelineSimulationDesc').val('');
+                        $('#pipelineSimulationFormula').val('');
 
                         getPipelineSimulation(idPipeline);
 
@@ -607,7 +677,7 @@ $('#btn-menu-add-pipeline-parameter').on('click' , function(){
 ///////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////////
-//Check if idTerrain already assign into the modal
+//Check if idPipeline already assign into the modal
 $('#btn-menu-add-pipeline-simulation').on('click' , function(){
     let idPipeline = $('#menu-add-pipeline-simulation').find('.selected-pipeline').html();
     if(idPipeline){

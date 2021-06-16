@@ -17,6 +17,10 @@ use Illuminate\Support\Facades\Route;
 
 require __DIR__ . '/auth.php';
 
+Route::get('formula', function () {
+    return  view('formula.index');
+})->middleware(['auth']);
+
 Route::get('/', function () {
     return redirect('/home');
 })->middleware(['auth']);

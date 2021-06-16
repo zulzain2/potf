@@ -1,3 +1,108 @@
+function formulaParameterBuilder(results){
+    if (results.data){
+        if (results.data.length) {
+           
+            $('#terrainFormulaParameter').html('');
+
+            results.data.map(terrainparam => {
+
+                $('#terrainFormulaParameter').append(`
+                    <div class="col-3">
+                    <a href="#" data-id-terrain-param="${terrainparam.id}" class="terrain-formula-select btn btn-m btn-full mb-3 rounded-sm text-uppercase font-900 border-highlight-dark color-highlight-dark bg-theme">${terrainparam.name}</a>
+                    </div>
+                `);
+                
+
+                
+            })
+
+            $('.terrain-formula-select').on('click' , function(){
+  
+              
+
+              // will give the current postion of the cursor
+              var curPos = document.getElementById("terrainSimulationFormula").selectionStart; 
+            
+              // will get the value of the text area
+              let x= $('#terrainSimulationFormula').val();
+            
+              // will get the value of the input box
+            //   let text_to_insert=$(this).html();
+              let idTerrainParam = $(this).data('id-terrain-param');
+        
+              // setting the updated value in the text area
+              $('#terrainSimulationFormula').val(x.slice(0,curPos)+'{{'+idTerrainParam+'}}'+x.slice(curPos));
+              $("#terrainSimulationFormula").focus();
+            })
+
+        }
+        else{
+            $('#terrainFormulaParameter').html('');
+
+            $('#terrainFormulaParameter').append(`
+            <br>
+            <p class="text-center">Parameter is empty. Please add first at parameter tab.</p>
+            <br>
+            `);
+        }
+    }
+    else
+    {
+        $('#terrainFormulaParameter').html('');
+
+        $('#terrainFormulaParameter').append(`
+        <br>
+        <p class="text-center">Parameter is empty. Please add first at parameter tab.</p>
+        <br>
+        `);
+    }
+}
+
+function terrainParameterListBuilder(results){
+    if (results.data){
+        if (results.data.length) {
+            $('#terrainParameterList').html('');
+
+            results.data.map(terrainparam => {
+
+                $('#terrainParameterList').append(`
+                    <a href="#" data-menu="menu-transaction-1" class="d-flex mb-3">
+
+                        <div class="align-self-center">
+                        <h1 class="mb-n2 font-16">${terrainparam.name}</h1>
+                        <p class="font-11 opacity-60">${terrainparam.required === 1 ? 'required' : 'optional'}</p>
+                        </div>
+                        <div class="align-self-center ms-auto text-end">
+                        <h2 class="mb-n1 font-18 color-highlight">${terrainparam.type}</h2>
+    
+                        </div>
+                    </a>
+                `)
+
+                
+            })
+
+        }
+        else{
+            $('#terrainParameterList').html('');
+
+            $('#terrainParameterList').append(`
+            <br>
+            <p class="text-center">Parameter is empty. To add click on the plus button. To view other parameter, please select other Environment</p>
+            <br>
+            `);
+        }
+    }
+    else
+    {
+        $('#terrainParameterList').html('');
+
+        $('#terrainParameterList').append(`
+            
+        `);
+    }
+}
+
 function getAllTerrain(){
     fetch('/terrain').then(function(response) {
         return response.json();
@@ -105,46 +210,9 @@ function getTerrainParameter(idTerrain){
 
         if(results.status == 'success'){
             
-            if (results.data){
-                if (results.data.length) {
-                    $('#terrainParameterList').html('');
+            formulaParameterBuilder(results);
 
-                    results.data.map(terrainparam => {
-
-                        $('#terrainParameterList').append(`
-                            <a href="#" data-menu="menu-transaction-1" class="d-flex mb-3">
-
-                                <div class="align-self-center">
-                                <h1 class="mb-n2 font-16">${terrainparam.name}</h1>
-                                <p class="font-11 opacity-60">${terrainparam.required === 1 ? 'required' : 'optional'}</p>
-                                </div>
-                                <div class="align-self-center ms-auto text-end">
-                                <h2 class="mb-n1 font-18 color-highlight">${terrainparam.type}</h2>
-            
-                                </div>
-                            </a>
-                        `)
-                    })
-
-                }
-                else{
-                    $('#terrainParameterList').html('');
-
-                    $('#terrainParameterList').append(`
-                    <br>
-                    <p class="text-center">Parameter is empty. To add click on the plus button. To view other parameter, please select other Environment</p>
-                    <br>
-                    `);
-                }
-            }
-            else
-            {
-                $('#terrainParameterList').html('');
-
-                $('#terrainParameterList').append(`
-                    
-                `);
-            }
+            terrainParameterListBuilder(results);
 
         }
         else{
@@ -464,11 +532,13 @@ $('#add-terrain-simulation').on('click' , function(event){
                 var idTerrain = $('#idTerrain4Simulation').val();
                 var terrainSimulationName = $('#terrainSimulationName').val();
                 var terrainSimulationDesc = $('#terrainSimulationDesc').val();
+                var terrainSimulationFormula = $('#terrainSimulationFormula').val();
 
                 var dataForm = new URLSearchParams();
                 dataForm.append('idTerrain', idTerrain);
                 dataForm.append('terrainSimulationName', terrainSimulationName);
                 dataForm.append('terrainSimulationDesc', terrainSimulationDesc);
+                dataForm.append('terrainSimulationFormula', terrainSimulationFormula);
 
                 fetch("terrainsimulator", {
                     method: 'post',
@@ -494,6 +564,7 @@ $('#add-terrain-simulation').on('click' , function(event){
 
                         $('#terrainSimulationName').val('');
                         $('#terrainSimulationDesc').val('');
+                        $('#terrainSimulationFormula').val('');
 
                         getTerrainSimulation(idTerrain);
 
@@ -646,12 +717,8 @@ $('#btn-menu-add-terrain-simulation').on('click' , function(){
 
  
 
-//   window.switchSrc = (element, name) => {
-//     const base = "../../assets/ShopifyModels/" + name;
-//     modelViewer.src = base + '.glb';
-//     modelViewer.poster = base + '.png';
-//     const slides = document.querySelectorAll(".slide");
-//     slides.forEach((element) => {element.classList.remove("selected");});
-//     element.classList.add("selected");
-//   };
 
+
+
+
+    

@@ -11,7 +11,7 @@
     <title>Pipeline of the Future (PotF)</title>
 
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ URL::to('icons/72.png') }}">
+    <link rel="shortcut icon" href="{{ URL::to('icons/tubes.png') }}">
 
     <link rel="stylesheet" type="text/css" href="{{ URL::to('styles/bootstrap.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ URL::to('fonts/font-awesome-pro/css/all.min.css') }}">
@@ -332,12 +332,13 @@
     <script type="text/javascript" src="{{ URL::to('scripts/plugins/jquery/jquery-3.6.0.min.js') }}"></script>
     <script type="text/javascript" src="{{ URL::to('scripts/plugins/bootstrap/bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ URL::to('scripts/plugins/moment/moment.js') }}"></script>
-    <script type="text/javascript" src="{{ URL::to('scripts/plugins/meet/external_api.js') }}"></script>
     <script type="text/javascript" src="{{ URL::to('scripts/plugins/clipboard/clipboard.min.js') }}"></script>
     <script type="text/javascript" src="{{ URL::to('scripts/default.js') }}"></script>
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jstat@1.9.2/dist/jstat.min.js"></script> 
+    <script src="https://cdn.jsdelivr.net/gh/formulajs/formulajs@2.5.0/dist/formula.min.js"></script>
 
-    
+ 
 
 
     @stack('scripts')

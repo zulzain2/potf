@@ -190,7 +190,7 @@
 </div>
 
 
-<div id="menu-add-pipeline-simulation" class="menu menu-box-modal menu-box-detached rounded-m" data-menu-height="380" data-menu-width="500">
+<div id="menu-add-pipeline-simulation" class="menu menu-box-modal menu-box-detached rounded-m" style="max-height:600px" data-menu-height="600" data-menu-width="700">
   <div class="menu-title mt-n1">
     <h1>Add Pipeline Simulation Model</h1>
     <p class="color-highlight selected-pipeline"></p>
@@ -213,6 +213,38 @@
           placeholder="Enter simulation model description"></textarea>
         <label class="color-theme opacity-50 text-uppercase font-700 font-10">Simulation Model Description</label>
       </div>
+
+      <h6 class="text-center mb-1">Formula Builder</h6>
+      <p class="mt-n2 mb-4 text-center">
+        To see for all available function, click <a href="formula" target="_blank" class="color-blue-dark font-800">here</a>. You need to build your formula based on the available function only.
+        </p>
+
+      <div class="row text-center mb-2">
+        
+        <div class="col-12">
+          <strong>Available Parameter</strong> <br>
+          <div id="pipelineFormulaParameter" class="row mb-2">
+            
+          </div>
+        </div>
+      </div>
+
+      <div class="input-style has-icon input-style-always-active has-borders mb-0" style="margin-bottom:0px !important">
+        <i class="fas fa-equals color-highlight"></i>
+        <label class="color-theme opacity-50 text-uppercase font-700 font-10">Formula</label>
+        <input id="pipelineSimulationFormula" type="text" class="form-control" placeholder="Input formula here"
+          required>
+        <em>(required)</em>
+      </div>
+      <div class="text-center">
+        <small class="w-100">Exmp: LOG(10)-3+SQRT(2)*@{{PARAM_A}}*PI-@{{PARAM_B}}</small> 
+        <br>
+        <small class="w-100">Full list of function <a href="formula" target="_blank" class="color-blue-dark font-800">here</a></small>
+      </div>
+      
+      <br>
+
+      <div class="divider mb-3"></div>
 
       <div class="row">
         <div class="col-12 text-center">
