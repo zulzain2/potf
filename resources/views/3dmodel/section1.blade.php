@@ -19,7 +19,7 @@
             </button>
             
             <button id="exitFullScreen" href="#" class="text-center" style="display:none;">
-                <i class="fas fa-times fa-lg color-highlight"></i>
+                <i class="fas fa-times fa-lg color-white"></i>
             </button>
         </div>
         <div class="col-6 text-right">
