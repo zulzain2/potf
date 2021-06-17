@@ -83,7 +83,7 @@
                     <tr>
                         <td style="vertical-align: middle;background-color: transparent !important;text-align: right;">
                             <strong class="font-10 color-invert">Elevated</strong>
-                            <input type="hidden" id="3d_elevated" name="3d_elevated" value="images/3d/1-upview  .glb">
+                            <input type="hidden" id="3d_elevated" name="3d_elevated" value="images/3d/1-upview.glb">
                             <input type="hidden" id="3d_normal" name="3d_normal" value="images/3d/1.glb">
                         </td>
                         <td style="vertical-align: middle;background-color: transparent !important;width:20%">
