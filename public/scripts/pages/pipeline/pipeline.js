@@ -1,9 +1,9 @@
-function formulaParameterBuilder(results){
+function pipelineFormulaParameterBuilder(results){
     if (results.data){
         if (results.data.length) {
            
             $('#pipelineFormulaParameter').html('');
-
+            console.log("Available Parameter");
             results.data.map(pipelineparam => {
 
                 $('#pipelineFormulaParameter').append(`
@@ -199,7 +199,7 @@ function getPipelineParameter(idPipeline){
 
         if(results.status == 'success'){
             
-            formulaParameterBuilder(results);
+            pipelineFormulaParameterBuilder(results);
 
             pipelineParameterListBuilder(results);
 
@@ -320,30 +320,28 @@ if (document.querySelector('#selectPipeline')) {
 ///////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////////
-//for add pipeline
-$('#add-pipeline').on('click' , function(event){
+//Add Pipeline
+$("#addPipelineForm").on('submit' , function(event){
 
+    event.preventDefault();
     if (navigator.onLine) {
-        var fsm = $("#addPipelineForm");
+        var formElement = $(this);
 
          // Loop over them and prevent submission
-         Array.prototype.slice.call(fsm)
-         .forEach(function (form) {
-            if (!form.checkValidity()) 
+         Array.prototype.slice.call(formElement)
+         .forEach(function (formValidate) {
+            if (!formValidate.checkValidity()) 
             {
                 event.preventDefault()
                 event.stopPropagation()
             }
             else
             {
-                $('#add-pipeline').addClass('off-btn').trigger('classChange');
 
-                var pipelineName = $('#pipelineName').val();
-                var pipelineDesc = $('#pipelineDesc').val();
+                let form = formElement[0];
+                let btnSubmitForm = $('#add-pipeline')
 
-                var dataForm = new URLSearchParams();
-                dataForm.append('pipelineName', pipelineName);
-                dataForm.append('pipelineDesc', pipelineDesc);
+                btnSubmitForm.addClass('off-btn').trigger('classChange');
 
                 fetch("pipeline", {
                     method: 'post',
@@ -351,7 +349,7 @@ $('#add-pipeline').on('click' , function(event){
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
                     },
-                    body: dataForm,
+                    body: new FormData(form),
                 })
                 .then(function(response){
                     return response.json();
@@ -363,20 +361,17 @@ $('#add-pipeline').on('click' , function(event){
 
                         getAllPipeline();
                         
-                        $('#add-pipeline').removeClass('off-btn').trigger('classChange');
-
-                        // menu('menu-add-pipeline', 'hide', 250);
+                        btnSubmitForm.removeClass('off-btn').trigger('classChange');
 
                         snackbar(results.status , results.message)
 
-                        $('#pipelineName').val('');
-                        $('#pipelineDesc').html('');
+                        form.reset();
 
                     }
                     else{
                         if(results.type == 'Validation Error')
                         {
-                            $('#add-pipeline').removeClass('off-btn').trigger('classChange');
+                            btnSubmitForm.removeClass('off-btn').trigger('classChange');
 
                             validationErrorBuilder(results);
                         }
@@ -392,7 +387,7 @@ $('#add-pipeline').on('click' , function(event){
 
                 
             }
-            form.classList.add('was-validated');
+            formValidate.classList.add('was-validated');
         });
     }
     else{
@@ -403,42 +398,41 @@ $('#add-pipeline').on('click' , function(event){
 
 
  ///////////////////////////////////////////////////////////////////////
-//for add pipeline parameter
-$('#add-pipeline-param').on('click' , function(event){
+//Add Pipeline Parameter
+$("#addPipelineParamForm").on('submit' , function(event){
 
+    event.preventDefault();
     if (navigator.onLine) {
-        var fsm = $("#addPipelineParamForm");
+        var formElement = $(this);
 
          // Loop over them and prevent submission
-         Array.prototype.slice.call(fsm)
-         .forEach(function (form) {
-            if (!form.checkValidity()) 
+         Array.prototype.slice.call(formElement)
+         .forEach(function (formValidate) {
+            if (!formValidate.checkValidity()) 
             {
                 event.preventDefault()
                 event.stopPropagation()
             }
             else
             {
-                $('#add-pipeline-param').addClass('off-btn').trigger('classChange');
+                let form = formElement[0];
+                let btnSubmitForm = $('#add-pipeline-param');
 
-                var idPipeline = $('#idPipeline').val();
-                var pipelineParameterName = $('#pipelineParameterName').val();
-                var pipelineParameterType = $('#pipelineParameterType').val();
+                btnSubmitForm.addClass('off-btn').trigger('classChange');
 
+                let formData = new FormData(form);
                 if ($('#pipelineParameterRequired').is(":checked"))
                 {
                     var pipelineParameterRequired = 1;
+                    formData.append('pipelineParameterRequired', pipelineParameterRequired);
                 }
                 else
                 {
                     var pipelineParameterRequired = 0;
+                    formData.append('pipelineParameterRequired', pipelineParameterRequired);
                 }
 
-                var dataForm = new URLSearchParams();
-                dataForm.append('idPipeline', idPipeline);
-                dataForm.append('pipelineParameterName', pipelineParameterName);
-                dataForm.append('pipelineParameterType', pipelineParameterType);
-                dataForm.append('pipelineParameterRequired', pipelineParameterRequired);
+                var idPipeline = $('#idPipeline').val();
 
                 fetch("pipelineparameter", {
                     method: 'post',
@@ -446,7 +440,7 @@ $('#add-pipeline-param').on('click' , function(event){
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
                     },
-                    body: dataForm,
+                    body: formData,
                 })
                 .then(function(response){
                     return response.json();
@@ -456,14 +450,13 @@ $('#add-pipeline-param').on('click' , function(event){
 
                     if(results.status == 'success'){
                         
-                        $('#add-pipeline-param').removeClass('off-btn').trigger('classChange');
+                        btnSubmitForm.removeClass('off-btn').trigger('classChange');
 
                         menu('menu-add-pipeline-parameter', 'hide', 250);
 
                         snackbar(results.status , results.message)
 
-                        $('#pipelineParameterName').val('');
-                        $('#pipelineParameterType').val('');
+                        form.reset();
 
                         getPipelineParameter(idPipeline);
                         getPipelineSimulation(idPipeline);
@@ -472,7 +465,7 @@ $('#add-pipeline-param').on('click' , function(event){
                     else{
                         if(results.type == 'Validation Error')
                         {
-                            $('#add-pipeline-param').removeClass('off-btn').trigger('classChange');
+                            btnSubmitForm.removeClass('off-btn').trigger('classChange');
 
                             validationErrorBuilder(results);
                         }
@@ -488,7 +481,7 @@ $('#add-pipeline-param').on('click' , function(event){
 
                 
             }
-            form.classList.add('was-validated');
+            formValidate.classList.add('was-validated');
         });
     }
     else{
@@ -499,34 +492,30 @@ $('#add-pipeline-param').on('click' , function(event){
 
 
  ///////////////////////////////////////////////////////////////////////
-//for add pipeline simulator model
-$('#add-pipeline-simulation').on('click' , function(event){
+//Add Pipeline Simulator
+$("#addPipelineSimulationForm").on('submit' , function(event){
 
+    event.preventDefault();
     if (navigator.onLine) {
-        var fsm = $("#addPipelineSimulationForm");
+        var formElement = $(this);
 
          // Loop over them and prevent submission
-         Array.prototype.slice.call(fsm)
-         .forEach(function (form) {
-            if (!form.checkValidity()) 
+         Array.prototype.slice.call(formElement)
+         .forEach(function (formValidate) {
+            if (!formValidate.checkValidity()) 
             {
                 event.preventDefault()
                 event.stopPropagation()
             }
             else
             {
-                $('#add-pipeline-simulation').addClass('off-btn').trigger('classChange');
+                let form = formElement[0];
+                let btnSubmitForm = $('#add-pipeline-simulation');
+
+                btnSubmitForm.addClass('off-btn').trigger('classChange');
 
                 var idPipeline = $('#idPipeline4Simulation').val();
-                var pipelineSimulationName = $('#pipelineSimulationName').val();
-                var pipelineSimulationDesc = $('#pipelineSimulationDesc').val();
-                var pipelineSimulationFormula = $('#pipelineSimulationFormula').val();
-
-                var dataForm = new URLSearchParams();
-                dataForm.append('idPipeline', idPipeline);
-                dataForm.append('pipelineSimulationName', pipelineSimulationName);
-                dataForm.append('pipelineSimulationDesc', pipelineSimulationDesc);
-                dataForm.append('pipelineSimulationFormula', pipelineSimulationFormula);
+               
 
                 fetch("pipelinesimulator", {
                     method: 'post',
@@ -534,7 +523,7 @@ $('#add-pipeline-simulation').on('click' , function(event){
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
                     },
-                    body: dataForm,
+                    body: new FormData(form),
                 })
                 .then(function(response){
                     return response.json();
@@ -544,15 +533,13 @@ $('#add-pipeline-simulation').on('click' , function(event){
 
                     if(results.status == 'success'){
                         
-                        $('#add-pipeline-simulation').removeClass('off-btn').trigger('classChange');
+                        btnSubmitForm.removeClass('off-btn').trigger('classChange');
 
                         menu('menu-add-pipeline-simulation', 'hide', 250);
 
                         snackbar(results.status , results.message)
 
-                        $('#pipelineSimulationName').val('');
-                        $('#pipelineSimulationDesc').val('');
-                        $('#pipelineSimulationFormula').val('');
+                        form.reset();
 
                         getPipelineSimulation(idPipeline);
 
@@ -560,7 +547,7 @@ $('#add-pipeline-simulation').on('click' , function(event){
                     else{
                         if(results.type == 'Validation Error')
                         {
-                            $('#add-pipeline-simulation').removeClass('off-btn').trigger('classChange');
+                            btnSubmitForm.removeClass('off-btn').trigger('classChange');
 
                             validationErrorBuilder(results);
                         }
@@ -576,7 +563,7 @@ $('#add-pipeline-simulation').on('click' , function(event){
 
                 
             }
-            form.classList.add('was-validated');
+            formValidate.classList.add('was-validated');
         });
     }
     else{
@@ -587,30 +574,34 @@ $('#add-pipeline-simulation').on('click' , function(event){
 
 
 ///////////////////////////////////////////////////////////////////////
-//for delete pipeline
-$('#delete-pipeline').on('click' , function(event){
+//Delete Pipeline
+$("#deletePipelineForm").on('submit' , function(event){
 
+    event.preventDefault();
     if (navigator.onLine) {
-        var fsm = $("#deletePipelineForm");
+        var formElement = $(this);
 
         var formdata = new FormData();
         formdata.append("_method", "DELETE");
 
         // Loop over them and prevent submission
-        Array.prototype.slice.call(fsm)
-        .forEach(function (form) {
-            if (!form.checkValidity()) 
+        Array.prototype.slice.call(formElement)
+        .forEach(function (formValidate) {
+            if (!formValidate.checkValidity()) 
             {
                 event.preventDefault()
                 event.stopPropagation()
             }
             else
             {
-                $('#delete-pipeline').addClass('off-btn').trigger('classChange');
+                let form = new FormData(formElement[0]);
+                let btnSubmitForm = $('#delete-pipeline');
 
-                var deletePipelineId = $('#idPipelineDelete').val();
+                btnSubmitForm.addClass('off-btn').trigger('classChange');
 
-                fetch("pipeline/"+deletePipelineId+"/", {
+                // var deletePipelineId = $('#idPipelineDelete').val();
+
+                fetch("pipeline/"+form.get('idPipelineDelete')+"/", {
                     method: 'DELETE',
                     credentials: "same-origin",
                     headers: {
@@ -626,7 +617,7 @@ $('#delete-pipeline').on('click' , function(event){
                     if(results.status == 'success'){
 
 
-                        $('#delete-pipeline').removeClass('off-btn').trigger('classChange');
+                        btnSubmitForm.removeClass('off-btn').trigger('classChange');
 
                         menu('menu-delete-pipeline', 'hide', 250);
 
@@ -638,7 +629,7 @@ $('#delete-pipeline').on('click' , function(event){
                     else{
                         if(results.type == 'Validation Error')
                         {
-                            $('#delete-pipeline').removeClass('off-btn').trigger('classChange');
+                            btnSubmitForm.removeClass('off-btn').trigger('classChange');
 
                             validationErrorBuilder(results);
                         }
@@ -654,7 +645,7 @@ $('#delete-pipeline').on('click' , function(event){
 
                 
             }
-            form.classList.add('was-validated'); 
+            formValidate.classList.add('was-validated'); 
         });
     }
     else{

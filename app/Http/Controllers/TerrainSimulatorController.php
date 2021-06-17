@@ -39,7 +39,7 @@ class TerrainSimulatorController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'idTerrain' 	            => 'required',
+            'idTerrain4Simulation' 	            => 'required',
             'terrainSimulationName' 	    => 'required',
             'terrainSimulationFormula' 	    => 'required',
         ]);
@@ -68,7 +68,7 @@ class TerrainSimulatorController extends Controller
 
         $terrain = New TerrainSimulator;
         $terrain->id = Uuid::uuid4()->getHex();
-        $terrain->id_terrain = $request->idTerrain;
+        $terrain->id_terrain = $request->idTerrain4Simulation;
         $terrain->name = $request->terrainSimulationName;
         $terrain->desc = $request->terrainSimulationDesc;
         $terrain->id_status = '1';

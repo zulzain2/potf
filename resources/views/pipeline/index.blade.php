@@ -85,13 +85,13 @@
     <div class="divider mb-3"></div>
     <form class="needs-validation" id="addPipelineForm" novalidate>
       <div class="input-style input-style-always-active has-borders mb-4">
-        <input id="pipelineName" type="name" class="form-control" placeholder="Enter pipeline name" required>
+        <input id="pipelineName" name="pipelineName" type="name" class="form-control" placeholder="Enter pipeline name" required>
         <label class="color-theme opacity-50 text-uppercase font-700 font-10">Pipeline Name</label>
         <em>(required)</em>
       </div>
 
       <div class="input-style input-style-always-active has-borders mb-4">
-        <textarea name="pipelineDesc" class="form-control" id="pipelineDesc" cols="30" rows="10"
+        <textarea id="pipelineDesc" name="pipelineDesc" class="form-control" cols="30" rows="10"
           placeholder="Enter pipeline description"></textarea>
         <label class="color-theme opacity-50 text-uppercase font-700 font-10">Pipeline Description</label>
       </div>
@@ -99,9 +99,9 @@
       <div class="row">
         <div class="col-12 text-center">
 
-          <a href="#" id="add-pipeline"
+          <button type="submit" id="add-pipeline"
             class="btn btn-s rounded-s text-uppercase font-900 shadow-s border-highlight bg-highlight"><i
-              class="fas fa-plus"></i>&nbsp;&nbsp;Add</a>
+              class="fas fa-plus"></i>&nbsp;&nbsp;Add</button>
         </div>
       </div>
     </form>
@@ -143,7 +143,7 @@
 
       <div class="input-style input-style-always-active has-borders mb-4">
         <label class="color-theme opacity-50 text-uppercase font-700 font-10">Parameter Name</label>
-        <input id="pipelineParameterName" type="text" class="form-control" placeholder="Enter parameter name" required>
+        <input id="pipelineParameterName" name="pipelineParameterName" type="text" class="form-control" placeholder="Enter parameter name" required>
         <em>(required)</em>
       </div>
 
@@ -167,7 +167,7 @@
           </div>
           <div class="ms-auto me-4 pe-2 pt-2">
             <div class="custom-control ios-switch ios-switch-icon" style="margin-top:0px !important">
-              <input type="checkbox" class="ios-input" id="pipelineParameterRequired">
+              <input type="checkbox" class="ios-input" id="pipelineParameterRequired" name="pipelineParameterRequired">
               <label class="custom-control-label" for="pipelineParameterRequired"></label>
               <i class="fa fa-check font-11 color-white"></i>
               <i class="fa fa-times font-11 color-white"></i>
@@ -180,9 +180,9 @@
       <div class="row">
         <div class="col-12 text-center">
 
-          <a href="#" id="add-pipeline-param"
+          <button type="submit" id="add-pipeline-param"
             class="btn btn-s rounded-s text-uppercase font-900 shadow-s border-highlight bg-highlight"><i
-              class="fas fa-plus"></i>&nbsp;&nbsp;Add</a>
+              class="fas fa-plus"></i>&nbsp;&nbsp;Add</button>
         </div>
       </div>
     </form>
@@ -204,12 +204,12 @@
 
       <div class="input-style input-style-always-active has-borders mb-4">
         <label class="color-theme opacity-50 text-uppercase font-700 font-10">Simulation Model Name</label>
-        <input id="pipelineSimulationName" type="text" class="form-control" placeholder="Enter simulation model name" required>
+        <input id="pipelineSimulationName" name="pipelineSimulationName" type="text" class="form-control" placeholder="Enter simulation model name" required>
         <em>(required)</em>
       </div>
 
       <div class="input-style input-style-always-active has-borders mb-4">
-        <textarea name="pipelineSimulationDesc" class="form-control" id="pipelineSimulationDesc" cols="30" rows="10"
+        <textarea id="pipelineSimulationDesc" name="pipelineSimulationDesc" class="form-control" cols="30" rows="10"
           placeholder="Enter simulation model description"></textarea>
         <label class="color-theme opacity-50 text-uppercase font-700 font-10">Simulation Model Description</label>
       </div>
@@ -232,7 +232,7 @@
       <div class="input-style has-icon input-style-always-active has-borders mb-0" style="margin-bottom:0px !important">
         <i class="fas fa-equals color-highlight"></i>
         <label class="color-theme opacity-50 text-uppercase font-700 font-10">Formula</label>
-        <input id="pipelineSimulationFormula" type="text" class="form-control" placeholder="Input formula here"
+        <input id="pipelineSimulationFormula" name="pipelineSimulationFormula" type="text" class="form-control" placeholder="Input formula here"
           required>
         <em>(required)</em>
       </div>
@@ -248,9 +248,9 @@
 
       <div class="row">
         <div class="col-12 text-center">
-          <a href="#" id="add-pipeline-simulation"
+          <button type="submit" id="add-pipeline-simulation"
             class="btn btn-s rounded-s text-uppercase font-900 shadow-s border-highlight bg-highlight"><i
-              class="fas fa-plus"></i>&nbsp;&nbsp;Add</a>
+              class="fas fa-plus"></i>&nbsp;&nbsp;Add</button>
         </div>
       </div>
     </form>
@@ -265,8 +265,8 @@
   </p>
   <form class="needs-validation" novalidate id="deletePipelineForm">
       <input type="hidden" name="idPipelineDelete" id="idPipelineDelete">
-      <a href="#" id="delete-pipeline"
-          class="btn btn-m font-900 text-uppercase bg-highlight rounded-sm btn-center-l">Confirm</a>
+      <button type="submit" id="delete-pipeline"
+          class="btn btn-m font-900 text-uppercase bg-highlight rounded-sm btn-center-l">Confirm</button>
   </form>
 </div>
 

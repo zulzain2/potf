@@ -87,13 +87,13 @@
       <div class="divider mb-3"></div>
       <form class="needs-validation" id="addTerrainForm" novalidate>
         <div class="input-style input-style-always-active has-borders mb-4">
-          <input id="terrainName" type="name" class="form-control" placeholder="Enter environment name" required>
+          <input id="terrainName" name="terrainName" type="name" class="form-control" placeholder="Enter environment name" required>
           <label class="color-theme opacity-50 text-uppercase font-700 font-10">Environment Name</label>
           <em>(required)</em>
         </div>
 
         <div class="input-style input-style-always-active has-borders mb-4">
-          <textarea name="terrainDesc" class="form-control" id="terrainDesc" cols="30" rows="10"
+          <textarea id="terrainDesc" name="terrainDesc" class="form-control" cols="30" rows="10"
             placeholder="Enter environment description"></textarea>
           <label class="color-theme opacity-50 text-uppercase font-700 font-10">Environment Description</label>
         </div>
@@ -101,9 +101,9 @@
         <div class="row">
           <div class="col-12 text-center">
 
-            <a href="#" id="add-terrain"
+            <button type="submit" id="add-terrain"
               class="btn btn-s rounded-s text-uppercase font-900 shadow-s border-highlight bg-highlight"><i
-                class="fas fa-plus"></i>&nbsp;&nbsp;Add</a>
+                class="fas fa-plus"></i>&nbsp;&nbsp;Add</button>
           </div>
         </div>
       </form>
@@ -147,7 +147,7 @@
 
         <div class="input-style input-style-always-active has-borders mb-4">
           <label class="color-theme opacity-50 text-uppercase font-700 font-10">Parameter Name</label>
-          <input id="terrainParameterName" type="text" class="form-control" placeholder="Enter parameter name" required>
+          <input id="terrainParameterName" name="terrainParameterName" type="text" class="form-control" placeholder="Enter parameter name" required>
           <em>(required)</em>
         </div>
 
@@ -172,7 +172,7 @@
               </div>
               <div class="ms-auto me-4 pe-2 pt-2">
                 <div class="custom-control ios-switch ios-switch-icon" style="margin-top:0px !important">
-                  <input type="checkbox" class="ios-input" id="terrainParameterRequired">
+                  <input type="checkbox" class="ios-input" id="terrainParameterRequired" name="terrainParameterRequired">
                   <label class="custom-control-label" for="terrainParameterRequired"></label>
                   <i class="fa fa-check font-11 color-white"></i>
                   <i class="fa fa-times font-11 color-white"></i>
@@ -185,9 +185,9 @@
         <div class="row">
           <div class="col-12 text-center">
 
-            <a href="#" id="add-terrain-param"
+            <button type="submit" id="add-terrain-param"
               class="btn btn-s rounded-s text-uppercase font-900 shadow-s border-highlight bg-highlight"><i
-                class="fas fa-plus"></i>&nbsp;&nbsp;Add</a>
+                class="fas fa-plus"></i>&nbsp;&nbsp;Add</button>
           </div>
         </div>
       </form>
@@ -210,13 +210,13 @@
 
         <div class="input-style input-style-always-active has-borders mb-4">
           <label class="color-theme opacity-50 text-uppercase font-700 font-10">Simulation Model Name</label>
-          <input id="terrainSimulationName" type="text" class="form-control" placeholder="Enter simulation model name"
+          <input id="terrainSimulationName" name="terrainSimulationName" type="text" class="form-control" placeholder="Enter simulation model name"
             required>
           <em>(required)</em>
         </div>
 
         <div class="input-style input-style-always-active has-borders mb-4">
-          <textarea name="terrainSimulationDesc" class="form-control" id="terrainSimulationDesc" cols="30" rows="10"
+          <textarea id="terrainSimulationDesc" name="terrainSimulationDesc" class="form-control" cols="30" rows="10"
             placeholder="Enter simulation model description"></textarea>
           <label class="color-theme opacity-50 text-uppercase font-700 font-10">Simulation Model Description</label>
         </div>
@@ -239,7 +239,7 @@
         <div class="input-style has-icon input-style-always-active has-borders mb-0" style="margin-bottom:0px !important">
           <i class="fas fa-equals color-highlight"></i>
           <label class="color-theme opacity-50 text-uppercase font-700 font-10">Formula</label>
-          <input id="terrainSimulationFormula" type="text" class="form-control" placeholder="Input formula here"
+          <input id="terrainSimulationFormula" name="terrainSimulationFormula" type="text" class="form-control" placeholder="Input formula here"
             required>
           <em>(required)</em>
         </div>
@@ -255,9 +255,9 @@
 
         <div class="row">
           <div class="col-12 text-center">
-            <a href="#" id="add-terrain-simulation"
+            <button type="submit" id="add-terrain-simulation"
               class="btn btn-s rounded-s text-uppercase font-900 shadow-s border-highlight bg-highlight"><i
-                class="fas fa-plus"></i>&nbsp;&nbsp;Add</a>
+                class="fas fa-plus"></i>&nbsp;&nbsp;Add</button>
           </div>
         </div>
       </form>
@@ -272,8 +272,8 @@
     </p>
     <form class="needs-validation" novalidate id="deleteTerrainForm">
       <input type="hidden" name="idTerrainDelete" id="idTerrainDelete">
-      <a href="#" id="delete-terrain"
-        class="btn btn-m font-900 text-uppercase bg-highlight rounded-sm btn-center-l">Confirm</a>
+      <button type="submit" id="delete-terrain"
+        class="btn btn-m font-900 text-uppercase bg-highlight rounded-sm btn-center-l">Confirm</button>
     </form>
   </div>
 

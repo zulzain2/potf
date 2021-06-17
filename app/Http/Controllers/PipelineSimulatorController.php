@@ -39,7 +39,7 @@ class PipelineSimulatorController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'idPipeline' 	            => 'required',
+            'idPipeline4Simulation' 	            => 'required',
             'pipelineSimulationName' 	    => 'required',
             'pipelineSimulationFormula' 	    => 'required',
         ]);
@@ -68,7 +68,7 @@ class PipelineSimulatorController extends Controller
 
         $pipeline = New PipelineSimulator;
         $pipeline->id = Uuid::uuid4()->getHex();
-        $pipeline->id_pipeline = $request->idPipeline;
+        $pipeline->id_pipeline = $request->idPipeline4Simulation;
         $pipeline->name = $request->pipelineSimulationName;
         $pipeline->desc = $request->pipelineSimulationDesc;
         $pipeline->id_status = '1';

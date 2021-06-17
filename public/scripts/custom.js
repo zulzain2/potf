@@ -24,7 +24,6 @@ $('.sidebar-item').on('click' , function() {
 });
 ///////////////////////////////////////////////////////////////////////
 
-
 ///////////////////////////////////////////////////////////////////////
 // Passcode function
 if (document.querySelector('#loginPage') || document.querySelector('#registerOtpPage')) {
@@ -105,6 +104,18 @@ function closeFullscreen() {
   }
 ///////////////////////////////////////////////////////////////////////
 
+///////////////////////////////////////////////////////////////////////
+//Check if idTerrain already assign into the modal
+const modelViewer = $('#mainModelViewer');
+
+$('#toggle-rotate').on('change', function () {
+    if ($(this).is(":checked")) {
+        modelViewer.attr('auto-rotate', '')
+    } else {
+        modelViewer.removeAttr('auto-rotate')
+    }
+})
+///////////////////////////////////////////////////////////////////////
 
 
 

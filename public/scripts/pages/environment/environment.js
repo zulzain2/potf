@@ -1,42 +1,37 @@
-function formulaParameterBuilder(results){
-    if (results.data){
+function terrainFormulaParameterBuilder(results) {
+    if (results.data) {
         if (results.data.length) {
-           
+            
             $('#terrainFormulaParameter').html('');
-
+            console.log("Available Parameter");
             results.data.map(terrainparam => {
-
+            
                 $('#terrainFormulaParameter').append(`
                     <div class="col-3">
                     <a href="#" data-id-terrain-param="${terrainparam.id}" class="terrain-formula-select btn btn-m btn-full mb-3 rounded-sm text-uppercase font-900 border-highlight-dark color-highlight-dark bg-theme">${terrainparam.name}</a>
                     </div>
                 `);
-                
 
-                
             })
 
-            $('.terrain-formula-select').on('click' , function(){
-  
-              
+            $('.terrain-formula-select').on('click', function () {
 
-              // will give the current postion of the cursor
-              var curPos = document.getElementById("terrainSimulationFormula").selectionStart; 
-            
-              // will get the value of the text area
-              let x= $('#terrainSimulationFormula').val();
-            
-              // will get the value of the input box
-            //   let text_to_insert=$(this).html();
-              let idTerrainParam = $(this).data('id-terrain-param');
-        
-              // setting the updated value in the text area
-              $('#terrainSimulationFormula').val(x.slice(0,curPos)+'{{'+idTerrainParam+'}}'+x.slice(curPos));
-              $("#terrainSimulationFormula").focus();
+                // will give the current postion of the cursor
+                var curPos = document.getElementById("terrainSimulationFormula").selectionStart;
+
+                // will get the value of the text area
+                let x = $('#terrainSimulationFormula').val();
+
+                // will get the value of the input box
+                //   let text_to_insert=$(this).html();
+                let idTerrainParam = $(this).data('id-terrain-param');
+
+                // setting the updated value in the text area
+                $('#terrainSimulationFormula').val(x.slice(0, curPos) + '{{' + idTerrainParam + '}}' + x.slice(curPos));
+                $("#terrainSimulationFormula").focus();
             })
 
-        }
-        else{
+        } else {
             $('#terrainFormulaParameter').html('');
 
             $('#terrainFormulaParameter').append(`
@@ -45,9 +40,7 @@ function formulaParameterBuilder(results){
             <br>
             `);
         }
-    }
-    else
-    {
+    } else {
         $('#terrainFormulaParameter').html('');
 
         $('#terrainFormulaParameter').append(`
@@ -58,8 +51,8 @@ function formulaParameterBuilder(results){
     }
 }
 
-function terrainParameterListBuilder(results){
-    if (results.data){
+function terrainParameterListBuilder(results) {
+    if (results.data) {
         if (results.data.length) {
             $('#terrainParameterList').html('');
 
@@ -79,11 +72,10 @@ function terrainParameterListBuilder(results){
                     </a>
                 `)
 
-                
+
             })
 
-        }
-        else{
+        } else {
             $('#terrainParameterList').html('');
 
             $('#terrainParameterList').append(`
@@ -92,9 +84,7 @@ function terrainParameterListBuilder(results){
             <br>
             `);
         }
-    }
-    else
-    {
+    } else {
         $('#terrainParameterList').html('');
 
         $('#terrainParameterList').append(`
@@ -103,16 +93,16 @@ function terrainParameterListBuilder(results){
     }
 }
 
-function getAllTerrain(){
-    fetch('/terrain').then(function(response) {
+function getAllTerrain() {
+    fetch('/terrain').then(function (response) {
         return response.json();
-    }).then(function(resultsJSON) {
+    }).then(function (resultsJSON) {
 
         var results = resultsJSON
 
-        if(results.status == 'success'){
-            
-            if (results.data){
+        if (results.status == 'success') {
+
+            if (results.data) {
                 if (results.data.length) {
 
                     if (document.querySelector('#selectTerrain')) {
@@ -121,9 +111,9 @@ function getAllTerrain(){
                         $('#selectTerrain').append(`
                             <option value="default" disabled="" selected="">Select an Environment</option>
                         `);
-    
+
                         results.data.map(terrain => {
-    
+
                             $('#selectTerrain').append(`
                                 <option value="${terrain.id}">${terrain.name}</option>
                             `)
@@ -145,17 +135,16 @@ function getAllTerrain(){
                         `);
                         });
 
-                        $('.deleteTerrain').on('click' , function() {
+                        $('.deleteTerrain').on('click', function () {
                             let idTerrain = $(this).data('idterrain');
                             $('#idTerrainDelete').val(idTerrain);
                             menu('menu-delete-terrain', 'show', 250);
                         })
 
                     }
-                   
 
-                }
-                else{
+
+                } else {
 
                     if (document.querySelector('#selectTerrain')) {
                         $('#selectTerrain').html('');
@@ -166,28 +155,26 @@ function getAllTerrain(){
 
                         $('#tbl-terrain').html('');
                     }
-                   
+
                 }
             }
 
-        }
-        else{
-            if(results.type == 'Validation Error'){
+        } else {
+            if (results.type == 'Validation Error') {
                 validationErrorBuilder(results);
-            }
-            else{
-                snackbar(results.status , results.message)
+            } else {
+                snackbar(results.status, results.message)
             }
         }
-    
-    }).catch(function(err) {
+
+    }).catch(function (err) {
         console.log('Error Get All Terrain: ' + err);
     });
 }
 
 
 
-function getTerrainParameter(idTerrain){
+function getTerrainParameter(idTerrain) {
 
     $('#terrainParameterList').html(`
     <br>
@@ -200,37 +187,35 @@ function getTerrainParameter(idTerrain){
 
     <br>
     `);
-    
 
-    fetch('/terrainparameter/'+idTerrain+'').then(function(response) {
+
+    fetch('/terrainparameter/' + idTerrain + '').then(function (response) {
         return response.json();
-    }).then(function(resultsJSON) {
+    }).then(function (resultsJSON) {
 
         var results = resultsJSON
 
-        if(results.status == 'success'){
-            
-            formulaParameterBuilder(results);
+        if (results.status == 'success') {
+
+            terrainFormulaParameterBuilder(results);
 
             terrainParameterListBuilder(results);
 
-        }
-        else{
-            if(results.type == 'Validation Error'){
+        } else {
+            if (results.type == 'Validation Error') {
                 validationErrorBuilder(results);
-            }
-            else{
-                snackbar(results.status , results.message)
+            } else {
+                snackbar(results.status, results.message)
             }
         }
-    
-    }).catch(function(err) {
+
+    }).catch(function (err) {
         console.log('Error Get Terrain Parameter: ' + err);
     });
 }
 
 
-function getTerrainSimulation(idTerrain){
+function getTerrainSimulation(idTerrain) {
 
     $('#terrainSimulationList').html(`
     <br>
@@ -243,17 +228,17 @@ function getTerrainSimulation(idTerrain){
 
     <br>
     `);
-    
 
-    fetch('/terrainsimulator/'+idTerrain+'').then(function(response) {
+
+    fetch('/terrainsimulator/' + idTerrain + '').then(function (response) {
         return response.json();
-    }).then(function(resultsJSON) {
+    }).then(function (resultsJSON) {
 
         var results = resultsJSON
 
-        if(results.status == 'success'){
-            
-            if (results.data){
+        if (results.status == 'success') {
+
+            if (results.data) {
                 if (results.data.length) {
                     $('#terrainSimulationList').html('');
 
@@ -270,8 +255,7 @@ function getTerrainSimulation(idTerrain){
                         `)
                     })
 
-                }
-                else{
+                } else {
                     $('#terrainSimulationList').html('');
 
                     $('#terrainSimulationList').append(`
@@ -280,9 +264,7 @@ function getTerrainSimulation(idTerrain){
                     <br>
                     `);
                 }
-            }
-            else
-            {
+            } else {
                 $('#terrainSimulationList').html('');
 
                 $('#terrainSimulationList').append(`
@@ -290,17 +272,15 @@ function getTerrainSimulation(idTerrain){
                 `);
             }
 
-        }
-        else{
-            if(results.type == 'Validation Error'){
+        } else {
+            if (results.type == 'Validation Error') {
                 validationErrorBuilder(results);
-            }
-            else{
-                snackbar(results.status , results.message)
+            } else {
+                snackbar(results.status, results.message)
             }
         }
-    
-    }).catch(function(err) {
+
+    }).catch(function (err) {
         console.log('Error Get Terrain Simulators: ' + err);
     });
 }
@@ -316,7 +296,7 @@ if (document.querySelector('#selectTerrain')) {
     getAllTerrain();
 
     //Event listener for terrain dropdown
-    $('#selectTerrain').on('change' , () => {
+    $('#selectTerrain').on('change', () => {
         let val = $('#selectTerrain').val();
         $('.selected-terrain').html(val);
         $('.idTerrain').val(val);
@@ -330,180 +310,151 @@ if (document.querySelector('#selectTerrain')) {
 
 
 ///////////////////////////////////////////////////////////////////////
-//for add terrain
-$('#add-terrain').on('click' , function(event){
+//Add Terrain
+$('#addTerrainForm').on('submit', function (event) {
 
+    event.preventDefault();
     if (navigator.onLine) {
-        var form = $("#addTerrainForm");
+        var formElement = $(this);
 
-         // Loop over them and prevent submission
-         Array.prototype.slice.call(form)
-         .forEach(function (form) {
-            if (!form.checkValidity()) 
-            {
-              
-       
-                event.preventDefault()
-                event.stopPropagation()
-            }
-            else
-            {
-                $('#add-terrain').addClass('off-btn').trigger('classChange');
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(formElement)
+            .forEach(function (formValidate) {
+                if (!formValidate.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                } else {
+                    let form = formElement[0];
+                    let btnSubmitForm = $('#add-terrain');
 
-                var terrainName = $('#terrainName').val();
-                var terrainDesc = $('#terrainDesc').val();
+                    btnSubmitForm.addClass('off-btn').trigger('classChange');
 
-                var dataForm = new URLSearchParams();
-                dataForm.append('terrainName', terrainName);
-                dataForm.append('terrainDesc', terrainDesc);
+                    fetch("terrain", {
+                            method: 'post',
+                            credentials: "same-origin",
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                            },
+                            body: new FormData(form),
+                        })
+                        .then(function (response) {
+                            return response.json();
+                        }).then(function (resultsJSON) {
 
-                fetch("terrain", {
-                    method: 'post',
-                    credentials: "same-origin",
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-                    },
-                    body: dataForm,
-                })
-                .then(function(response){
-                    return response.json();
-                }).then(function(resultsJSON){
+                            var results = resultsJSON
 
-                    var results = resultsJSON
+                            if (results.status == 'success') {
 
-                    if(results.status == 'success'){
+                                getAllTerrain();
 
-                        getAllTerrain();
-                        
-                        $('#add-terrain').removeClass('off-btn').trigger('classChange');
+                                btnSubmitForm.removeClass('off-btn').trigger('classChange');
 
-                        // menu('menu-add-terrain', 'hide', 250);
+                                snackbar(results.status, results.message)
 
-                        snackbar(results.status , results.message)
+                                form.reset();
 
-                        $('#terrainName').val('');
-                        $('#terrainDesc').val('');
+                            } else {
+                                if (results.type == 'Validation Error') {
+                                    btnSubmitForm.removeClass('off-btn').trigger('classChange');
 
-                    }
-                    else{
-                        if(results.type == 'Validation Error')
-                        {
-                            $('#add-terrain').removeClass('off-btn').trigger('classChange');
+                                    validationErrorBuilder(results);
+                                } else {
+                                    snackbar(results.status, results.message)
+                                }
+                            }
 
-                            validationErrorBuilder(results);
-                        }
-                        else{
-                            snackbar(results.status , results.message)
-                        }
-                    }
-
-                })
-                .catch(function(err) {
-                    console.log('Error Add New Terrain: ' + err);
-                });
-
-                
-            }
-
-            form.classList.add('was-validated');
-        });
-    }
-    else{
-        menu('menu-offline', 'show', 250);
-    }
-});
-///////////////////////////////////////////////////////////////////////
-
-///////////////////////////////////////////////////////////////////////
-//for add terrain parameter
-$('#add-terrain-param').on('click' , function(event){
-
-    if (navigator.onLine) {
-        var fsm = $("#addTerrainParamForm");
-
-         // Loop over them and prevent submission
-         Array.prototype.slice.call(fsm)
-         .forEach(function (form) {
-            if (!form.checkValidity()) 
-            {
-                event.preventDefault()
-                event.stopPropagation()
-            }
-            else
-            {
-                $('#add-terrain-param').addClass('off-btn').trigger('classChange');
-
-                var idTerrain = $('#idTerrain').val();
-                var terrainParameterName = $('#terrainParameterName').val();
-                var terrainParameterType = $('#terrainParameterType').val();
-
-                if ($('#terrainParameterRequired').is(":checked"))
-                {
-                    var terrainParameterRequired = 1;
-                }
-                else
-                {
-                    var terrainParameterRequired = 0;
+                        })
+                        .catch(function (err) {
+                            console.log('Error Add New Terrain: ' + err);
+                        });
                 }
 
-                var dataForm = new URLSearchParams();
-                dataForm.append('idTerrain', idTerrain);
-                dataForm.append('terrainParameterName', terrainParameterName);
-                dataForm.append('terrainParameterType', terrainParameterType);
-                dataForm.append('terrainParameterRequired', terrainParameterRequired);
-
-                fetch("terrainparameter", {
-                    method: 'post',
-                    credentials: "same-origin",
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-                    },
-                    body: dataForm,
-                })
-                .then(function(response){
-                    return response.json();
-                }).then(function(resultsJSON){
-
-                    var results = resultsJSON
-
-                    if(results.status == 'success'){
-                        
-                        $('#add-terrain-param').removeClass('off-btn').trigger('classChange');
-
-                        menu('menu-add-terrain-parameter', 'hide', 250);
-
-                        snackbar(results.status , results.message)
-
-                        $('#terrainParameterName').val('');
-                        $('#terrainParameterType').val('');
-
-                        getTerrainParameter(idTerrain);
-                        getTerrainSimulation(idTerrain);
-
-                    }
-                    else{
-                        if(results.type == 'Validation Error')
-                        {
-                            $('#add-terrain-param').removeClass('off-btn').trigger('classChange');
-
-                            validationErrorBuilder(results);
-                        }
-                        else{
-                            snackbar(results.status , results.message)
-                        }
-                    }
-
-                })
-                .catch(function(err) {
-                    console.log('Error Add New Terrain Parameter: ' + err);
-                });
-
-                
-            }
-            form.classList.add('was-validated');
-        });
+                formValidate.classList.add('was-validated');
+            });
+    } else {
+        menu('menu-offline', 'show', 250);
     }
-    else{
+});
+///////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////
+//Add Terrain Parameter
+$('#addTerrainParamForm').on('submit', function (event) {
+
+    event.preventDefault();
+    if (navigator.onLine) {
+        var formElement = $(this);
+
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(formElement)
+            .forEach(function (formValidate) {
+                if (!formValidate.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                } else {
+                    let form = formElement[0];
+                    let btnSubmitForm = $('#add-terrain-param');
+
+                    btnSubmitForm.addClass('off-btn').trigger('classChange');
+
+                    let formData = new FormData(form);
+                    if ($('#terrainParameterRequired').is(":checked")) {
+                        var terrainParameterRequired = 1;
+                        formData.append('terrainParameterRequired', terrainParameterRequired);
+                    } else {
+                        var terrainParameterRequired = 0;
+                        formData.append('terrainParameterRequired', terrainParameterRequired);
+                    }
+
+                    var idTerrain = $('#idTerrain').val();
+
+                    fetch("terrainparameter", {
+                            method: 'post',
+                            credentials: "same-origin",
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                            },
+                            body: formData,
+                        })
+                        .then(function (response) {
+                            return response.json();
+                        }).then(function (resultsJSON) {
+
+                            var results = resultsJSON
+
+                            if (results.status == 'success') {
+
+                                btnSubmitForm.removeClass('off-btn').trigger('classChange');
+
+                                menu('menu-add-terrain-parameter', 'hide', 250);
+
+                                snackbar(results.status, results.message)
+
+                                form.reset();
+
+                                getTerrainParameter(idTerrain);
+                                getTerrainSimulation(idTerrain);
+
+                            } else {
+                                if (results.type == 'Validation Error') {
+                                    btnSubmitForm.removeClass('off-btn').trigger('classChange');
+
+                                    validationErrorBuilder(results);
+                                } else {
+                                    snackbar(results.status, results.message)
+                                }
+                            }
+
+                        })
+                        .catch(function (err) {
+                            console.log('Error Add New Terrain Parameter: ' + err);
+                        });
+
+
+                }
+                formValidate.classList.add('was-validated');
+            });
+    } else {
         menu('menu-offline', 'show', 250);
     }
 });
@@ -511,87 +462,73 @@ $('#add-terrain-param').on('click' , function(event){
 
 
 ///////////////////////////////////////////////////////////////////////
-//for add terrain simulator model
-$('#add-terrain-simulation').on('click' , function(event){
+//Add Terrain Simulator
+$('#addTerrainSimulationForm').on('submit', function (event) {
 
+    event.preventDefault();
     if (navigator.onLine) {
-        var fsm = $("#addTerrainSimulationForm");
+        var formElement = $(this);
 
-         // Loop over them and prevent submission
-         Array.prototype.slice.call(fsm)
-         .forEach(function (form) {
-            if (!form.checkValidity()) 
-            {
-                event.preventDefault()
-                event.stopPropagation()
-            }
-            else
-            {
-                $('#add-terrain-simulation').addClass('off-btn').trigger('classChange');
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(formElement)
+            .forEach(function (formValidate) {
+                if (!formValidate.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                } else {
+                    let form = formElement[0];
+                    let btnSubmitForm = $('#add-terrain-simulation');
 
-                var idTerrain = $('#idTerrain4Simulation').val();
-                var terrainSimulationName = $('#terrainSimulationName').val();
-                var terrainSimulationDesc = $('#terrainSimulationDesc').val();
-                var terrainSimulationFormula = $('#terrainSimulationFormula').val();
+                    btnSubmitForm.addClass('off-btn').trigger('classChange');
 
-                var dataForm = new URLSearchParams();
-                dataForm.append('idTerrain', idTerrain);
-                dataForm.append('terrainSimulationName', terrainSimulationName);
-                dataForm.append('terrainSimulationDesc', terrainSimulationDesc);
-                dataForm.append('terrainSimulationFormula', terrainSimulationFormula);
+                    var idTerrain = $('#idTerrain4Simulation').val();
 
-                fetch("terrainsimulator", {
-                    method: 'post',
-                    credentials: "same-origin",
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-                    },
-                    body: dataForm,
-                })
-                .then(function(response){
-                    return response.json();
-                }).then(function(resultsJSON){
+                    fetch("terrainsimulator", {
+                            method: 'post',
+                            credentials: "same-origin",
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                            },
+                            body: new FormData(form),
+                        })
+                        .then(function (response) {
+                            return response.json();
+                        }).then(function (resultsJSON) {
 
-                    var results = resultsJSON
+                            var results = resultsJSON
 
-                    if(results.status == 'success'){
-                        
-                        $('#add-terrain-simulation').removeClass('off-btn').trigger('classChange');
+                            if (results.status == 'success') {
 
-                        menu('menu-add-terrain-simulation', 'hide', 250);
+                                btnSubmitForm.removeClass('off-btn').trigger('classChange');
 
-                        snackbar(results.status , results.message)
+                                menu('menu-add-terrain-simulation', 'hide', 250);
 
-                        $('#terrainSimulationName').val('');
-                        $('#terrainSimulationDesc').val('');
-                        $('#terrainSimulationFormula').val('');
+                                snackbar(results.status, results.message)
 
-                        getTerrainSimulation(idTerrain);
+                                form.reset();
 
-                    }
-                    else{
-                        if(results.type == 'Validation Error')
-                        {
-                            $('#add-terrain-simulation').removeClass('off-btn').trigger('classChange');
+                                getTerrainSimulation(idTerrain);
 
-                            validationErrorBuilder(results);
-                        }
-                        else{
-                            snackbar(results.status , results.message)
-                        }
-                    }
+                            } else {
+                                if (results.type == 'Validation Error') {
+                                    btnSubmitForm.removeClass('off-btn').trigger('classChange');
 
-                })
-                .catch(function(err) {
-                    console.log('Error Add New Terrain Simulation: ' + err);
-                });
+                                    validationErrorBuilder(results);
+                                } else {
+                                    snackbar(results.status, results.message)
+                                }
+                            }
 
-                
-            }
-            form.classList.add('was-validated');
-        });
-    }
-    else{
+                        })
+                        .catch(function (err) {
+                            console.log('Error Add New Terrain Simulation: ' + err);
+                        });
+
+
+                }
+                formValidate.classList.add('was-validated');
+            });
+    } else {
         menu('menu-offline', 'show', 250);
     }
 });
@@ -599,77 +536,74 @@ $('#add-terrain-simulation').on('click' , function(event){
 
 
 ///////////////////////////////////////////////////////////////////////
-//for delete terrain
-$('#delete-terrain').on('click' , function(event){
+//Delete Terrain
+$('#deleteTerrainForm').on('submit', function (event) {
 
+    event.preventDefault();
     if (navigator.onLine) {
-        var fsm = $("#deleteTerrainForm");
+        var formElement = $(this);
 
         var formdata = new FormData();
         formdata.append("_method", "DELETE");
 
         // Loop over them and prevent submission
-        Array.prototype.slice.call(fsm)
-        .forEach(function (form) {
-            if (!form.checkValidity()) 
-            {
-                event.preventDefault()
-                event.stopPropagation()
-            }
-            else
-            {
-                $('#delete-terrain').addClass('off-btn').trigger('classChange');
+        Array.prototype.slice.call(formElement)
+            .forEach(function (formValidate) {
+                if (!formValidate.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                } else {
+                    let form = new FormData(formElement[0]);
+                    let btnSubmitForm = $('#delete-terrain');
 
-                var deleteTerrainId = $('#idTerrainDelete').val();
+                    btnSubmitForm.addClass('off-btn').trigger('classChange');
 
-                fetch("terrain/"+deleteTerrainId+"/", {
-                    method: 'DELETE',
-                    credentials: "same-origin",
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                })
-                .then(function(response){
-                    return response.json();
-                }).then(function(resultsJSON){
+                    // var deleteTerrainId = $('#idTerrainDelete').val();
 
-                    var results = resultsJSON
+                    fetch("terrain/" + form.get('idTerrainDelete') + "/", {
+                            method: 'DELETE',
+                            credentials: "same-origin",
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                        })
+                        .then(function (response) {
+                            return response.json();
+                        }).then(function (resultsJSON) {
 
-                    if(results.status == 'success'){
+                            var results = resultsJSON
+
+                            if (results.status == 'success') {
 
 
-                        $('#delete-terrain').removeClass('off-btn').trigger('classChange');
+                                btnSubmitForm.removeClass('off-btn').trigger('classChange');
 
-                        menu('menu-delete-terrain', 'hide', 250);
+                                menu('menu-delete-terrain', 'hide', 250);
 
-                        snackbar(results.status , results.message)
+                                snackbar(results.status, results.message)
 
-                        getAllTerrain();
+                                getAllTerrain();
 
-                    }
-                    else{
-                        if(results.type == 'Validation Error')
-                        {
-                            $('#delete-terrain').removeClass('off-btn').trigger('classChange');
+                            } else {
+                                if (results.type == 'Validation Error') {
+                                    btnSubmitForm.removeClass('off-btn').trigger('classChange');
 
-                            validationErrorBuilder(results);
-                        }
-                        else{
-                            snackbar(results.status , results.message)
-                        }
-                    }
+                                    validationErrorBuilder(results);
+                                } else {
+                                    snackbar(results.status, results.message)
+                                }
+                            }
 
-                })
-                .catch(function(err) {
-                    console.log(err);
-                });
+                        })
+                        .catch(function (err) {
+                            console.log(err);
+                        });
 
-                
-            }
-            form.classList.add('was-validated');
-        });
-    }
-    else{
+
+                }
+                formValidate.classList.add('was-validated');
+            });
+    } else {
         menu('menu-offline', 'show', 250);
     }
 });
@@ -677,48 +611,27 @@ $('#delete-terrain').on('click' , function(event){
 
 ///////////////////////////////////////////////////////////////////////
 //Check if idTerrain already assign into the modal
-$('#btn-menu-add-terrain-parameter').on('click' , function(){
+$('#btn-menu-add-terrain-parameter').on('click', function () {
     let idTerrain = $('#menu-add-terrain-parameter').find('.selected-terrain').html();
     console.log(idTerrain);
-    if(idTerrain){
+    if (idTerrain) {
         menu('menu-add-terrain-parameter', 'show', 250);
-    }else{
-        snackbar('warning' , 'Please select environment first.')
+    } else {
+        snackbar('warning', 'Please select environment first.')
     }
 });
 ///////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////////
 //Check if idTerrain already assign into the modal
-$('#btn-menu-add-terrain-simulation').on('click' , function(){
+$('#btn-menu-add-terrain-simulation').on('click', function () {
     let idTerrain = $('#menu-add-terrain-simulation').find('.selected-terrain').html();
-    if(idTerrain){
+    if (idTerrain) {
         menu('menu-add-terrain-simulation', 'show', 250);
-    }else{
-        snackbar('warning' , 'Please select environment first.')
+    } else {
+        snackbar('warning', 'Please select environment first.')
     }
 });
 ///////////////////////////////////////////////////////////////////////
 
 
-
-  const modelViewer = $('#mainModelViewer');
-
-  $('#toggle-rotate').on('change' , function(){
-    if ($(this).is(":checked"))
-    {
-        modelViewer.attr('auto-rotate' , '')
-    }
-    else
-    {
-        modelViewer.removeAttr('auto-rotate')
-    }
-  })
-
- 
-
-
-
-
-
-    
