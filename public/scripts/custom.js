@@ -117,10 +117,24 @@ $('#toggle-rotate').on('change', function () {
 })
 
 $('.select-3dmodel').on('click' , function(){
-    console.log('sdfsdf');
     let src = $(this).data('src');
+    let elevated = $(this).data('elevated');
+    let pulse = $(this).data('pulse');
+    $('#3d_normal').val(src);
+    $('#3d_elevated').val(elevated);
+    console.log(pulse);
+    $('#3d_dist_pulse').css('left' , pulse);
     modelViewer.attr("src",src);
 })
+
+$('#toggle-elevated').on('change' , function() {
+  if ($('#toggle-elevated').is(":checked")) {
+    modelViewer.attr("src",$('#3d_elevated').val());
+  } else {
+    modelViewer.attr("src",$('#3d_normal').val());
+  }
+});
+
 ///////////////////////////////////////////////////////////////////////
 
 

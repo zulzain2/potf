@@ -1,7 +1,7 @@
-<model-viewer id="mainModelViewer" src="images/3d/3.glb" alt="A 3D model of an astronaut" loading="lazy" ar
-    ar-modes="webxr scene-viewer quick-look" environment-image="neutral" camera-controls camera-orbit="180deg 60deg 60%"
+<model-viewer id="mainModelViewer" src="images/3d/1.glb" alt="A 3D model of an astronaut" loading="lazy" ar
+    ar-modes="webxr scene-viewer quick-look" environment-image="neutral" camera-controls camera-orbit="0deg 60deg 50%"
      class="w-100" style="height:100%">
-
+     {{-- camera-orbit="180deg 60deg 60%" --}}
     <div class="row mb-0">
         <div class="col-6 ps-3">
             <button id="enterFullScreen" href="#" class="text-center" style="">
@@ -57,25 +57,46 @@
             </button>
         </div>
     </div>
-     <div class="row mb-0">
+    <div class="row mb-0">
+    <div class="col-3 offset-9" style="">
+        <div class="card card-style h-100 mb-0 me-1" style="margin-left: 70px;border-radius:5px">
+            <table class="w-100 h-100" style="background-color: transparent !important;border:none">
+                <tr>
+                    <td style="vertical-align: middle;background-color: transparent !important;text-align: right;">
+                        <strong class="font-10 color-invert">Auto Rotate</strong>
+                    </td>
+                    <td style="vertical-align: middle;background-color: transparent !important;width:20%">
+                        <div class="custom-control ios-switch" style="transform: scale(.4, .4);margin-top: 6px !important;margin-right:0px">
+                            <input type="checkbox" class="ios-input" id="toggle-rotate">
+                            <label class="custom-control-label" for="toggle-rotate" style="background-color: transparent !important;"></label>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    </div>
+    <div class="row mb-0">
         <div class="col-3 offset-9" style="">
             <div class="card card-style h-100 mb-0 me-1" style="margin-left: 70px;border-radius:5px">
                 <table class="w-100 h-100" style="background-color: transparent !important;border:none">
                     <tr>
                         <td style="vertical-align: middle;background-color: transparent !important;text-align: right;">
-                            <strong class="font-10 color-invert">Auto Rotate</strong>
+                            <strong class="font-10 color-invert">Elevated</strong>
+                            <input type="hidden" id="3d_elevated" name="3d_elevated" value="images/3d/1-upview  .glb">
+                            <input type="hidden" id="3d_normal" name="3d_normal" value="images/3d/1.glb">
                         </td>
-                        <td style="vertical-align: middle;background-color: transparent !important;width:30%">
+                        <td style="vertical-align: middle;background-color: transparent !important;width:20%">
                             <div class="custom-control ios-switch" style="transform: scale(.4, .4);margin-top: 6px !important;margin-right:0px">
-                                <input type="checkbox" class="ios-input" id="toggle-rotate">
-                                <label class="custom-control-label" for="toggle-rotate" style="background-color: transparent !important;"></label>
+                                <input type="checkbox" class="ios-input" id="toggle-elevated">
+                                <label class="custom-control-label" for="toggle-elevated" style="background-color: transparent !important;"></label>
                             </div>
                         </td>
                     </tr>
                 </table>
             </div>
         </div>
-     </div>
+        </div>
          
    
 

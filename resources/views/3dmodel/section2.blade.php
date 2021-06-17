@@ -3,6 +3,7 @@
 
 .blobs-container {
   display: flex;
+  transition: all 2s;
 }
 
 .blob {
@@ -45,7 +46,7 @@
 
 <img src="images/icons/pipeline2.png" class="p-1 pb-0 pt-2" style="width:100%;height:40px !important" alt="">
 
-<div class="blobs-container" style="position: absolute;top: 13%;left: 3.5%;">
+<div id="3d_dist_pulse" class="blobs-container" style="position: absolute;top: 13%;left: 5.5%;">
     <div class="blob highlight"></div>
 </div>
 
