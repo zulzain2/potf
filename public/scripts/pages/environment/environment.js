@@ -214,6 +214,79 @@ function getTerrainParameter(idTerrain) {
     });
 }
 
+function terrainSimulationContentBuilder(){
+    $('.open-menu-terrain-simulation').on('click' , function(){
+
+        menu('menu-terrain-simulation' , 'show' , 250);
+
+        let idTerrainSimulation = $(this).data('idTerrainSimulation');
+
+        fetch('/terrainsimulatorcontent/'+idTerrainSimulation+'').then(function (response) {
+            return response.json();
+        }).then(function (resultsJSON) {
+    
+            var results = resultsJSON
+    
+            if (results.status == 'success') {
+
+                if (results.data) {
+
+                    $('#content-menu-terrain-simulation').html('');
+
+                        let html = `
+                            <div class="card card-style mb-3">
+                                <div class="content">
+                                    <h3 class="text-center mb-0">${results.data.name}</h3>
+                                    <p class="text-center">
+                                    Added on - ${moment(results.data.created_at).format('MMMM Do')} 
+                                    </p>
+                                    <p class="text-center color-invert">
+                                    ${results.data.desc ? results.data.desc : ''} 
+                                    </p>
+                                    <div class="row mb-0">
+                                    <h3 class="text-center mb-3">Formula Functions</h3><h6 class="mb-3"><i class="fas fa-equals"></i>&nbsp;&nbsp;`;
+
+                                    results.data.terrain_simulator_formula.map(formula => {
+                                    
+                                        if(formula.terrain_parameter){
+                                            html += `<strong class="color-highlight">{{${formula.terrain_parameter.name}}}</strong>`;
+                                        }
+                                        else{
+                                            html += `${formula.id_terrain_parameter}`;
+                                        }
+                                    });
+
+                                    html += `</h6></div>
+                                    </div>
+                                </div>`;
+
+                        $('#content-menu-terrain-simulation').append(html);
+
+                 
+
+                } else {
+                
+                    $('#content-menu-terrain-simulation').html('');
+
+                    $('#content-menu-terrain-simulation').append(`
+                    
+                    `);   
+
+                }
+                
+            } else {
+                $('#content-menu-terrain-simulation').html('');
+
+                $('#content-menu-terrain-simulation').append(`
+                
+                `); 
+            }
+        }).catch(function (err) {
+            console.log('Error Get Terrain Simulators Content: ' + err);
+        });
+
+    });
+}
 
 function getTerrainSimulation(idTerrain) {
 
@@ -245,15 +318,25 @@ function getTerrainSimulation(idTerrain) {
                     results.data.map(terrainsimulator => {
 
                         $('#terrainSimulationList').append(`
-                            <a href="#" data-menu="menu-transaction-1" class="d-flex mb-3">
-
-                                <div class="align-self-center">
-                                <h1 class="mb-n2 font-16">${terrainsimulator.name}</h1>
-                                </div>
-
+                            <a href="#" class="open-menu-terrain-simulation" data-id-terrain-simulation="${terrainsimulator.id}" class="d-flex mb-3">
+                                <table style="width:100%;background-color:transparent !important;border:none;">
+                                    <tr>
+                                        <td style="background-color:transparent !important;width:70%">
+                                            <div class="align-self-center">
+                                                <h1 class=" font-16">${terrainsimulator.name}</h1>
+                                            </div>
+                                        </td>
+                                        <td style="background-color:transparent !important;text-align:right;width:30%">
+                                            <small class="color-highlight">${moment(terrainsimulator.created_at).format('MMMM Do')}</small>
+                                        </td>
+                                    </tr>
+                                </table>
                             </a>
+                            <div class="divider mb-3"></div>
                         `)
                     })
+
+                    terrainSimulationContentBuilder();
 
                 } else {
                     $('#terrainSimulationList').html('');

@@ -15,8 +15,6 @@ function pipelineFormulaParameterBuilder(results){
             })
 
             $('.pipeline-formula-select').on('click' , function(){
-  
-              
 
               // will give the current postion of the cursor
               var curPos = document.getElementById("pipelineSimulationFormula").selectionStart; 
@@ -221,6 +219,79 @@ function getPipelineParameter(idPipeline){
     });
 }
 
+function pipelineSimulationContentBuilder(){
+    $('.open-menu-pipeline-simulation').on('click' , function(){
+
+        menu('menu-pipeline-simulation' , 'show' , 250);
+
+        let idPipelineSimulation = $(this).data('idPipelineSimulation');
+
+        fetch('/pipelinesimulatorcontent/'+idPipelineSimulation+'').then(function (response) {
+            return response.json();
+        }).then(function (resultsJSON) {
+    
+            var results = resultsJSON
+    
+            if (results.status == 'success') {
+
+                if (results.data) {
+
+                    $('#content-menu-pipeline-simulation').html('');
+
+                        let html = `
+                            <div class="card card-style mb-3">
+                                <div class="content">
+                                    <h3 class="text-center mb-0">${results.data.name}</h3>
+                                    <p class="text-center mb-2">
+                                    Added on - ${moment(results.data.created_at).format('MMMM Do')} 
+                                    </p>
+                                    <p class="text-center color-invert">
+                                    ${results.data.desc ? results.data.desc : ''} 
+                                    </p>
+                                    <div class="row mb-0">
+                                    <h3 class="text-center mb-3">Formula Functions</h3><h6 class="mb-3"><i class="fas fa-equals"></i>&nbsp;&nbsp;`;
+
+                                    results.data.pipeline_simulator_formula.map(formula => {
+                                    
+                                        if(formula.pipeline_parameter){
+                                            html += `<strong class="color-highlight">{{${formula.pipeline_parameter.name}}}</strong>`;
+                                        }
+                                        else{
+                                            html += `${formula.id_pipeline_parameter}`;
+                                        }
+                                    });
+
+                                    html += `</h6></div>
+                                    </div>
+                                </div>`;
+
+                        $('#content-menu-pipeline-simulation').append(html);
+
+                 
+
+                } else {
+                
+                    $('#content-menu-pipeline-simulation').html('');
+
+                    $('#content-menu-pipeline-simulation').append(`
+                    
+                    `);   
+
+                }
+                
+            } else {
+                $('#content-menu-pipeline-simulation').html('');
+
+                $('#content-menu-pipeline-simulation').append(`
+                
+                `); 
+            }
+        }).catch(function (err) {
+            console.log('Error Get Pipeline Simulators Content: ' + err);
+        });
+
+    });
+}
 
 function getPipelineSimulation(idPipeline){
 
@@ -252,15 +323,25 @@ function getPipelineSimulation(idPipeline){
                     results.data.map(pipelinesimulator => {
 
                         $('#pipelineSimulationList').append(`
-                            <a href="#" data-menu="menu-transaction-1" class="d-flex mb-3">
-
-                                <div class="align-self-center">
-                                <h1 class="mb-n2 font-16">${pipelinesimulator.name}</h1>
-                                </div>
-
+                            <a href="#" class="open-menu-pipeline-simulation" data-id-pipeline-simulation="${pipelinesimulator.id}" class="d-flex mb-3">
+                                <table style="width:100%;background-color:transparent !important;border:none;">
+                                    <tr>
+                                        <td style="background-color:transparent !important;width:70%">
+                                            <div class="align-self-center">
+                                                <h1 class=" font-16">${pipelinesimulator.name}</h1>
+                                            </div>
+                                        </td>
+                                        <td style="background-color:transparent !important;text-align:right;width:30%">
+                                            <small class="color-highlight">${moment(pipelinesimulator.created_at).format('MMMM Do')}</small>
+                                        </td>
+                                    </tr>
+                                </table>
                             </a>
+                            <div class="divider mb-3"></div>
                         `)
                     })
+
+                    pipelineSimulationContentBuilder();
 
                 }
                 else{
@@ -286,8 +367,7 @@ function getPipelineSimulation(idPipeline){
         else{
             if(results.type == 'Validation Error'){
                 validationErrorBuilder(results);
-            }
-            else{
+            } else{
                 snackbar(results.status , results.message)
             }
         }

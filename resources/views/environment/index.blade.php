@@ -67,7 +67,7 @@
         <br>
       </div>
 
-      <div class="divider"></div>
+   
     </div>
   </div>
 
@@ -295,6 +295,22 @@
     </div>
   </div>
 
+  
+  <div id="menu-terrain-simulation" class="menu menu-box-modal menu-box-detached rounded-m" style="max-height:600px" data-menu-height="450"
+    data-menu-width="700">
+    <div class="menu-title mt-n1">
+      <h1>Environment Simulation</h1>
+      <p class="color-highlight">Details of environment simulation.</p>
+      <a href="#" class="close-menu"><i class="fa fa-times"></i></a>
+    </div>
+    <div class="content mt-2">
+      <div class="divider mb-3"></div>
+      <div id="content-menu-terrain-simulation">
+
+      </div>
+    </div>
+  </div>
+
   <div id="menu-delete-terrain" class="menu menu-box-modal rounded-m" data-menu-width="310" data-menu-height="270">
     <div class="text-center"><i class="fal fa-times-circle color-red-light mt-4" style="font-size: 45px;"></i></div>
     <h1 class="text-center mt-3">Are You Sure?</h1>
@@ -309,3 +325,4 @@
   </div>
 
 @endpush
+

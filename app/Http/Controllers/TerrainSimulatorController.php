@@ -112,6 +112,18 @@ class TerrainSimulatorController extends Controller
         return json_encode($data);
     }
 
+    public function showContent($id)
+    {
+        $terrainsimulatorcontents = TerrainSimulator::find($id);
+
+        $data = [
+            'status' => 'success', 
+            'message' => 'Successfully get terrain simulators content.',
+            'data' => $terrainsimulatorcontents
+        ];
+        return json_encode($data);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

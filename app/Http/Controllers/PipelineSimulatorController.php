@@ -111,6 +111,18 @@ class PipelineSimulatorController extends Controller
         return json_encode($data);
     }
 
+    public function showContent($id)
+    {
+        $pipelinesimulatorcontents = PipelineSimulator::find($id);
+
+        $data = [
+            'status' => 'success', 
+            'message' => 'Successfully get pipeline simulators content.',
+            'data' => $pipelinesimulatorcontents
+        ];
+        return json_encode($data);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

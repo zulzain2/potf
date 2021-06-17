@@ -66,7 +66,7 @@
         <br>
       </div>
 
-      <div class="divider"></div>
+
     </div>
   </div>
 </div>
@@ -287,6 +287,21 @@
     </form>
   </div>
 </div>
+
+<div id="menu-pipeline-simulation" class="menu menu-box-modal menu-box-detached rounded-m" style="max-height:600px" data-menu-height="450"
+    data-menu-width="700">
+    <div class="menu-title mt-n1">
+      <h1>Pipeline Simulation</h1>
+      <p class="color-highlight">Details of pipeline simulation.</p>
+      <a href="#" class="close-menu"><i class="fa fa-times"></i></a>
+    </div>
+    <div class="content mt-2">
+      <div class="divider mb-3"></div>
+      <div id="content-menu-pipeline-simulation">
+
+      </div>
+    </div>
+  </div>
 
 <div id="menu-delete-pipeline" class="menu menu-box-modal rounded-m" data-menu-width="310" data-menu-height="270">
   <div class="text-center"><i class="fal fa-times-circle color-red-light mt-4" style="font-size: 45px;"></i></div>
