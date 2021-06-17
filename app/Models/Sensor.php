@@ -11,7 +11,7 @@ class Sensor extends Model
     protected $table = 'sensor';
     public $incrementing = FALSE;
 
-    public function params(){
+    public function sensorParams(){
         return $this->hasMany('App\Models\SensorParams', 'id_sensors', 'id');
     }
 

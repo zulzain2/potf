@@ -1,6 +1,6 @@
 
 <div id="sensor"></div>
-<h4 class="text-center mt-2 mb-3">SENSOR</h4>
+<h4 class="text-center mt-2 mb-3">SENSOR INTERFACE</h4>
 
 <div class="content m-1" id="tab-group-3">
 

@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ConfigPipeline;
-use App\Models\ConfigTerrain;
 use Ramsey\Uuid\Uuid;
-use Illuminate\Http\Request;
-use App\Models\GeneratePipeline;
-use App\Models\PipelineParameter;
-use App\Models\TerrainParameter;
 use App\Models\Terrain;
+use App\Models\SensorParams;
+use Illuminate\Http\Request;
+use App\Models\ConfigTerrain;
+use App\Models\ConfigPipeline;
+use App\Models\ConfigSensor;
+use App\Models\GeneratePipeline;
+use App\Models\TerrainParameter;
+use App\Models\PipelineParameter;
 
 class GeneratePipelineController extends Controller
 {
@@ -41,6 +43,7 @@ class GeneratePipelineController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
         $add = new GeneratePipeline;
         $add->id = Uuid::uuid4()->getHex();
         $add->name = $request->nameConfig;
@@ -57,7 +60,7 @@ class GeneratePipelineController extends Controller
                 $new->id_generate_pipeline = $add->id;
                 $new->id_terrain = $param->terrain->id;
                 $new->id_terrain_parameter = $param->id;
-                $new->km = $key;
+                $new->km = $request->km[$key];
                 $new->id_status = '1';
                 $new->save();
             }
@@ -74,9 +77,26 @@ class GeneratePipelineController extends Controller
                 $newP->id_generate_pipeline = $add->id;
                 $newP->id_pipeline = $param->pipeline->id;
                 $newP->id_pipeline_parameter = $param->id;
-                $newP->km = $key;
+                $newP->km = $request->km[$key];
                 $newP->id_status = '1';
                 $newP->save();
+            }
+        }
+
+        foreach($request->sensor as $key=>$part){
+            $sensorParam = SensorParams::where('id_sensors', $part)
+            ->with(array('sensor' => function($query) {
+                $query->select('id','name');
+            }))->get();
+            foreach($sensorParam as $param){
+                $new = new ConfigSensor;
+                $new->id = Uuid::uuid4()->getHex();
+                $new->id_generate_pipeline = $add->id;
+                $new->id_sensor = $param->sensor->id;
+                $new->id_sensor_parameter = $param->id;
+                $new->km = $request->km[$key];
+                $new->id_status = '1';
+                $new->save();
             }
         }
         
@@ -133,14 +153,16 @@ class GeneratePipelineController extends Controller
     }
 
     public function storeValue(Request $request){
-        $index = 0;
-        foreach($request->id as $id){
+        foreach($request->id as $key=>$id){
+            
           $update = ConfigPipeline::find($id);
           if($update == null){
               $update = ConfigTerrain::find($id);
           }
-          $update->value = $request->value[$index];
-          $index++;
+          if($update == null){
+              $update = ConfigSensor::find($id);
+          }
+          $update->value = $request->value[$key];
           $update->save(); 
         }
         return redirect()->back()->with('success', 'New pipeline config added');  
@@ -194,6 +216,31 @@ class GeneratePipelineController extends Controller
           'status' => 'success', 
           'message' => 'Successfully get pipeline parameters.',
           'data' => $arr_pipe
+      ];
+      return json_encode($data);
+    }
+
+    public function fetchSensor(Request $request){
+        
+      $generatePipeline = GeneratePipeline::where('id','=' , $request->id_cp)->where('id_status','=' , 1)->get();
+       
+      $arr_sensor = [];
+      foreach($generatePipeline as $cp){
+        $configSensor = ConfigSensor::where('id_generate_pipeline','=' , $cp->id)->where('id_status','=' , 1)
+        ->with(array('sensor' => function($query) {
+            $query->select('id','name');
+        }))
+        ->with(array('sensor_parameter' => function($query) {
+          $query->select('id','name');
+        }))
+        ->get();
+          array_push($arr_sensor,$configSensor);
+
+      }
+      $data = [
+          'status' => 'success', 
+          'message' => 'Successfully get pipeline parameters.',
+          'data' => $arr_sensor
       ];
       return json_encode($data);
     }
