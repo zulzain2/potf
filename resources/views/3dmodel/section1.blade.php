@@ -58,8 +58,8 @@
         </div>
     </div>
     <div class="row mb-0">
-    <div class="col-3 offset-9" style="">
-        <div class="card card-style h-100 mb-0 me-1" style="margin-left: 70px;border-radius:5px">
+    <div class="col-3 offset-9 mb-1" style="">
+        <div class="card card-style h-100 mb-0 me-1" style="margin-left: 70px;border-radius:5px;">
             <table class="w-100 h-100" style="background-color: transparent !important;border:none">
                 <tr>
                     <td style="vertical-align: middle;background-color: transparent !important;text-align: right;">
@@ -78,7 +78,7 @@
     </div>
     <div class="row mb-0">
         <div class="col-3 offset-9" style="">
-            <div class="card card-style h-100 mb-0 me-1" style="margin-left: 70px;border-radius:5px">
+            <div class="card card-style h-100 mb-0 me-1" style="margin-left: 70px;border-radius:5px;">
                 <table class="w-100 h-100" style="background-color: transparent !important;border:none">
                     <tr>
                         <td style="vertical-align: middle;background-color: transparent !important;text-align: right;">
