@@ -1,4 +1,4 @@
-<model-viewer id="mainModelViewer" src="images/3d/gunung-murud.glb" alt="A 3D model of an astronaut" loading="lazy" ar
+<model-viewer id="mainModelViewer" src="images/3d/3.glb" alt="A 3D model of an astronaut" loading="lazy" ar
     ar-modes="webxr scene-viewer quick-look" environment-image="neutral" camera-controls camera-orbit="180deg 60deg 60%"
      class="w-100" style="height:100%">
 

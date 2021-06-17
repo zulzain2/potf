@@ -115,6 +115,12 @@ $('#toggle-rotate').on('change', function () {
         modelViewer.removeAttr('auto-rotate')
     }
 })
+
+$('.select-3dmodel').on('click' , function(){
+    console.log('sdfsdf');
+    let src = $(this).data('src');
+    modelViewer.attr("src",src);
+})
 ///////////////////////////////////////////////////////////////////////
 
 
