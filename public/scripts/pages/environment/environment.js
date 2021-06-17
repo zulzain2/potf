@@ -8,7 +8,7 @@ function terrainFormulaParameterBuilder(results) {
             
                 $('#terrainFormulaParameter').append(`
                     <div class="col-3">
-                    <a href="#" data-id-terrain-param="${terrainparam.id}" class="terrain-formula-select btn btn-m btn-full mb-3 rounded-sm text-uppercase font-900 border-highlight-dark color-highlight-dark bg-theme">${terrainparam.name}</a>
+                    <a href="#" data-id-terrain-param="${terrainparam.id}" class="terrain-formula-select btn btn-m btn-full mb-3 rounded-sm font-900 border-highlight-dark color-highlight-dark bg-theme">${terrainparam.name}</a>
                     </div>
                 `);
 

@@ -8,7 +8,7 @@ function pipelineFormulaParameterBuilder(results){
 
                 $('#pipelineFormulaParameter').append(`
                     <div class="col-3">
-                    <a href="#" data-id-pipeline-param="${pipelineparam.id}" class="pipeline-formula-select btn btn-m btn-full mb-3 rounded-sm text-uppercase font-900 border-highlight-dark color-highlight-dark bg-theme">${pipelineparam.name}</a>
+                    <a href="#" data-id-pipeline-param="${pipelineparam.id}" class="pipeline-formula-select btn btn-m btn-full mb-3 rounded-sm font-900 border-highlight-dark color-highlight-dark bg-theme">${pipelineparam.name}</a>
                     </div>
                 `);
                 

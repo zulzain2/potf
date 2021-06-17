@@ -244,9 +244,40 @@
           <em>(required)</em>
         </div>
         <div class="text-center">
-          <small class="w-100">Exmp: LOG(10)-3+SQRT(2)*@{{PARAM_A}}*PI-@{{PARAM_B}}</small> 
+          <table class="w-100 mt-2">
+            <tr>
+              <td>
+                <strong>Example</strong>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Lets say you have this formula with Parameter <strong>X</strong>.
+                <br>
+                <img src="images/formula/formula1.png" style="width:200px" class="mt-1" alt="">
+              </td>
+            </tr>
+            <tr>
+              <td>
+                CONVERT TO PROVIDED FUNCTION 
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <i class="fas fa-arrow-down"></i>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p class="w-100 color-invert">= SQRT(<strong class="color-highlight">@{{PARAM_X}})</strong>+(9*POWER(POWER(<strong class="color-highlight">@{{PARAM_X}}</strong>,7) , 1/3))-(2/(POWER(POWER(<strong class="color-highlight">@{{PARAM_X}}</strong>,2),1/5)))</p> 
+              </td>
+            </tr>
+         
+          </table>
+         
+          
           <br>
-          <small class="w-100">Full list of function <a href="formula" target="_blank" class="color-blue-dark font-800">here</a></small>
+          <strong class="w-100">Full list of function <a href="formula" target="_blank" class="color-blue-dark font-800">here</a></strong>
         </div>
         
         <br>
