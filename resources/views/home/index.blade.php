@@ -3,7 +3,10 @@
 @section('content')
 
 <div id="page-potf" class="main-content row pt-5 h-100 mb-0 d-none">
-  <img src="images/poster/utm-potf.jpeg" class="p-3 pe-4 h-100 w-100" style="padding-left:90px !important" alt="">
+  <img src="images/poster/utm-potf.jpeg" class="p-3 pe-4 pb-0 w-100" style="padding-left:90px !important;height:95%" alt="">
+  <small class="w-100 text-center">
+    Modified from McDermott's Approach - Journal Oil & Petroleum Technology
+  </small>
 </div>
 
 <div id="page-concept" class="main-content row pt-5 h-100 mb-0 d-none">
