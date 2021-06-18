@@ -488,6 +488,7 @@ function textErrorBuilder(id_element , textErr){
             };
             localStorage['setItem'](_0xce56x4 + '-Theme', 'dark-mode')
             $('#logo-sidebar').attr("src","images/icons/petronas_white.png");
+            $('#empty_3dmodel').attr("src","images/icons/pipeline_white.png");
             $('.color-invert').css('color' , 'white');
             
         }
@@ -500,6 +501,7 @@ function textErrorBuilder(id_element , textErr){
             };
             localStorage['setItem'](_0xce56x4 + '-Theme', 'light-mode')
             $('#logo-sidebar').attr("src","images/icons/petronas.png");
+            $('#empty_3dmodel').attr("src","images/icons/pipeline.png");
             $('.color-invert').css('color' , 'black');
             
         }
@@ -561,6 +563,7 @@ function textErrorBuilder(id_element , textErr){
             };
             document['body']['className'] = 'theme-dark'
             $('#logo-sidebar').attr("src","images/icons/petronas_white.png");
+            $('#empty_3dmodel').attr("src","images/icons/pipeline_white.png");
             $('.color-invert').css('color' , 'white');
         
         };
@@ -568,6 +571,7 @@ function textErrorBuilder(id_element , textErr){
         if (localStorage['getItem'](_0xce56x4 + '-Theme') == 'light-mode') {
             document['body']['className'] = 'theme-light'
             $('#logo-sidebar').attr("src","images/icons/petronas.png");
+            $('#empty_3dmodel').attr("src","images/icons/pipeline.png");
             $('.color-invert').css('color' , 'black');
           
         };

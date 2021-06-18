@@ -25,35 +25,60 @@
     </a>
   </div>
   <div class="clearfix mb-3"></div>
-  <div class="card card-style" style="overflow: auto !important">
-    <div class="content mt-0 mb-0">
-      <div class="row mb-2">
-        <div class="col-8">
-          <h4 class="font-700 text-uppercase font-12 opacity-30 mb-1 mt-2">Config List</h4>
-        </div>
-      </div>
 
-      <div class="list-group list-custom-large short-border check-visited" id="sensorParameterList">
-        <br>
-        @if(count($configPipeline) != 0)
-          @foreach($configPipeline as $cp)
-            <a href="#" data-menu="menu-config" onclick="configPipeline('{{$cp->id}}')">
-              <i class="fa fa-angle-right bg-green-dark rounded-s"></i>
-                <span>{{$cp->name}}</span>
-                <strong>Click to enter the parameter value</strong>
-                <small class="float-right"> {{$cp->total_km}} km</small>
+  <div class="content mb-0">
+    <div class="row mb-2">
+      <div class="col-8">
+        <h4 class="font-700 text-uppercase font-12 opacity-30 mb-1 mt-2">Config List</h4>
+      </div>
+    </div>
+
+    <div class="" id="sensorParameterList">
+       
+      @if(count($configPipeline) != 0)
+        @foreach($configPipeline as $cp)
+        <table class="w-100" style="background-color:transparent !important;border:none">
+          <tr>
+            <td style="background-color:transparent !important;">
+              <a href="#" class="select-pipeline hvr-grow icon icon-xs rounded-sm shadow-l me-1 bg-green-dark">
+                <i class="fas fa-eye"></i>
               </a>
-              <hr>
-          @endforeach
-        @else
-          <p class="text-center">Please create the config first</p>
-        @endif
-        <br>
-      </div>
-
-      <div class="divider"></div>
+            </td>
+            <td style="background-color:transparent !important;">  
+              <span>{{$cp->name}}</span> <br>
+              <small>Click to enter the parameter value</small>
+            </td>
+            <td style="background-color:transparent !important;">
+              <small class="text-right"> {{$cp->total_km}} km</small>
+              
+            </td>
+            <td class="ps-2"  style="background-color:transparent !important;">
+              <a href="#" data-menu="menu-config" onclick="configPipeline('{{$cp->id}}')" class="color-invert">
+                <i class="fas fa-cog text-right"></i>
+              </a>
+            </td>
+          </tr>
+        </table>
+          {{-- <a href="#" data-menu="menu-config" onclick="configPipeline('{{$cp->id}}')">
+            <i class="fa fa-angle-right bg-green-dark rounded-s"></i>
+              <span>{{$cp->name}}</span>
+              <strong>Click to enter the parameter value</strong>
+              
+              <span class="badge bg-red-dark font-10"></span>
+            </a> --}}
+            <div class="divider mt-2 mb-2"></div>
+        @endforeach
+      @else
+        <p class="text-center">Please create the config first</p>
+      @endif
+      <br>
     </div>
   </div>
+      
+
+    
+
+
 
 </div>
 

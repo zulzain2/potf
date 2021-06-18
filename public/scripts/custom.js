@@ -112,6 +112,27 @@ function closeFullscreen() {
 //Check if idTerrain already assign into the modal
 const modelViewer = $('#mainModelViewer');
 
+$('.select-pipeline').on('click' , function(){
+  $('#section1-empty').addClass('d-none');
+  $('#section2-empty').addClass('d-none');
+  $('#section3-empty').addClass('d-none');
+
+  $('#potf3d').removeClass('d-none');
+  $('#section2-3d').removeClass('d-none');
+  $('#section3-3d').addClass('h-100');
+
+
+  this.__toggle = !this.__toggle;
+  var target = document.getElementById('section3-3d');
+  if( this.__toggle) {
+      target.style.height = target.scrollHeight+"px";
+  }
+  else {
+      target.style.height = 0;
+  }
+
+})
+
 $('#toggle-rotate').on('change', function () {
     if ($(this).is(":checked")) {
         modelViewer.attr('auto-rotate', '')

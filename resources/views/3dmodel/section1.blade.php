@@ -116,7 +116,7 @@
 
         <div class="" style="height:1%;"></div>
 
-        <div class="row mb-0" style="height:28% !important">
+        <div class="row mb-0" style="height:42% !important">
             <div class="col-12 mb-0 h-100" style="">
                 <div class="card card-style shadow-xl me-1 mb-0 h-100" style="border-radius:5px;overflow:Scroll;background-color: #6f6f6f57 !important;">
                     <div class="content mb-0 mt-0">
@@ -193,7 +193,7 @@
 
         <div class="" style="height:1%;"></div>
 
-        <div class="row mb-0" style="height:28% !important">
+        <div class="row mb-0" style="height:42% !important">
             <div class="col-12 mb-0 h-100" style="">
                 <div class="card card-style shadow-xl me-1 mb-0 h-100" style="border-radius:5px;overflow:Scroll;background-color: #6f6f6f57 !important;">
                     <div class="content mb-0 mt-0">
@@ -260,7 +260,7 @@
 
         <div class="" style="height:1%;"></div>
 
-        <div class="row mb-0" style="height:28% !important">
+        {{-- <div class="row mb-0" style="height:28% !important">
             <div class="col-12 mb-0 h-100" style="">
                 <div class="card card-style shadow-xl me-1 mb-0 h-100" style="border-radius:5px;overflow:Scroll;background-color: #6f6f6f57 !important;">
                     <div class="content mb-0 mt-0">
@@ -289,16 +289,10 @@
     
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <div class="" style="height:1%;"></div>
     </div>
-   
-
-
-
-
-
 
 </model-viewer>
 
