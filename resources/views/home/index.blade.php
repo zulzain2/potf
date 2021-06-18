@@ -52,7 +52,7 @@
         <tr>
           <td class="align-middle text-center" style="background-color:transparent !important">
             <img id="empty_3dmodel" src="images/icons/pipeline.png" style="width:20%" alt="">
-              <p class="text-center m-0">No generated pipeline selected. Please select first.</p>
+              {{-- <p class="text-center m-0">No generated pipeline selected. Please select first.</p> --}}
           </td>
         </tr>
       </table>
@@ -70,7 +70,7 @@
       <table id="section2-empty" class="w-100 h-100" style="border:none;background-color:transparent !important">
         <tr>
           <td class="align-middle" style="background-color:transparent !important">
-              <p class="text-center m-0">...</p>
+            <p class="text-center m-0">No generated pipeline selected. Please select first.</p>
           </td>
         </tr>
       </table>
