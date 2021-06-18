@@ -48,16 +48,16 @@
 
     <div class="card card-style mb-0 ms-0 me-1" style="height:63.3%;border-radius:5px">
 
-      <table id="section1-empty" class="w-100 h-100" style="border:none;background-color:transparent !important">
+      {{-- <table id="section1-empty" class="w-100 h-100" style="border:none;background-color:transparent !important">
         <tr>
           <td class="align-middle text-center" style="background-color:transparent !important">
             <img id="empty_3dmodel" src="images/icons/pipeline.png" style="width:20%" alt="">
-              {{-- <p class="text-center m-0">No generated pipeline selected. Please select first.</p> --}}
           </td>
         </tr>
-      </table>
+      </table> --}}
 
-      <div id="potf3d" class="d-none" style="height:100%;border-radius:5px;">
+      {{-- <div id="potf3d" class="d-none" style="height:100%;border-radius:5px;"> --}}
+      <div id="potf3d" style="height:100%;border-radius:5px;">
         @include('3dmodel.section1')
       </div> 
 
@@ -67,15 +67,16 @@
 
     <div class="card card-style mb-0 ms-0 me-1" style="height:10.3%;border-radius:5px">
 
-      <table id="section2-empty" class="w-100 h-100" style="border:none;background-color:transparent !important">
+      {{-- <table id="section2-empty" class="w-100 h-100" style="border:none;background-color:transparent !important">
         <tr>
           <td class="align-middle" style="background-color:transparent !important">
             <p class="text-center m-0">No generated pipeline selected. Please select first.</p>
           </td>
         </tr>
-      </table>
+      </table> --}}
 
-      <div id="section2-3d" class="d-none">
+      {{-- <div id="section2-3d" class="d-none"> --}}
+      <div id="section2-3d">
         @include('3dmodel.section2')
       </div>
       
@@ -85,20 +86,20 @@
 
     <div class="card card-style mb-0 ms-0 me-1" style="height:25%;border-radius:5px">
 
-      <table id="section3-empty" class="w-100 h-100" style="border:none;background-color:transparent !important">
+      {{-- <table id="section3-empty" class="w-100 h-100" style="border:none;background-color:transparent !important">
         <tr>
           <td class="align-middle" style="background-color:transparent !important">
               <p class="text-center m-0">...</p>
           </td>
         </tr>
-      </table>
-<style>
+      </table> --}}
+{{-- <style>
   #section3-3d{
     height: 0;
     overflow: hidden;
     transition: height 0.8s ease;
 }
-</style>
+</style> --}}
       <div id="section3-3d">
         @include('3dmodel.section3')
       </div>
