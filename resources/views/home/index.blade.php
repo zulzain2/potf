@@ -45,9 +45,14 @@
   </div>
 
   <div class="col-8 pb-1 pt-2 h-100 ps-0">
-    <div id="potf3d" style="height:64%;border-radius:5px">
-       @include('3dmodel.section1')
-    </div> 
+
+    <div class="card card-style mb-0 ms-0 me-1" style="height:63.3%;border-radius:5px">
+      <div id="potf3d" style="height:100%;border-radius:5px">
+        @include('3dmodel.section1')
+      </div> 
+    </div>
+
+    <div class="" style="height:0.7%;"></div>
 
     <div class="card card-style mb-0 ms-0 me-1" style="height:10.3%;border-radius:5px">
       @include('3dmodel.section2')

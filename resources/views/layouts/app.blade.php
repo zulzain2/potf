@@ -33,6 +33,7 @@
         .color-invert{
             color:black;
         }
+
     </style>
 
     @stack('styles')
