@@ -81,7 +81,7 @@
                     
                             <h1 class="text-center font-900 font-40 text-uppercase mb-0">Pipeline of the Future (PofT)</h1>
 
-                            <h3 class="bottom-0 mt-2 text-center color-highlight font-11">Digital Twin</h3>
+                            <h4 class="bottom-0 mt-2 text-center color-highlight">Digital Twin</h4>
 
                             <div class="row text-center">
                               
