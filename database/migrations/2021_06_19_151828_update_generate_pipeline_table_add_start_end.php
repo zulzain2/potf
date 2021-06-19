@@ -15,8 +15,8 @@ class UpdateGeneratePipelineTableAddStartEnd extends Migration
     {
         Schema::table('generate_pipeline', function (Blueprint $table) {
 
-            $table->text('start_km');
-            $table->text('end_km');
+            $table->text('start_km')->nullable();
+            $table->text('end_km')->nullable();
 
         });
     }

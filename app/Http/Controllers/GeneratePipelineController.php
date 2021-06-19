@@ -65,6 +65,7 @@ class GeneratePipelineController extends Controller
                 $new->id_terrain_parameter = $param->id;
                 $new->km = $request->start[$i] . ' - '.  $request->end[$i];
                 $new->id_status = '1';
+                $new->order_by = $i;
                 $new->save();
             }
             $i++;
@@ -82,6 +83,7 @@ class GeneratePipelineController extends Controller
                 $newP->id_pipeline_parameter = $param->id;
                 $newP->km = $request->start[$i] . ' - '.  $request->end[$i];
                 $newP->id_status = '1';
+                $newP->order_by = $i;
                 $newP->save();
             }
             $i++;
@@ -100,6 +102,7 @@ class GeneratePipelineController extends Controller
                 $newS->id_sensor_parameter = $param->id;
                 $newS->km = $request->start[$i] . ' - '.  $request->end[$i];
                 $newS->id_status = '1';
+                $newS->order_by = $i;
                 $newS->save();
             }
             $i++;
@@ -187,6 +190,7 @@ class GeneratePipelineController extends Controller
           ->with(array('terrain_parameter' => function($query) {
             $query->select('id','name');
           }))
+					->orderBy('order_by' , 'ASC')
           ->get();
             array_push($arr_env,$configEnv);
         }
@@ -212,6 +216,7 @@ class GeneratePipelineController extends Controller
         ->with(array('pipeline_parameter' => function($query) {
           $query->select('id','name');
         }))
+        ->orderBy('order_by' , 'ASC')
         ->get();
           array_push($arr_pipe,$configPipe);
 
@@ -239,6 +244,7 @@ class GeneratePipelineController extends Controller
         ->with(array('sensor_parameter' => function($query) {
           $query->select('id','name');
         }))
+        ->orderBy('order_by' , 'ASC')
         ->get();
           array_push($arr_sensor,$configSensor);
 
