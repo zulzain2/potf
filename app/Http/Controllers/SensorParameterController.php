@@ -65,7 +65,7 @@ class SensorParameterController extends Controller
         
         $data = [
             'status' => 'success', 
-            'message' => 'Successfully store new terrain parameters.'
+            'message' => 'Successfully store new sensor parameters.'
         ];
         return json_encode($data);
 
