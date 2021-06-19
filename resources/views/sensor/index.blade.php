@@ -67,16 +67,16 @@
   </div>
   <div class="content mt-2">
     <div class="divider mb-3"></div>
-    <form action="{{ route('sensor.store') }}" method="post">
+    <form class="needs-validation" id="addSensorForm" novalidate>
       @csrf
       <div class="input-style input-style-always-active has-borders mb-4">
-        <input name="name" id="name" class="form-control" placeholder="Enter sensor name" required>
+        <input name="sensorName" id="sensorName" class="form-control" placeholder="Enter sensor name" required>
         <label class="color-theme opacity-50 text-uppercase font-700 font-10">Sensor Name</label>
         <em>(required)</em>
       </div>
 
       <div class="input-style input-style-always-active has-borders mb-4">
-        <textarea name="description" class="form-control" id="description" style="height:unset !important" cols="30" rows="5"
+        <textarea name="sensorDesc" class="form-control" id="sensorDesc" style="height:unset !important" cols="30" rows="5"
           placeholder="Enter sensor description"></textarea>
         <label class="color-theme opacity-50 text-uppercase font-700 font-10">Sensor Description</label>
       </div>
@@ -101,18 +101,8 @@
               <th scope="col" class="bg-dark-dark border-dark-dark color-white">Action</th>
             </tr>
           </thead>
-          <tbody>
-           @foreach($sensors as $sensor)
-           <tr class="bg-dark-light">
-            <th scope="row">{{$sensor->name}}</th>
-              <td>{{$sensor->description}}</td>
-              <td>
-              <a class="deleteTerrain" data-idterrain="{{$sensor->id}}" href="#"><i class="far fa-edit color-yellow-dark"></i></a>
-              &nbsp;&nbsp;&nbsp;
-              <a class="deleteTerrain" data-idterrain="{{$sensor->id}}" href="#"><i class="far fa-trash-alt color-red-dark"></i></a>
-              </td>
-          </tr>
-           @endforeach
+          <tbody id="tbl-sensor">
+           
           </tbody>
         </table>
       </div>
@@ -131,7 +121,7 @@
   </div>
   <div class="content mt-2">
     <div class="divider mb-3"></div>
-    <form action="{{ route('sensorParam.store') }}" method="post">
+    <form  class="needs-validation" id="addSensorParamForm" novalidate>
       @csrf
 
       <input type="hidden" id="idSensor" class="idSensor" name="idSensor">
@@ -203,10 +193,9 @@
 @push('scripts')
     <script>
     $(document).ready(function(){
+      getAllSensor();
+
       $("#submitSensor").change(function(e){
-        e.preventDefault()
-      })
-      $("#submitParamSensor").change(function(e){
         e.preventDefault()
       })
 
@@ -215,6 +204,158 @@
         document.getElementById('idSensor').value = idSensor;
         getSensorParam(idSensor);
       })
+///////////////////////////////////////////////////////////////////////
+//Add Sensor
+  $('#addSensorForm').on('submit', function (event) {
+
+  event.preventDefault();
+  if (navigator.onLine) {
+      var formElement = $(this);
+
+      // Loop over them and prevent submission
+      Array.prototype.slice.call(formElement)
+          .forEach(function (formValidate) {
+              if (!formValidate.checkValidity()) {
+                  event.preventDefault()
+                  event.stopPropagation()
+              } else {
+                  let form = formElement[0];
+                  let btnSubmitForm = $('#submitSensor');
+
+                  btnSubmitForm.addClass('off-btn').trigger('classChange');
+
+                  fetch("sensor", {
+                          method: 'post',
+                          credentials: "same-origin",
+                          headers: {
+                              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                          },
+                          body: new FormData(form),
+                      })
+                      .then(function (response) {
+                          return response.json();
+                      }).then(function (resultsJSON) {
+
+                          var results = resultsJSON
+
+                          if (results.status == 'success') {
+
+                              getAllSensor();
+
+                              btnSubmitForm.removeClass('off-btn').trigger('classChange');
+
+                              snackbar(results.status, results.message)
+
+                              form.reset();
+
+                          } else {
+                              if (results.type == 'Validation Error') {
+                                  btnSubmitForm.removeClass('off-btn').trigger('classChange');
+
+                                  validationErrorBuilder(results);
+                              } else {
+                                  snackbar(results.status, results.message)
+                              }
+                          }
+
+                      })
+                      .catch(function (err) {
+                          console.log('Error Add New Sensor: ' + err);
+                      });
+              }
+
+              formValidate.classList.add('was-validated');
+          });
+  } else {
+      menu('menu-offline', 'show', 250);
+  }
+  });
+///////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////
+//Add Sensor parameter
+      $('#addSensorParamForm').on('submit', function (event) {
+        event.preventDefault();
+
+        if (navigator.onLine) {
+        var formElement = $(this);
+
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(formElement)
+            .forEach(function (formValidate) {
+                if (!formValidate.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                } else {
+                    let form = formElement[0];
+                    let btnSubmitForm = $('#submitParamSensor');
+
+                    btnSubmitForm.addClass('off-btn').trigger('classChange');
+
+                    let formData = new FormData(form);
+                    if ($('#sensorParameterRequired').is(":checked")) {
+                        var sensorParameterRequired = 1;
+                        formData.append('sensorParameterRequired', sensorParameterRequired);
+                    } else {
+                        var sensorParameterRequired = 0;
+                        formData.append('sensorParameterRequired', sensorParameterRequired);
+                    }
+
+                    var idSensor = $('#idSensor').val();
+
+                    fetch("sensorparam", {
+                            method: 'post',
+                            credentials: "same-origin",
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                            },
+                            body: formData,
+                        })
+                        .then(function (response) {
+                            return response.json();
+                        }).then(function (resultsJSON) {
+                          console.log(resultsJSON);
+
+                            var results = resultsJSON
+
+                            if (results.status == 'success') {
+
+                                btnSubmitForm.removeClass('off-btn').trigger('classChange');
+
+                                menu('menu-add-sensor-parameter', 'hide', 250);
+
+                                snackbar(results.status, results.message)
+
+                                form.reset();
+
+                                getSensorParam(idSensor);
+
+                            } else {
+                                if (results.type == 'Validation Error') {
+                                    btnSubmitForm.removeClass('off-btn').trigger('classChange');
+
+                                    validationErrorBuilder(results);
+                                } else {
+                                    snackbar(results.status, results.message)
+                                }
+                            }
+
+                        })
+                        .catch(function (err) {
+                            console.log('Error Add New Sensor Parameter: ' + err);
+                        });
+
+
+                }
+                formValidate.classList.add('was-validated');
+            });
+    } else {
+        menu('menu-offline', 'show', 250);
+    }
+
+      })
+///////////////////////////////////////////////////////////////////////
+
     })
     
     function getSensorParam(idSensor){
@@ -289,5 +430,84 @@
           error: err => console.error(err)
         })
     }
+
+    function getAllSensor() {
+      fetch('/sensor').then(function (response) {
+          return response.json();
+      }).then(function (resultsJSON) {
+
+        var results = resultsJSON
+
+        if (results.status == 'success') {
+
+            if (results.data) {
+                if (results.data.length) {
+
+                    if (document.querySelector('#selectSensor')) {
+                        $('#selectSensor').html('');
+
+                        $('#selectSensor').append(`
+                            <option value="default" disabled="" selected="">Select Sensor</option>
+                        `);
+
+                        results.data.map(sensor => {
+
+                            $('#selectSensor').append(`
+                                <option value="${sensor.id}">${sensor.name}</option>
+                            `)
+                        })
+                    }
+
+                    if (document.querySelector('#tbl-sensor')) {
+                        $('#tbl-sensor').html('');
+
+                        results.data.map(sensor => {
+                            $('#tbl-sensor').append(`
+                            <tr class="bg-dark-light">
+                            <th scope="row">${sensor.name}</th>
+                            <td>${sensor.description ? sensor.description : ''}</td>
+                            <td>
+                            <a class="deleteSensor" data-idsensor="${sensor.id}" href="#"><i class="far fa-trash-alt color-red-dark"></i></a>
+                            </td>
+                            </tr>
+                        `);
+                        });
+
+                        $('.deleteSensor').on('click', function () {
+                            let idSensor = $(this).data('idSensor');
+                            $('#idSensorDelete').val(idSensor);
+                            menu('menu-delete-sensor', 'show', 250);
+                        })
+
+                    }
+
+
+                } else {
+
+                    if (document.querySelector('#selectSensor')) {
+                        $('#selectSensor').html('');
+
+                        $('#selectSensor').append(`
+                        <option value="default" disabled="" selected="">Select Sensor</option>
+                        `);
+
+                        $('#tbl-sensor').html('');
+                    }
+
+                }
+            }
+
+        } else {
+            if (results.type == 'Validation Error') {
+                validationErrorBuilder(results);
+            } else {
+                snackbar(results.status, results.message)
+            }
+        }
+
+      }).catch(function (err) {
+          console.log('Error Get All Sensor: ' + err);
+      });
+}
     </script>
 @endpush

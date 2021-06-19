@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Ramsey\Uuid\Uuid;
 use App\Models\SensorParams;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class SensorParameterController extends Controller
 {
@@ -36,24 +37,37 @@ class SensorParameterController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->idSensor){
-            $terrain = New SensorParams;
-            $terrain->id = Uuid::uuid4()->getHex();
-            $terrain->id_sensors = $request->idSensor;
-            $terrain->name = $request->sensorParameterName;
-            $terrain->type = $request->sensorParameterType;
-            if($request->sensorParameterRequired){
-                $terrain->required = '1';
-            }else{
-                $terrain->required = '0';
-            }
-            $terrain->id_status = '1';
-            $terrain->save();
+        $validator = Validator::make($request->all(), [
+            'idSensor' 	            => 'required',
+            'sensorParameterName' 	    => 'required',
+            'sensorParameterType' 	    => 'required',
+            'sensorParameterRequired' 	    => 'required',
+        ]);
+
+        if($validator->fails()){
+            $data = [
+                'status' => 'error', 
+                'type' => 'Validation Error',
+                'message' => 'Validation error, please check back your input.' ,
+                'error_list' => $validator->messages() ,
+            ];
+            return json_encode($data);
         }
-        else{
-            return redirect()->back()->withErrors(['msg', 'Please select sensor first!']);
-        }
-        return redirect()->back()->with('success', 'New sensor parameter added');  
+        
+        $terrain = New SensorParams;
+        $terrain->id = Uuid::uuid4()->getHex();
+        $terrain->id_sensors = $request->idSensor;
+        $terrain->name = $request->sensorParameterName;
+        $terrain->type = $request->sensorParameterType;
+        $terrain->required = $request->sensorParameterRequired == 0 ? 1 : 0;
+        $terrain->id_status = '1';
+        $terrain->save();
+        
+        $data = [
+            'status' => 'success', 
+            'message' => 'Successfully store new terrain parameters.'
+        ];
+        return json_encode($data);
 
     }
 
@@ -65,7 +79,14 @@ class SensorParameterController extends Controller
      */
     public function show($id)
     {
-        
+        $sensorparams = SensorParameter::where('id_sensor' , $id)->where('id_status' , 1)->get();
+
+        $data = [
+            'status' => 'success', 
+            'message' => 'Successfully get sensor parameters.',
+            'data' => $sensorparams
+        ];
+        return json_encode($data);
     }
 
     /**

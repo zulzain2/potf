@@ -6,6 +6,7 @@ use Ramsey\Uuid\Uuid;
 use App\Models\Sensor;
 use App\Models\SensorParams;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class SensorController extends Controller
 {
@@ -16,7 +17,14 @@ class SensorController extends Controller
      */
     public function index()
     {
-        
+        $sensors = Sensor::where('id_status' , 1)->get();
+
+        $data = [
+            'status' => 'success', 
+            'message' => 'Successfully get all terrain.',
+            'data' => $sensors
+        ];
+        return json_encode($data);
 
     }
 
@@ -38,71 +46,32 @@ class SensorController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate([
-            'name' => 'required',
+        $validator = Validator::make($request->all(), [
+            'sensorName' 	    => 'required',
         ]);
+        if($validator->fails()){
+            $data = [
+                'status' => 'error', 
+                'type' => 'Validation Error',
+                'message' => 'Validation error, please check back your input.' ,
+                'error_list' => $validator->messages() ,
+            ];
+            return json_encode($data);
+        }
         
         $add = new Sensor;
         $add->id = Uuid::uuid4()->getHex();
-        $add->name = $request->name;
-        $add->description = $request->description;
+        $add->name = $request->sensorName;
+        $add->description = $request->sensorDesc;
         $add->id_status = '1';
 
         $add->save();
         
-        return redirect()->back()->with('success', 'New sensor added');  
-
-        // if($request->sensor_type){
-        //     $addType = new SensorParams;
-        //     $addType->id = Uuid::uuid4()->getHex();
-        //     $addType->id_sensors = $id_sensor;
-        //     $addType->params = 'sensor_type';
-        //     $addType->value = $request->sensor_type;
-        //     $addType->id_status = '1';
-
-        //     $addType->save();
-        // }
-
-        // if($request->latitude){
-        //     $addlatitude = new SensorParams;
-        //     $addlatitude->id = Uuid::uuid4()->getHex();
-        //     $addlatitude->id_sensors = $id_sensor;
-        //     $addlatitude->params = 'latitude';
-        //     $addlatitude->value = $request->latitude;
-        //     $addlatitude->id_status = '1';
-
-        //     $addlatitude->save();
-        // }
-
-        // if($request->longitude){
-        //     $addlongitude = new SensorParams;
-        //     $addlongitude->id = Uuid::uuid4()->getHex();
-        //     $addlongitude->id_sensors = $id_sensor;
-        //     $addlongitude->params = 'longitude';
-        //     $addlongitude->value = $request->longitude;
-        //     $addlongitude->id_status = '1';
-
-        //     $addlongitude->save();
-        // }
-        
-        // if($request->no_attribute){
-        //     for($i = 1; $i <= $request->no_attribute; $i++){
-        //      $string1 = 'name_att';
-        //      $string2 = 'value_att';
-        //      $name_att = $string1 . $i;
-        //      $value_att = $string2 . $i;
-        //      $addNew = new SensorParams;
-        //      $addNew->id = Uuid::uuid4()->getHex();
-        //      $addNew->id_sensors = $id_sensor;
-        //      $addNew->params = $request->$name_att;
-        //      $addNew->value = $request->$value_att;
-        //      $addNew->id_status = '1';
- 
-        //      $addNew->save();
- 
-        //     }
-        //  }
-
+        $data = [
+            'status' => 'success', 
+            'message' => 'Successfully store new terrain.'
+        ];
+        return json_encode($data);
 
     }
 

@@ -117,13 +117,13 @@ class TerrainController extends Controller
     public function destroy($id)
     {
      
-            $terrain = Terrain::find($id);
-            $terrain->delete();
+        $terrain = Terrain::find($id);
+        $terrain->delete();
 
-            $data = [
-                'status' => 'success', 
-                'message' => 'Successfully delete environment.'
-            ];
-            return json_encode($data);
+        $data = [
+            'status' => 'success', 
+            'message' => 'Successfully delete environment.'
+        ];
+        return json_encode($data);
     }
 }
