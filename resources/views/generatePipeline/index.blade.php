@@ -8,7 +8,7 @@
 
   <div class="text-center" style="background-color:transparent !important;width:100%;">
     <a id="btn-add-config" data-menu="menu-add-config" href="#" class="btn btn-3d btn-m btn-full mb-3 rounded-xl text-uppercase font-900 shadow-s border-highlight bg-highlight">
-      <i class="fas fa-plus"> &nbsp;&nbsp; Add Pipeline Segment</i>
+      <i class="fas fa-plus"></i>&nbsp;&nbsp; Add Pipeline Segment
     </a>
   </div>
   <div class="clearfix mb-3"></div>
