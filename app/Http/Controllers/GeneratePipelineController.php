@@ -14,6 +14,8 @@ use App\Models\ConfigPipeline;
 use App\Models\GeneratePipeline;
 use App\Models\TerrainParameter;
 use App\Models\PipelineParameter;
+use Illuminate\Support\Facades\Validator;
+
 
 class GeneratePipelineController extends Controller
 {
@@ -52,6 +54,21 @@ class GeneratePipelineController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'nameConfig' 	    => 'required',
+            'total' 	    => 'required',
+            'start_km' 	    => 'required',
+            'end_km' 	    => 'required',
+        ]);
+        if($validator->fails()){
+            $data = [
+                'status' => 'error', 
+                'type' => 'Validation Error',
+                'message' => 'Validation error, please check back your input.' ,
+                'error_list' => $validator->messages() ,
+            ];
+            return json_encode($data);
+        }
         $i = 0;
         // dd($request);
         $add = new GeneratePipeline;
@@ -122,7 +139,7 @@ class GeneratePipelineController extends Controller
 
         $data = [
             'status' => 'success', 
-            'message' => 'New pipeline config added'
+            'message' => 'New Pipeline Segment Added'
         ];
         return json_encode($data);
 
@@ -189,7 +206,12 @@ class GeneratePipelineController extends Controller
           $update->value = $request->value[$key];
           $update->save(); 
         }
-        return redirect()->back()->with('success', 'New pipeline config added');  
+        $data = [
+            'status' => 'success', 
+            'message' => 'Pipeline Segment Value Added'
+        ];
+        return json_encode($data);
+        // return redirect()->back()->with('success', 'New pipeline config added');  
     }
 
     public function fetchEnv(Request $request){

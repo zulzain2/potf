@@ -73,8 +73,8 @@
   </div>
   <div class="content mt-2">
     <div class="divider mb-3"></div>
-    {{-- <form action="{{ route('generatepipeline.store') }}" method="post" id="submitGeneratePipelineForm"> --}}
-      <form  id="submitGeneratePipelineForm">
+    <form  class="needs-validation" id="submitGeneratePipelineForm" novalidate>
+
       @csrf
       <table class="h-100 w-100" style="background-color:transparent !important;border:none">
         <tr>
@@ -312,7 +312,8 @@
   </div>
   <div class="content mt-2">
     <div class="divider mb-3"></div>
-    <form action="{{ route('generatepipeline.storeValue') }}" method="post">
+    <form  class="needs-validation" id="submitGeneratePipelineValueForm" novalidate>
+      
       @csrf
       <input type="hidden" name="id_cp" id="id_cp">
       
@@ -465,6 +466,7 @@
 
                     $( "#tab-create_pipeline" ).load( "generatepipeline", function( response, status, xhr ) {
                       if ( status == "error" ) {
+                        
                         snackbar('error', 'Error Display Pipeline Segment')
                       }
                       else{
@@ -478,11 +480,70 @@
 
                   });
                 } else {
+                  btnSubmitForm.removeClass('off-btn').trigger('classChange');
                     snackbar('error', 'Error Create New Pipeline Segment')
                 }
             })
             .catch(function (err) {
                 console.log('Error Create New Pipeline Segment: ' + err);
+            }); 
+              
+        });
+
+        $('#submitGeneratePipelineValueForm').on('submit', function (event) {
+
+            event.preventDefault();
+
+            let form =  $(this)[0];
+            let btnSubmitForm = $('#submitGeneratePipelineValue');
+
+            btnSubmitForm.addClass('off-btn').trigger('classChange');
+
+            fetch("generatepipeline/storeValue", {
+                method: 'post',
+                credentials: "same-origin",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                },
+                body: new FormData(form),
+            })
+            .then(function (response) {
+                return response.json();
+            }).then(function (resultsJSON) {
+
+                var results = resultsJSON
+
+                if (results.status == 'success') {
+
+                    menu('menu-config', 'hide', 250);
+
+                    btnSubmitForm.removeClass('off-btn').trigger('classChange');
+
+                    snackbar(results.status, results.message)
+
+                    form.reset();
+
+                    $( "#tab-create_pipeline" ).load( "generatepipeline", function( response, status, xhr ) {
+                      if ( status == "error" ) {
+                        snackbar('error', 'Error Display Pipeline Segment')
+                      }
+                      else{
+                        $('#btn-add-config').on('click' , function(){
+                          menu('menu-config' , 'show' , 250);
+                        })
+                        $('.createdPipelineConfig').on('click' , function(){
+                          menu('menu-config' , 'show' , 250);
+                        })
+                    }
+
+                  });
+                } else {
+                  btnSubmitForm.removeClass('off-btn').trigger('classChange');
+                    snackbar('error', 'Error Enter Value Pipeline Segment')
+                }
+            })
+            .catch(function (err) {
+                console.log('Error Enter Value Pipeline Segment: ' + err);
             }); 
               
         });
