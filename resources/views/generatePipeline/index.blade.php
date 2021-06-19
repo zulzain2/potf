@@ -90,7 +90,7 @@
         <tr>
           <td>
             <div class="input-style input-style-always-active has-borders no-icon validate-field mb-4">
-              <input type="name" class="form-control validate-name" name="start" id="start" placeholder="KM Start">
+              <input type="name" class="form-control validate-name" name="start_km" id="start_km" placeholder="KM Start">
               <label for="form1ab" class="color-theme opacity-50 text-uppercase font-700 font-10">Start (KiloMeter)</label>
               <i class="fa fa-times disabled invalid color-red-dark"></i>
               <i class="fa fa-check disabled valid color-green-dark"></i>
@@ -99,7 +99,7 @@
           </td>
           <td>
             <div class="input-style input-style-always-active has-borders no-icon validate-field mb-4">
-              <input type="name" class="form-control validate-name" name="end" id="end" placeholder="KM End">
+              <input type="name" class="form-control validate-name" name="end_km" id="end_km" placeholder="KM End">
               <label for="form1ab" class="color-theme opacity-50 text-uppercase font-700 font-10">End (KiloMeter)</label>
               <i class="fa fa-times disabled invalid color-red-dark"></i>
               <i class="fa fa-check disabled valid color-green-dark"></i>
@@ -147,11 +147,27 @@
                       <table class="table table-borderless text-center rounded-sm shadow-l" style="overflow: hidden;" >
                         <thead>
                         <tr class="bg-gray-dark">
+                        <th colspan="3" scope="col" class="color-white" width="40%">Range(KM)</th>
                         <th scope="col" class="color-white">Environment</th>
                         </tr>
                         </thead>
                           <tbody id="addEnvironment">
                             <tr>
+                              <td>
+                                <div class="input-style has-borders has-icon validate-field mb-4">
+                                  <input type="text" class="form-control validate-name" name="start[]" id="startKMEnv" placeholder="Start">
+                                  <label for="form1" class="color-highlight">Start</label>
+                                </div>
+                              </td>
+                              <td>
+                                <i class="fal fa-caret-right fa-4x" style="display: flex;justify-content: center;align-items: center;"></i>
+                              </td>
+                              <td>
+                                <div class="input-style has-borders has-icon validate-field mb-4">
+                                  <input type="text" class="form-control validate-name" name="end[]" id="endKMEnv" placeholder="End">
+                                  <label for="form1" class="color-highlight">End</label>
+                                </div>
+                              </td>
                               <td>
                                 <select class="form-select" name="environment[]" id="environment" >
                                 <option value="default" disabled="" selected="">Select Environment</option>
@@ -181,11 +197,27 @@
                       <table class="table table-borderless text-center rounded-sm shadow-l" style="overflow: hidden;" >
                         <thead>
                         <tr class="bg-gray-dark">
+                        <th colspan="3" scope="col" class="color-white" width="40%">Range(KM)</th>
                         <th scope="col" class="color-white" style="width:30%">Pipeline</th>
                         </tr>
                         </thead>
                           <tbody id="addPipeline">
                             <tr>
+                              <td>
+                                <div class="input-style has-borders has-icon validate-field mb-4">
+                                  <input type="text" class="form-control validate-name" name="start[]" id="startKMPipe" placeholder="Start">
+                                  <label for="form1" class="color-highlight">Start</label>
+                                </div>
+                              </td>
+                              <td>
+                                <i class="fal fa-caret-right fa-4x" style="display: flex;justify-content: center;align-items: center;"></i>
+                              </td>
+                              <td>
+                                <div class="input-style has-borders has-icon validate-field mb-4">
+                                  <input type="text" class="form-control validate-name" name="end[]" id="endKMPipe" placeholder="End">
+                                  <label for="form1" class="color-highlight">End</label>
+                                </div>
+                              </td>
                               <td>
                                 <select class="form-select" name="pipeline[]" id="pipeline" >
                                 <option value="default" disabled="" selected="">Select Pipeline</option>
@@ -215,11 +247,27 @@
                       <table class="table table-borderless text-center rounded-sm shadow-l" style="overflow: hidden;" >
                         <thead>
                         <tr class="bg-gray-dark">
+                        <th colspan="3" scope="col" class="color-white" width="40%">Range(KM)</th>
                         <th scope="col" class="color-white" style="width:30%">Sensor</th>
                         </tr>
                         </thead>
                           <tbody id="addSensor">
                             <tr>
+                              <td>
+                                <div class="input-style has-borders has-icon validate-field mb-4">
+                                  <input type="text" class="form-control validate-name" name="start[]" id="startKMSensor" placeholder="Start">
+                                  <label for="form1" class="color-highlight">Start</label>
+                                </div>
+                              </td>
+                              <td>
+                                <i class="fal fa-caret-right fa-4x" style="display: flex;justify-content: center;align-items: center;"></i>
+                              </td>
+                              <td>
+                                <div class="input-style has-borders has-icon validate-field mb-4">
+                                  <input type="text" class="form-control validate-name" name="end[]" id="endKMSensor" placeholder="End">
+                                  <label for="form1" class="color-highlight">End</label>
+                                </div>
+                              </td>
                               <td>
                                 <select class="form-select" name="sensor[]" id="sensor" >
                                 <option value="default" disabled="" selected="">Select Sensor</option>
@@ -295,6 +343,7 @@
               <table class="table table-borderless text-center rounded-sm shadow-l" style="overflow: hidden;" >
                 <thead>
                 <tr class="bg-gray-dark">
+                <th scope="col" class="color-white" style="width:10%">KM</th>
                 <th scope="col" class="color-white" style="width:30%">Environment</th>
                 <th scope="col" class="color-white" style="width:30%">Parameter</th>
                 <th scope="col" class="color-white" style="width:30%">Value</th>
@@ -321,6 +370,7 @@
               <table class="table table-borderless text-center rounded-sm shadow-l" style="overflow: hidden;" >
                 <thead>
                 <tr class="bg-gray-dark">
+                <th scope="col" class="color-white" style="width:10%">KM</th>
                 <th scope="col" class="color-white" style="width:30%">Pipeline</th>
                 <th scope="col" class="color-white" style="width:30%">Parameter</th>
                 <th scope="col" class="color-white" style="width:30%">Value</th>
@@ -347,6 +397,7 @@
               <table class="table table-borderless text-center rounded-sm shadow-l" style="overflow: hidden;" >
                 <thead>
                 <tr class="bg-gray-dark">
+                <th scope="col" class="color-white" style="width:10%">KM</th>
                 <th scope="col" class="color-white" style="width:30%">Sensor</th>
                 <th scope="col" class="color-white" style="width:30%">Parameter</th>
                 <th scope="col" class="color-white" style="width:30%">Value</th>
@@ -388,6 +439,21 @@
       $('#addEnvironment').append(`
           <tr>
             <td>
+              <div class="input-style has-borders has-icon validate-field mb-4">
+                <input type="text" class="form-control validate-name" name="start[]" id="startKMEnv" placeholder="Start">
+                <label for="form1" class="color-highlight">Start</label>
+              </div>
+            </td>
+            <td>
+              <i class="fal fa-caret-right fa-4x" style="display: flex;justify-content: center;align-items: center;"></i>
+            </td>
+            <td>
+              <div class="input-style has-borders has-icon validate-field mb-4">
+                <input type="text" class="form-control validate-name" name="end[]" id="endKMEnv" placeholder="End">
+                <label for="form1" class="color-highlight">End</label>
+              </div>
+            </td>
+            <td>
               <select class="form-select" name="environment[]" id="environment" >
               <option value="default" disabled="" selected="">Select Environment</option>
               @if(count($terrains) > 0) 
@@ -407,6 +473,21 @@
       $('#addPipeline').append(`
           <tr>
             <td>
+              <div class="input-style has-borders has-icon validate-field mb-4">
+                <input type="text" class="form-control validate-name" name="start[]" id="startKMPipe" placeholder="Start">
+                <label for="form1" class="color-highlight">Start</label>
+              </div>
+            </td>
+            <td>
+              <i class="fal fa-caret-right fa-4x" style="display: flex;justify-content: center;align-items: center;"></i>
+            </td>
+            <td>
+              <div class="input-style has-borders has-icon validate-field mb-4">
+                <input type="text" class="form-control validate-name" name="end[]" id="endKMPipe" placeholder="End">
+                <label for="form1" class="color-highlight">End</label>
+              </div>
+            </td>
+            <td>
               <select class="form-select" name="pipeline[]" id="pipeline" >
               <option value="default" disabled="" selected="">Select Pipeline</option>
               @if(count($pipelines) > 0) 
@@ -425,6 +506,21 @@
       let l = 1;
       $('#addSensor').append(`
           <tr>
+            <td>
+                <div class="input-style has-borders has-icon validate-field mb-4">
+                  <input type="text" class="form-control validate-name" name="start[]" id="startKMSensor" placeholder="Start">
+                  <label for="form1" class="color-highlight">Start</label>
+                </div>
+              </td>
+              <td>
+                <i class="fal fa-caret-right fa-4x" style="display: flex;justify-content: center;align-items: center;"></i>
+              </td>
+              <td>
+                <div class="input-style has-borders has-icon validate-field mb-4">
+                  <input type="text" class="form-control validate-name" name="end[]" id="endKMSensor" placeholder="End">
+                  <label for="form1" class="color-highlight">End</label>
+                </div>
+              </td>
             <td>
               <select class="form-select" name="sensor[]" id="sensor" >
               <option value="default" disabled="" selected="">Select Sensor</option>
@@ -465,11 +561,13 @@
           },
           success: (resultsJSON) =>{
             let results = JSON.parse(resultsJSON);
+            console.log(results);
             
             results.data.map(a =>{
                 a.forEach(el =>{
                   $('#envParamList').append(`
                     <tr>
+                      <th scope="row">${el.km}</th>
                       <th scope="row">${el.terrain.name}</th>
                       <td scope="row">${el.terrain_parameter.name}</td>
                       <td scope="row">
@@ -505,6 +603,7 @@
                 a.forEach(el =>{
                   $('#pipeParamList').append(`
                     <tr>
+                      <th scope="row">${el.km}</th>
                       <th scope="row">${el.pipeline.name}</th>
                       <td scope="row">${el.pipeline_parameter.name}</td>
                       <td scope="row">
@@ -538,6 +637,7 @@
                 a.forEach(el =>{
                   $('#sensorParamList').append(`
                     <tr>
+                      <th scope="row">${el.km}</th>
                       <th scope="row">${el.sensor.name}</th>
                       <td scope="row">${el.sensor_parameter.name}</td>
                       <td scope="row">
