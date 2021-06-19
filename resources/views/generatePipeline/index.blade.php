@@ -631,7 +631,7 @@
                     <tr>
                       <th scope="row">${el.km}</th>
                       <th scope="row">${el.terrain.name}</th>
-                      <td scope="row">${el.terrain_parameter.name}</td>
+                      <td scope="row"><p>${el.terrain_parameter.name}</p></td>
                       <td scope="row">
                       <input type="text" class="form-control" id="value-${el.id}" ${el.required == 1 ? 'required' : ''} name="value[]"" value="${el.value ? el.value : ''}">
                       <input type="hidden" name="id[]" id="${el.id}" value="${el.id}">
@@ -667,7 +667,7 @@
                     <tr>
                       <th scope="row">${el.km}</th>
                       <th scope="row">${el.pipeline.name}</th>
-                      <td scope="row">${el.pipeline_parameter.name}</td>
+                      <td scope="row"><p>${el.pipeline_parameter.name}</p></td>
                       <td scope="row">
                       <input type="text" class="form-control" id="value-${el.id}" ${el.required == 1 ? 'required' : ''} name="value[]"" value="${el.value ? el.value : ''}">
                       <input type="hidden" name="id[]" id="${el.id}" value="${el.id}">
@@ -701,7 +701,7 @@
                     <tr>
                       <th scope="row">${el.km}</th>
                       <th scope="row">${el.sensor.name}</th>
-                      <td scope="row">${el.sensor_parameter.name}</td>
+                      <td scope="row"><p>${el.sensor_parameter.name}</p></td>
                       <td scope="row">
                       <input type="text" class="form-control" id="value-${el.id}" ${el.required == 1 ? 'required' : ''} name="value[]"" value="${el.value ? el.value : ''}">
                       <input type="hidden" name="id[]" id="${el.id}" value="${el.id}">
