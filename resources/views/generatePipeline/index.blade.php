@@ -561,7 +561,6 @@
           },
           success: (resultsJSON) =>{
             let results = JSON.parse(resultsJSON);
-            console.log(results);
             
             results.data.map(a =>{
                 a.forEach(el =>{
