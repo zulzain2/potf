@@ -47,7 +47,9 @@ class GeneratePipelineController extends Controller
         $add = new GeneratePipeline;
         $add->id = Uuid::uuid4()->getHex();
         $add->name = $request->nameConfig;
-        $add->total_km = $request->kmRange;
+        $add->total_km = $request->total;
+        $add->start_km = $request->start;
+        $add->end_km = $request->end;
 
         foreach($request->environment as $key=>$part){
             $envParam = TerrainParameter::where('id_terrain', $part)
@@ -60,7 +62,7 @@ class GeneratePipelineController extends Controller
                 $new->id_generate_pipeline = $add->id;
                 $new->id_terrain = $param->terrain->id;
                 $new->id_terrain_parameter = $param->id;
-                $new->km = $request->km[$key];
+                // $new->km = $request->km[$key];
                 $new->id_status = '1';
                 $new->save();
             }
@@ -77,7 +79,7 @@ class GeneratePipelineController extends Controller
                 $newP->id_generate_pipeline = $add->id;
                 $newP->id_pipeline = $param->pipeline->id;
                 $newP->id_pipeline_parameter = $param->id;
-                $newP->km = $request->km[$key];
+                // $newP->km = $request->km[$key];
                 $newP->id_status = '1';
                 $newP->save();
             }
@@ -94,7 +96,7 @@ class GeneratePipelineController extends Controller
                 $new->id_generate_pipeline = $add->id;
                 $new->id_sensor = $param->sensor->id;
                 $new->id_sensor_parameter = $param->id;
-                $new->km = $request->km[$key];
+                // $new->km = $request->km[$key];
                 $new->id_status = '1';
                 $new->save();
             }
@@ -153,6 +155,7 @@ class GeneratePipelineController extends Controller
     }
 
     public function storeValue(Request $request){
+        
         foreach($request->id as $key=>$id){
             
           $update = ConfigPipeline::find($id);
