@@ -7,7 +7,7 @@
 <div class="content m-1">
 
   <div class="text-center" style="background-color:transparent !important;width:100%;">
-    <a id="btn-sensor-config" data-menu="menu-add-config" href="#" class="btn btn-3d btn-m btn-full mb-3 rounded-xl text-uppercase font-900 shadow-s border-highlight bg-highlight">
+    <a id="btn-add-config" data-menu="menu-add-config" href="#" class="btn btn-3d btn-m btn-full mb-3 rounded-xl text-uppercase font-900 shadow-s border-highlight bg-highlight">
       <i class="fas fa-plus"> &nbsp;&nbsp; Add Pipeline Segment</i>
     </a>
   </div>
@@ -40,8 +40,8 @@
               
             </td>
             <td class="ps-2"  style="background-color:transparent !important;">
-              <a href="#" data-menu="menu-config" onclick="configPipeline('{{$cp->id}}')" class="color-invert">
-                <i class="fas fa-cog text-right"></i>
+              <a href="#" data-menu="menu-config" onclick="configPipeline('{{$cp->id}}')" class="color-invert createdPipelineConfig">
+                <i class="fas fa-cog text-right color-highlight"></i>
               </a>
             </td>
           </tr>
@@ -426,67 +426,68 @@
 @endpush
 
 @push('scripts')
+
 <script>
-$( document ).ready(function() {
+    $( document ).ready(function() {
 
-    $('#submitGeneratePipelineForm').on('submit', function (event) {
-        console.log('masuk');
-        event.preventDefault();
-        
-        var formElement = $(this);
-        let form = formElement[0];
-        let btnSubmitForm = $('#submitGeneratePipeline');
+        $('#submitGeneratePipelineForm').on('submit', function (event) {
 
-        btnSubmitForm.addClass('off-btn').trigger('classChange');
+            event.preventDefault();
 
-        fetch("generatepipeline", {
-            method: 'post',
-            credentials: "same-origin",
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-            },
-            body: new FormData(form),
-        })
-        .then(function (response) {
-            return response.json();
-        }).then(function (resultsJSON) {
+            let form =  $(this)[0];
+            let btnSubmitForm = $('#submitGeneratePipeline');
 
-            var results = resultsJSON
+            btnSubmitForm.addClass('off-btn').trigger('classChange');
 
-            if (results.status == 'success') {
+            fetch("generatepipeline", {
+                method: 'post',
+                credentials: "same-origin",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                },
+                body: new FormData(form),
+            })
+            .then(function (response) {
+                return response.json();
+            }).then(function (resultsJSON) {
 
-                menu('menu-add-config', 'hide', 250);
+                var results = resultsJSON
 
-                btnSubmitForm.removeClass('off-btn').trigger('classChange');
+                if (results.status == 'success') {
 
-                snackbar(results.status, results.message)
+                    menu('menu-add-config', 'hide', 250);
 
-                form.reset();
-
-                $('#tab-create_pipeline').load('generatepipeline');
-
-            } else {
-                if (results.type == 'Validation Error') {
                     btnSubmitForm.removeClass('off-btn').trigger('classChange');
 
-                    validationErrorBuilder(results);
-                } else {
                     snackbar(results.status, results.message)
+
+                    form.reset();
+
+                    $( "#tab-create_pipeline" ).load( "generatepipeline", function( response, status, xhr ) {
+                      if ( status == "error" ) {
+                        snackbar('error', 'Error Display Pipeline Segment')
+                      }
+                      else{
+                        $('#btn-add-config').on('click' , function(){
+                          menu('menu-add-config' , 'show' , 250);
+                        })
+                        $('.createdPipelineConfig').on('click' , function(){
+                          menu('menu-config' , 'show' , 250);
+                        })
+                    }
+
+                  });
+                } else {
+                    snackbar('error', 'Error Create New Pipeline Segment')
                 }
-            }
-
-        })
-        .catch(function (err) {
-            console.log('Error Create New Pipeline: ' + err);
-        }); 
-          
+            })
+            .catch(function (err) {
+                console.log('Error Create New Pipeline Segment: ' + err);
+            }); 
+              
+        });
+      
     });
-  
-});
-
-
-
-
 
 
     function openConfig(){
