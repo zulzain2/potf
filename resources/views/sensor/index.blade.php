@@ -76,7 +76,7 @@
       </div>
 
       <div class="input-style input-style-always-active has-borders mb-4">
-        <textarea name="description" class="form-control" id="description" cols="30" rows="10"
+        <textarea name="description" class="form-control" id="description" style="height:unset !important" cols="30" rows="5"
           placeholder="Enter sensor description"></textarea>
         <label class="color-theme opacity-50 text-uppercase font-700 font-10">Sensor Description</label>
       </div>

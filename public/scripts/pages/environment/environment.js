@@ -8,7 +8,7 @@ function terrainFormulaParameterBuilder(results) {
             
                 $('#terrainFormulaParameter').append(`
                     <div class="col-3">
-                    <a href="#" data-id-terrain-param="${terrainparam.id}" class="terrain-formula-select btn btn-m btn-full mb-3 rounded-sm font-900 border-highlight-dark color-highlight-dark bg-theme">${terrainparam.name}</a>
+                    <a href="#" data-id-terrain-param="${terrainparam.id}" data-terrain-param="${terrainparam.name}" class="terrain-formula-select btn btn-m btn-full mb-3 rounded-sm font-900 border-highlight-dark color-highlight-dark bg-theme">${terrainparam.name}</a>
                     </div>
                 `);
 
@@ -20,11 +20,17 @@ function terrainFormulaParameterBuilder(results) {
                 var curPos = document.getElementById("terrainSimulationFormula").selectionStart;
 
                 // will get the value of the text area
-                let x = $('#terrainSimulationFormula').val();
+                var x = $('#terrainSimulationFormula').val();
 
                 // will get the value of the input box
                 //   let text_to_insert=$(this).html();
-                let idTerrainParam = $(this).data('id-terrain-param');
+                var idTerrainParam = $(this).data('id-terrain-param');
+
+                
+                var inputs = new Array();
+                $("#terrainSimulationFormulaConvert").each(function(){
+                    inputs.push($(this).val());
+                })
 
                 // setting the updated value in the text area
                 $('#terrainSimulationFormula').val(x.slice(0, curPos) + '{{' + idTerrainParam + '}}' + x.slice(curPos));
@@ -50,6 +56,10 @@ function terrainFormulaParameterBuilder(results) {
         `);
     }
 }
+
+// $("#terrainSimulationFormula").on("input", function() {
+//     $('#terrainSimulationFormulaConvert').html($(this).val());
+//  });
 
 function terrainParameterListBuilder(results) {
     if (results.data) {

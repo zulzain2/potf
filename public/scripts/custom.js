@@ -110,7 +110,7 @@ function closeFullscreen() {
 
 ///////////////////////////////////////////////////////////////////////
 //Check if idTerrain already assign into the modal
-const modelViewer = $('#mainModelViewer');
+const modelViewerEl = $('#mainModelViewer');
 
 // $('.select-pipeline').on('click' , function(){
 //   $('#section1-empty').addClass('d-none');
@@ -135,11 +135,19 @@ const modelViewer = $('#mainModelViewer');
 
 $('#toggle-rotate').on('change', function () {
     if ($(this).is(":checked")) {
-        modelViewer.attr('auto-rotate', '')
+      modelViewerEl.attr('auto-rotate', '')
     } else {
-        modelViewer.removeAttr('auto-rotate')
+      modelViewerEl.removeAttr('auto-rotate')
     }
 })
+
+$('#toggle-elevated').on('change' , function() {
+  if ($('#toggle-elevated').is(":checked")) {
+    modelViewerEl.attr("src",$('#3d_elevated').val());
+  } else {
+    modelViewerEl.attr("src",$('#3d_normal').val());
+  }
+});
 
 $('.select-3dmodel').on('click' , function(){
     let src = $(this).data('src');
@@ -149,20 +157,10 @@ $('.select-3dmodel').on('click' , function(){
     $('#3d_elevated').val(elevated);
     console.log(pulse);
     $('#3d_dist_pulse').css('left' , pulse);
-    modelViewer.attr("src",src);
+    modelViewerEl.attr("src",src);
 })
 
-$('#toggle-elevated').on('change' , function() {
-  if ($('#toggle-elevated').is(":checked")) {
-    modelViewer.attr("src",$('#3d_elevated').val());
-  } else {
-    modelViewer.attr("src",$('#3d_normal').val());
-  }
-});
-
-
-
-(() => {
+function panningModelViewer() {
   const modelViewer = document.querySelector('#mainModelViewer');
   const tapDistance = 2;
   let panning = false;
@@ -278,7 +276,9 @@ $('#toggle-elevated').on('change' , function() {
       recenter(event.changedTouches[0]);
     }
   }, true);
-})();
+}
+
+panningModelViewer();
 
 ///////////////////////////////////////////////////////////////////////
 

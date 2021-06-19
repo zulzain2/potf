@@ -15593,10 +15593,10 @@ textarea {
     margin-left: 14px !important
 }
 
-.input-style textarea:focus {
+/* .input-style textarea:focus {
     height: 150px;
     transition: all 250ms ease !important
-}
+} */
 
 .input-style.no-borders.input-style-always-active label {
     opacity: 1;

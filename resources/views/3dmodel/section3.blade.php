@@ -26,15 +26,6 @@
     
                         <div style="height:100%;border-radius:5px">
                             <img src="images/3d/1.png" style="width:100%;height:100%" alt="">
-                          <!-- Use it like any other HTML element -->
-                          {{-- <model-viewer src="images/3d/pipe.glb" 
-                          alt="A 3D model of an astronaut" 
-                          loading="lazy"
-                          ar ar-modes="webxr scene-viewer quick-look" 
-                          environment-image="neutral"
- 
-                          class="w-100" 
-                          style="height:100%"></model-viewer> --}}
                         </div>
     
                           {{-- <div class="card-overlay bg-gradient"></div> --}}
@@ -57,14 +48,6 @@
 
                     <div style="height:100%;border-radius:5px">
                       <img src="images/3d/2.png" style="width:100%;height:100%" alt="">
-                      <!-- Use it like any other HTML element -->
-                      {{-- <model-viewer src="images/3d/pipe-2.glb" 
-                      alt="A 3D model of an astronaut" 
-                      loading="lazy"
-                      ar ar-modes="webxr scene-viewer quick-look" 
-                      environment-image="neutral" 
-                      class="w-100" 
-                      style="height:100%"></model-viewer> --}}
                     </div>
 
                       {{-- <div class="card-overlay bg-gradient"></div> --}}
@@ -87,14 +70,6 @@
 
                     <div style="height:100%;border-radius:5px">
                       <img src="images/3d/3.png" style="width:100%;height:100%" alt="">
-                      <!-- Use it like any other HTML element -->
-                      {{-- <model-viewer src="images/3d/pipe-3.glb" 
-                      alt="A 3D model of an astronaut" 
-                      loading="lazy"
-                      ar ar-modes="webxr scene-viewer quick-look" 
-                      environment-image="neutral" 
-                      class="w-100" 
-                      style="height:100%"></model-viewer> --}}
                     </div>
 
                     {{-- <div class="card-overlay bg-gradient"></div> --}}
@@ -117,14 +92,6 @@
 
                     <div style="height:100%;border-radius:5px">
                         <img src="images/3d/4.png" style="width:100%;height:100%" alt="">
-                        <!-- Use it like any other HTML element -->
-                        {{-- <model-viewer src="images/3d/pipe-4.glb" 
-                        alt="A 3D model of an astronaut" 
-                        loading="lazy"
-                        ar ar-modes="webxr scene-viewer quick-look" 
-                        environment-image="neutral" 
-                        class="w-100" 
-                        style="height:100%"></model-viewer> --}}
                     </div>
                     
                     {{-- <div class="card-overlay bg-gradient"></div> --}}

@@ -91,7 +91,7 @@
       </div>
 
       <div class="input-style input-style-always-active has-borders mb-4">
-        <textarea id="pipelineDesc" name="pipelineDesc" class="form-control" cols="30" rows="10"
+        <textarea id="pipelineDesc" name="pipelineDesc" style="height:unset !important" class="form-control" cols="30" rows="5"
           placeholder="Enter pipeline description"></textarea>
         <label class="color-theme opacity-50 text-uppercase font-700 font-10">Pipeline Description</label>
       </div>
@@ -209,7 +209,7 @@
       </div>
 
       <div class="input-style input-style-always-active has-borders mb-4">
-        <textarea id="pipelineSimulationDesc" name="pipelineSimulationDesc" class="form-control" cols="30" rows="10"
+        <textarea id="pipelineSimulationDesc" name="pipelineSimulationDesc" style="height:unset !important" class="form-control" cols="30" rows="5"
           placeholder="Enter simulation model description"></textarea>
         <label class="color-theme opacity-50 text-uppercase font-700 font-10">Simulation Model Description</label>
       </div>

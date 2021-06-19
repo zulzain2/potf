@@ -93,8 +93,7 @@
         </div>
 
         <div class="input-style input-style-always-active has-borders mb-4">
-          <textarea id="terrainDesc" name="terrainDesc" class="form-control" cols="30" rows="10"
-            placeholder="Enter environment description"></textarea>
+          <textarea id="terrainDesc" name="terrainDesc" style="height:unset !important" class="form-control" cols="30" rows="5" placeholder="Enter environment description"></textarea>
           <label class="color-theme opacity-50 text-uppercase font-700 font-10">Environment Description</label>
         </div>
 
@@ -216,7 +215,7 @@
         </div>
 
         <div class="input-style input-style-always-active has-borders mb-4">
-          <textarea id="terrainSimulationDesc" name="terrainSimulationDesc" class="form-control" cols="30" rows="10"
+          <textarea id="terrainSimulationDesc" name="terrainSimulationDesc" class="form-control" style="height:unset !important" cols="30" rows="5"
             placeholder="Enter simulation model description"></textarea>
           <label class="color-theme opacity-50 text-uppercase font-700 font-10">Simulation Model Description</label>
         </div>
@@ -235,6 +234,8 @@
             </div>
           </div>
         </div>
+
+        <input type="hidden" id="terrainSimulationFormulaConvert" name="terrainSimulationFormulaConvert[]">
 
         <div class="input-style has-icon input-style-always-active has-borders mb-0" style="margin-bottom:0px !important">
           <i class="fas fa-equals color-highlight"></i>
