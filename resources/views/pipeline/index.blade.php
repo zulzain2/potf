@@ -325,7 +325,7 @@
   <div class="card card-style me-2 border-highlight" style="overflow: scroll;margin: 0;border-radius: 0px;height: 250px;border-top-style: groove !important;border-top-width: 13px !important;">
     <div class="content me-1 ms-1 h-100">
       <div class="menu-title mt-n1">
-        <a href="#" class="close-menu color-invert"><i class="fa fa-times"></i></a>
+        <a href="#" class="close-menu color-invert" style="line-height:55px !important"><i class="fa fa-times font-14"></i></a>
       </div>
       <div id="content-menu-pipeline-parameter" class="content mt-0 h-100">
       </div>

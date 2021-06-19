@@ -472,7 +472,7 @@ $("#addPipelineForm").on('submit' , function(event){
     if (navigator.onLine) {
         var formElement = $(this);
 
-         // Loop over them and prevent submission
+         // Loop over them and prevent submission if validation fail
          Array.prototype.slice.call(formElement)
          .forEach(function (formValidate) {
             if (!formValidate.checkValidity()) 
@@ -550,7 +550,7 @@ $("#addPipelineParamForm").on('submit' , function(event){
     if (navigator.onLine) {
         var formElement = $(this);
 
-         // Loop over them and prevent submission
+         // Loop over them and prevent submission if validation fail
          Array.prototype.slice.call(formElement)
          .forEach(function (formValidate) {
             if (!formValidate.checkValidity()) 
@@ -644,7 +644,7 @@ $("#addPipelineSimulationForm").on('submit' , function(event){
     if (navigator.onLine) {
         var formElement = $(this);
 
-         // Loop over them and prevent submission
+         // Loop over them and prevent submission if validation fail
          Array.prototype.slice.call(formElement)
          .forEach(function (formValidate) {
             if (!formValidate.checkValidity()) 
@@ -729,7 +729,7 @@ $("#deletePipelineForm").on('submit' , function(event){
         var formdata = new FormData();
         formdata.append("_method", "DELETE");
 
-        // Loop over them and prevent submission
+        // Loop over them and prevent submission if validation fail
         Array.prototype.slice.call(formElement)
         .forEach(function (formValidate) {
             if (!formValidate.checkValidity()) 
