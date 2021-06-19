@@ -7,8 +7,8 @@
 <div class="content m-1">
 
   <div class="text-center" style="background-color:transparent !important;width:100%;">
-    <a id="btn-sensor-config" data-menu="menu-add-config" href="#" class="btn btn-3d btn-m btn-full mb-3 rounded-xl text-uppercase font-900 shadow-s border-highlight bg-highlight">
-      <i class="fas fa-plus"> &nbsp;&nbsp; Add Pipeline Segment</i>
+    <a id="btn-add-config" data-menu="menu-add-config" href="#" class="btn btn-3d btn-m btn-full mb-3 rounded-xl text-uppercase font-900 shadow-s border-highlight bg-highlight">
+      <i class="fas fa-plus"></i>&nbsp;&nbsp; Add Pipeline Segment
     </a>
   </div>
   <div class="clearfix mb-3"></div>
@@ -28,7 +28,7 @@
           <tr>
             <td style="background-color:transparent !important;">
               <a href="#" class="select-pipeline hvr-grow icon icon-xs rounded-sm shadow-l me-1 bg-green-dark">
-                <i class="fas fa-eye"></i>
+                <img src="images/icons/tubes.png" class="m-2" style="width:20px" alt="">
               </a>
             </td>
             <td style="background-color:transparent !important;">  
@@ -40,8 +40,8 @@
               
             </td>
             <td class="ps-2"  style="background-color:transparent !important;">
-              <a href="#" data-menu="menu-config" onclick="configPipeline('{{$cp->id}}')" class="color-invert">
-                <i class="fas fa-cog text-right"></i>
+              <a href="#" data-menu="menu-config" onclick="configPipeline('{{$cp->id}}')" class="color-invert createdPipelineConfig">
+                <i class="fas fa-cog text-right color-highlight"></i>
               </a>
             </td>
           </tr>
@@ -73,7 +73,8 @@
   </div>
   <div class="content mt-2">
     <div class="divider mb-3"></div>
-    <form action="{{ route('generatepipeline.store') }}" method="post">
+    {{-- <form action="{{ route('generatepipeline.store') }}" method="post" id="submitGeneratePipelineForm"> --}}
+      <form  id="submitGeneratePipelineForm">
       @csrf
       <table class="h-100 w-100" style="background-color:transparent !important;border:none">
         <tr>
@@ -425,7 +426,69 @@
 @endpush
 
 @push('scripts')
+
 <script>
+    $( document ).ready(function() {
+
+        $('#submitGeneratePipelineForm').on('submit', function (event) {
+
+            event.preventDefault();
+
+            let form =  $(this)[0];
+            let btnSubmitForm = $('#submitGeneratePipeline');
+
+            btnSubmitForm.addClass('off-btn').trigger('classChange');
+
+            fetch("generatepipeline", {
+                method: 'post',
+                credentials: "same-origin",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                },
+                body: new FormData(form),
+            })
+            .then(function (response) {
+                return response.json();
+            }).then(function (resultsJSON) {
+
+                var results = resultsJSON
+
+                if (results.status == 'success') {
+
+                    menu('menu-add-config', 'hide', 250);
+
+                    btnSubmitForm.removeClass('off-btn').trigger('classChange');
+
+                    snackbar(results.status, results.message)
+
+                    form.reset();
+
+                    $( "#tab-create_pipeline" ).load( "generatepipeline", function( response, status, xhr ) {
+                      if ( status == "error" ) {
+                        snackbar('error', 'Error Display Pipeline Segment')
+                      }
+                      else{
+                        $('#btn-add-config').on('click' , function(){
+                          menu('menu-add-config' , 'show' , 250);
+                        })
+                        $('.createdPipelineConfig').on('click' , function(){
+                          menu('menu-config' , 'show' , 250);
+                        })
+                    }
+
+                  });
+                } else {
+                    snackbar('error', 'Error Create New Pipeline Segment')
+                }
+            })
+            .catch(function (err) {
+                console.log('Error Create New Pipeline Segment: ' + err);
+            }); 
+              
+        });
+      
+    });
+
 
     function openConfig(){
       let kmrange = $('#kmrange').val();
@@ -568,7 +631,7 @@
                     <tr>
                       <th scope="row">${el.km}</th>
                       <th scope="row">${el.terrain.name}</th>
-                      <td scope="row">${el.terrain_parameter.name}</td>
+                      <td scope="row"><p>${el.terrain_parameter.name}</p></td>
                       <td scope="row">
                       <input type="text" class="form-control" id="value-${el.id}" ${el.required == 1 ? 'required' : ''} name="value[]"" value="${el.value ? el.value : ''}">
                       <input type="hidden" name="id[]" id="${el.id}" value="${el.id}">
@@ -604,7 +667,7 @@
                     <tr>
                       <th scope="row">${el.km}</th>
                       <th scope="row">${el.pipeline.name}</th>
-                      <td scope="row">${el.pipeline_parameter.name}</td>
+                      <td scope="row"><p>${el.pipeline_parameter.name}</p></td>
                       <td scope="row">
                       <input type="text" class="form-control" id="value-${el.id}" ${el.required == 1 ? 'required' : ''} name="value[]"" value="${el.value ? el.value : ''}">
                       <input type="hidden" name="id[]" id="${el.id}" value="${el.id}">
@@ -638,7 +701,7 @@
                     <tr>
                       <th scope="row">${el.km}</th>
                       <th scope="row">${el.sensor.name}</th>
-                      <td scope="row">${el.sensor_parameter.name}</td>
+                      <td scope="row"><p>${el.sensor_parameter.name}</p></td>
                       <td scope="row">
                       <input type="text" class="form-control" id="value-${el.id}" ${el.required == 1 ? 'required' : ''} name="value[]"" value="${el.value ? el.value : ''}">
                       <input type="hidden" name="id[]" id="${el.id}" value="${el.id}">

@@ -140,11 +140,11 @@
                                         <td class="w-25" style="background-color:transparent !important">
                                             <img src="images/icons/pipe/ruptured.svg" style="width:40px;height:40px;" alt="">
                                         </td>
-                                        <td style="background-color:transparent !important"><span class="color-white">Ruptured</span></td>
+                                        <td style="background-color:transparent !important"><span class="color-white">Pressure Flow</span></td>
                                     </tr>
                                 </table>
                             </a>
-                            <a href="#" class="hvr-grow hvr-shadow-radial">
+                            {{-- <a href="#" class="hvr-grow hvr-shadow-radial">
                                 <table class="w-100 border-0" style="background-color:transparent !important">
                                     <tr>
                                         <td class="w-25" style="background-color:transparent !important">
@@ -163,7 +163,7 @@
                                         <td style="background-color:transparent !important"><span class="color-white">Burn</span></td>
                                     </tr>
                                 </table>
-                            </a>
+                            </a> --}}
                             <a href="#" class="hvr-grow hvr-shadow-radial">
                                 <table class="w-100 border-0" style="background-color:transparent !important">
                                     <tr>
@@ -174,7 +174,7 @@
                                     </tr>
                                 </table>
                             </a>
-                            <a href="#" class="hvr-grow hvr-shadow-radial">
+                            {{-- <a href="#" class="hvr-grow hvr-shadow-radial">
                                 <table class="w-100 border-0" style="background-color:transparent !important">
                                     <tr>
                                         <td class="w-25" style="background-color:transparent !important">
@@ -183,7 +183,7 @@
                                         <td style="background-color:transparent !important"><span class="color-white">Spill</span></td>
                                     </tr>
                                 </table>
-                            </a>
+                            </a> --}}
                         </div>
                     </div>
     
@@ -201,7 +201,7 @@
                             <h3 class="pt-3 pb-3 color-white">Environment</h3>
                         </div>
                         <div class="list-group list-custom-small">
-                            <a href="#" class="hvr-grow hvr-shadow-radial">
+                            {{-- <a href="#" class="hvr-grow hvr-shadow-radial">
                                 <table class="w-100 border-0" style="background-color:transparent !important">
                                     <tr>
                                         <td class="w-25" style="background-color:transparent !important">
@@ -210,8 +210,8 @@
                                         <td style="background-color:transparent !important"><span class="color-white">Rainfall</span></td>
                                     </tr>
                                 </table>
-                            </a>
-                            <a href="#" class="hvr-grow hvr-shadow-radial">
+                            </a> --}}
+                            {{-- <a href="#" class="hvr-grow hvr-shadow-radial">
                                 <table class="w-100 border-0" style="background-color:transparent !important">
                                     <tr>
                                         <td class="w-25" style="background-color:transparent !important">
@@ -220,14 +220,14 @@
                                         <td style="background-color:transparent !important"><span class="color-white">Thunderstorm</span></td>
                                     </tr>
                                 </table>
-                            </a>
+                            </a> --}}
                             <a href="#" class="hvr-grow hvr-shadow-radial">
                                 <table class="w-100 border-0" style="background-color:transparent !important">
                                     <tr>
                                         <td class="w-25" style="background-color:transparent !important">
                                             <img src="images/icons/environment/lanslide.svg" style="width:40px;height:40px;" alt="">
                                         </td>
-                                        <td style="background-color:transparent !important"><span class="color-white">Flood</span></td>
+                                        <td style="background-color:transparent !important"><span class="color-white">Landslide</span></td>
                                     </tr>
                                 </table>
                             </a>
@@ -247,7 +247,7 @@
                                         <td class="w-25" style="background-color:transparent !important">
                                             <img src="images/icons/environment/disruption.png" style="width:40px;height:40px;" alt="">
                                         </td>
-                                        <td style="background-color:transparent !important"><span class="color-white">Soil Disruption</span></td>
+                                        <td style="background-color:transparent !important"><span class="color-white">Earthquake</span></td>
                                     </tr>
                                 </table>
                             </a>

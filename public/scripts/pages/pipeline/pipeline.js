@@ -8,7 +8,7 @@ function pipelineFormulaParameterBuilder(results){
 
                 $('#pipelineFormulaParameter').append(`
                     <div class="col-3">
-                    <a href="#" data-id-pipeline-param="${pipelineparam.id}" class="pipeline-formula-select btn btn-m btn-full mb-3 rounded-sm font-900 border-highlight-dark color-highlight-dark bg-theme">${pipelineparam.name}</a>
+                    <a href="#" data-id-pipeline-param="${pipelineparam.id}" class="pipeline-formula-select btn btn-m btn-full mb-3 rounded-sm  font-900 border-highlight-dark color-highlight-dark bg-theme">${pipelineparam.name}</a>
                     </div>
                 `);
                 
@@ -54,6 +54,63 @@ function pipelineFormulaParameterBuilder(results){
     }
 }
 
+function pipelineParameterContentBuilder(idPipelineParameter){
+    fetch('/pipelineparametercontent/'+idPipelineParameter+'').then(function (response) {
+        return response.json();
+    }).then(function (resultsJSON) {
+
+        var results = resultsJSON
+
+        if (results.status == 'success') {
+
+            if (results.data) {
+
+                $('#content-menu-pipeline-parameter').html('');
+
+                    let html = `
+                        <table class="w-100" style="background-color:transparent !important;border:none;height:90% !important">
+                            <tr>
+                            <td class="align-top" style="background-color:transparent !important;height: 28%;">
+                                <h4>${results.data.name}</h4>
+                                <p class="color-highlight">${results.data.type}</p>
+                            </td>
+                            </tr>
+                            <tr>
+                            <td class="align-middle" style="background-color:transparent !important">
+                                <p>${results.data.desc ? results.data.desc : 'No description provided.'}</p>
+                            </td>
+                            </tr>
+                        </table>
+                        `;
+
+                    $('#content-menu-pipeline-parameter').append(html);
+                    
+            } else {
+            
+                $('#content-menu-pipeline-parameter').html('');
+
+                $('#content-menu-pipeline-parameter').append(`
+                
+                `);   
+
+            }
+            
+        } else {
+            $('#content-menu-pipeline-parameter').html('');
+
+            $('#content-menu-pipeline-parameter').append(`
+            
+            `); 
+        }
+    }).catch(function (err) {
+        console.log('Error Get Pipeline Parameters Content: ' + err);
+    });
+
+
+    menu('menu-pipeline-parameter' , 'show' , 250);
+    menu('menu-hider' , 'hide' , 250);
+}
+
 function pipelineParameterListBuilder(results){
     if (results.data){
         if (results.data.length) {
@@ -62,7 +119,7 @@ function pipelineParameterListBuilder(results){
             results.data.map(pipelineparam => {
 
                 $('#pipelineParameterList').append(`
-                    <a href="#" data-menu="menu-transaction-1" class="d-flex mb-3">
+                    <a href="#" class="open-menu-pipeline-parameter d-flex mb-3" data-id-pipeline-parameter="${pipelineparam.id}" >
 
                         <div class="align-self-center">
                         <h1 class="mb-n2 font-16">${pipelineparam.name}</h1>
@@ -74,6 +131,14 @@ function pipelineParameterListBuilder(results){
                         </div>
                     </a>
                 `)
+
+                $('.open-menu-pipeline-parameter').on('click' , function(){
+                    
+                    let idPipelineParameter = $(this).data('id-pipeline-parameter');
+
+                    pipelineParameterContentBuilder(idPipelineParameter);
+
+                })
             })
 
         }

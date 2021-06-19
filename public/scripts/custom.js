@@ -58,54 +58,58 @@ if (document.querySelector('#loginPage') || document.querySelector('#registerOtp
 
 ///////////////////////////////////////////////////////////////////////
 // Enter & Exit Fullscreen function (VR Function)
+if (document.querySelector('#page-main'))
+{
+
+  
 $('#enterFullScreen').on('click' , function(){
-    openFullscreen();
+  openFullscreen();
 })
 
 $('#exitFullScreen').on('click' , function(){
-    closeFullscreen();
+  closeFullscreen();
 })
 
 function openFullscreen() {
-    var elem = document.getElementById("potf3d");
-    $('#enterFullScreen').hide();
-    $('#exitFullScreen').show();
+  var elem = document.getElementById("potf3d");
+  $('#enterFullScreen').hide();
+  $('#exitFullScreen').show();
 
-    $('#vr-menu').show();
+  $('#vr-menu').show();
 
-    $('#ar-not-support').hide();
-    $('#ar-support').hide();
+  $('#ar-not-support').hide();
+  $('#ar-support').hide();
 
-    $('#menu-ar-not-support').appendTo("#potf3d");
+  $('#menu-ar-not-support').appendTo("#potf3d");
 
-  if (elem.requestFullscreen) {
-    elem.requestFullscreen();
-  } else if (elem.webkitRequestFullscreen) { /* Safari */
-    elem.webkitRequestFullscreen();
-  } else if (elem.msRequestFullscreen) { /* IE11 */
-    elem.msRequestFullscreen();
+if (elem.requestFullscreen) {
+  elem.requestFullscreen();
+} else if (elem.webkitRequestFullscreen) { /* Safari */
+  elem.webkitRequestFullscreen();
+} else if (elem.msRequestFullscreen) { /* IE11 */
+  elem.msRequestFullscreen();
+}
+}
+            
+function closeFullscreen() {
+  $('#enterFullScreen').show();
+  $('#exitFullScreen').hide();
+
+  $('#vr-menu').hide();
+
+  $('#ar-not-support').show();
+  $('#ar-support').show();
+
+  $('#menu-ar-not-support').appendTo("body");
+
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.webkitExitFullscreen) { /* Safari */
+    document.webkitExitFullscreen();
+  } else if (document.msExitFullscreen) { /* IE11 */
+    document.msExitFullscreen();
   }
 }
-              
-function closeFullscreen() {
-    $('#enterFullScreen').show();
-    $('#exitFullScreen').hide();
-
-    $('#vr-menu').hide();
-
-    $('#ar-not-support').show();
-    $('#ar-support').show();
-
-    $('#menu-ar-not-support').appendTo("body");
-
-    if (document.exitFullscreen) {
-      document.exitFullscreen();
-    } else if (document.webkitExitFullscreen) { /* Safari */
-      document.webkitExitFullscreen();
-    } else if (document.msExitFullscreen) { /* IE11 */
-      document.msExitFullscreen();
-    }
-  }
 ///////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////////
@@ -134,151 +138,154 @@ const modelViewerEl = $('#mainModelViewer');
 // })
 
 $('#toggle-rotate').on('change', function () {
-    if ($(this).is(":checked")) {
-      modelViewerEl.attr('auto-rotate', '')
-    } else {
-      modelViewerEl.removeAttr('auto-rotate')
-    }
+  if ($(this).is(":checked")) {
+    modelViewerEl.attr('auto-rotate', '')
+  } else {
+    modelViewerEl.removeAttr('auto-rotate')
+  }
 })
 
 $('#toggle-elevated').on('change' , function() {
-  if ($('#toggle-elevated').is(":checked")) {
-    modelViewerEl.attr("src",$('#3d_elevated').val());
-  } else {
-    modelViewerEl.attr("src",$('#3d_normal').val());
-  }
+if ($('#toggle-elevated').is(":checked")) {
+  modelViewerEl.attr("src",$('#3d_elevated').val());
+} else {
+  modelViewerEl.attr("src",$('#3d_normal').val());
+}
 });
 
 $('.select-3dmodel').on('click' , function(){
-    let src = $(this).data('src');
-    let elevated = $(this).data('elevated');
-    let pulse = $(this).data('pulse');
-    $('#3d_normal').val(src);
-    $('#3d_elevated').val(elevated);
-    console.log(pulse);
-    $('#3d_dist_pulse').css('left' , pulse);
-    modelViewerEl.attr("src",src);
+  let src = $(this).data('src');
+  let elevated = $(this).data('elevated');
+  let pulse = $(this).data('pulse');
+  $('#3d_normal').val(src);
+  $('#3d_elevated').val(elevated);
+  console.log(pulse);
+  $('#3d_dist_pulse').css('left' , pulse);
+  modelViewerEl.attr("src",src);
 })
 
 function panningModelViewer() {
-  const modelViewer = document.querySelector('#mainModelViewer');
-  const tapDistance = 2;
-  let panning = false;
-  let panX, panY;
-  let startX, startY;
-  let lastX, lastY;
-  let metersPerPixel;
+const modelViewer = document.querySelector('#mainModelViewer');
+const tapDistance = 2;
+let panning = false;
+let panX, panY;
+let startX, startY;
+let lastX, lastY;
+let metersPerPixel;
 
-  const startPan = () => {
-    const orbit = modelViewer.getCameraOrbit();
-    const {theta, phi, radius} = orbit;
-    const psi = theta - modelViewer.turntableRotation;
-    metersPerPixel = 0.75 * radius / modelViewer.getBoundingClientRect().height;
-    panX = [-Math.cos(psi), 0, Math.sin(psi)];
-    panY = [
-      -Math.cos(phi) * Math.sin(psi),
-      Math.sin(phi),
-      -Math.cos(phi) * Math.cos(psi)
-    ];
-    modelViewer.interactionPrompt = 'none';
-  };
+const startPan = () => {
+  const orbit = modelViewer.getCameraOrbit();
+  const {theta, phi, radius} = orbit;
+  const psi = theta - modelViewer.turntableRotation;
+  metersPerPixel = 0.75 * radius / modelViewer.getBoundingClientRect().height;
+  panX = [-Math.cos(psi), 0, Math.sin(psi)];
+  panY = [
+    -Math.cos(phi) * Math.sin(psi),
+    Math.sin(phi),
+    -Math.cos(phi) * Math.cos(psi)
+  ];
+  modelViewer.interactionPrompt = 'none';
+};
 
-  const movePan = (thisX, thisY) => {
-    const dx = (thisX - lastX) * metersPerPixel;
-    const dy = (thisY - lastY) * metersPerPixel;
-    lastX = thisX;
-    lastY = thisY;
+const movePan = (thisX, thisY) => {
+  const dx = (thisX - lastX) * metersPerPixel;
+  const dy = (thisY - lastY) * metersPerPixel;
+  lastX = thisX;
+  lastY = thisY;
 
-    const target = modelViewer.getCameraTarget();
-    target.x += dx * panX[0] + dy * panY[0];
-    target.y += dx * panX[1] + dy * panY[1];
-    target.z += dx * panX[2] + dy * panY[2];
-    modelViewer.cameraTarget = `${target.x}m ${target.y}m ${target.z}m`;
+  const target = modelViewer.getCameraTarget();
+  target.x += dx * panX[0] + dy * panY[0];
+  target.y += dx * panX[1] + dy * panY[1];
+  target.z += dx * panX[2] + dy * panY[2];
+  modelViewer.cameraTarget = `${target.x}m ${target.y}m ${target.z}m`;
 
-    // This pauses turntable rotation
-    modelViewer.dispatchEvent(new CustomEvent(
-          'camera-change', {detail: {source: 'user-interaction'}}));
-  };
+  // This pauses turntable rotation
+  modelViewer.dispatchEvent(new CustomEvent(
+        'camera-change', {detail: {source: 'user-interaction'}}));
+};
 
-  const recenter = (pointer) => {
-    panning = false;
-    if (Math.abs(pointer.clientX - startX) > tapDistance ||
-        Math.abs(pointer.clientY - startY) > tapDistance)
-      return;
-    const rect = modelViewer.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
-    const hit = modelViewer.positionAndNormalFromPoint(x, y);
-    modelViewer.cameraTarget =
-        hit == null ? 'auto auto auto' : hit.position.toString();
-  };
+const recenter = (pointer) => {
+  panning = false;
+  if (Math.abs(pointer.clientX - startX) > tapDistance ||
+      Math.abs(pointer.clientY - startY) > tapDistance)
+    return;
+  const rect = modelViewer.getBoundingClientRect();
+  const x = event.clientX - rect.left;
+  const y = event.clientY - rect.top;
+  const hit = modelViewer.positionAndNormalFromPoint(x, y);
+  modelViewer.cameraTarget =
+      hit == null ? 'auto auto auto' : hit.position.toString();
+};
 
-  const onPointerUp = (event) => {
-    const pointer = event.clientX ? event : event.changedTouches[0];
-    if (Math.abs(pointer.clientX - startX) < tapDistance &&
-        Math.abs(pointer.clientY - startY) < tapDistance) {
-      recenter(pointer);
-    }
-    panning = false;
-  };
+const onPointerUp = (event) => {
+  const pointer = event.clientX ? event : event.changedTouches[0];
+  if (Math.abs(pointer.clientX - startX) < tapDistance &&
+      Math.abs(pointer.clientY - startY) < tapDistance) {
+    recenter(pointer);
+  }
+  panning = false;
+};
 
-  modelViewer.addEventListener('mousedown', (event) => {
-    startX = event.clientX;
-    startY = event.clientY;
-    panning = event.button === 2 || event.ctrlKey || event.metaKey ||
-        event.shiftKey;
-    if (!panning)
-      return;
+modelViewer.addEventListener('mousedown', (event) => {
+  startX = event.clientX;
+  startY = event.clientY;
+  panning = event.button === 2 || event.ctrlKey || event.metaKey ||
+      event.shiftKey;
+  if (!panning)
+    return;
 
-    lastX = startX;
-    lastY = startY;
-    startPan();
-    event.stopPropagation();
-  }, true);
+  lastX = startX;
+  lastY = startY;
+  startPan();
+  event.stopPropagation();
+}, true);
 
-  modelViewer.addEventListener('touchstart', (event) => {
-    startX = event.touches[0].clientX;
-    startY = event.touches[0].clientY;
-    panning = event.touches.length === 2;
-    if (!panning)
-      return;
+modelViewer.addEventListener('touchstart', (event) => {
+  startX = event.touches[0].clientX;
+  startY = event.touches[0].clientY;
+  panning = event.touches.length === 2;
+  if (!panning)
+    return;
 
-    const {touches} = event;
-    lastX = 0.5 * (touches[0].clientX + touches[1].clientX);
-    lastY = 0.5 * (touches[0].clientY + touches[1].clientY);
-    startPan();
-  }, true);
+  const {touches} = event;
+  lastX = 0.5 * (touches[0].clientX + touches[1].clientX);
+  lastY = 0.5 * (touches[0].clientY + touches[1].clientY);
+  startPan();
+}, true);
 
-  modelViewer.addEventListener('mousemove', (event) => {
-    if (!panning)
-      return;
+modelViewer.addEventListener('mousemove', (event) => {
+  if (!panning)
+    return;
 
-    movePan(event.clientX, event.clientY);
-    event.stopPropagation();
-  }, true);
+  movePan(event.clientX, event.clientY);
+  event.stopPropagation();
+}, true);
 
-  modelViewer.addEventListener('touchmove', (event) => {
-    if (!panning || event.touches.length !== 2)
-      return;
+modelViewer.addEventListener('touchmove', (event) => {
+  if (!panning || event.touches.length !== 2)
+    return;
 
-    const {touches} = event;
-    const thisX = 0.5 * (touches[0].clientX + touches[1].clientX);
-    const thisY = 0.5 * (touches[0].clientY + touches[1].clientY);
-    movePan(thisX, thisY);
-  }, true);
+  const {touches} = event;
+  const thisX = 0.5 * (touches[0].clientX + touches[1].clientX);
+  const thisY = 0.5 * (touches[0].clientY + touches[1].clientY);
+  movePan(thisX, thisY);
+}, true);
 
-  self.addEventListener('mouseup', (event) => {
-    recenter(event);
-  }, true);
-  
-  self.addEventListener('touchend', (event) => {
-    if (event.touches.length === 0) {
-      recenter(event.changedTouches[0]);
-    }
-  }, true);
+self.addEventListener('mouseup', (event) => {
+  recenter(event);
+}, true);
+
+self.addEventListener('touchend', (event) => {
+  if (event.touches.length === 0) {
+    recenter(event.changedTouches[0]);
+  }
+}, true);
 }
 
 panningModelViewer();
+
+}
+
 
 ///////////////////////////////////////////////////////////////////////
 

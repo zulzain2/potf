@@ -26,7 +26,6 @@ function terrainFormulaParameterBuilder(results) {
                 //   let text_to_insert=$(this).html();
                 var idTerrainParam = $(this).data('id-terrain-param');
 
-                
                 var inputs = new Array();
                 $("#terrainSimulationFormulaConvert").each(function(){
                     inputs.push($(this).val());
@@ -57,9 +56,63 @@ function terrainFormulaParameterBuilder(results) {
     }
 }
 
-// $("#terrainSimulationFormula").on("input", function() {
-//     $('#terrainSimulationFormulaConvert').html($(this).val());
-//  });
+
+function terrainParameterContentBuilder(idTerrainParameter){
+    fetch('/terrainparametercontent/'+idTerrainParameter+'').then(function (response) {
+        return response.json();
+    }).then(function (resultsJSON) {
+
+        var results = resultsJSON
+
+        if (results.status == 'success') {
+
+            if (results.data) {
+
+                $('#content-menu-terrain-parameter').html('');
+
+                    let html = `
+                        <table class="w-100" style="background-color:transparent !important;border:none;height:90% !important">
+                            <tr>
+                            <td class="align-top" style="background-color:transparent !important;height: 28%;">
+                                <h4>${results.data.name}</h4>
+                                <p class="color-highlight">${results.data.type}</p>
+                            </td>
+                            </tr>
+                            <tr>
+                            <td class="align-middle" style="background-color:transparent !important">
+                                <p>${results.data.desc ? results.data.desc : 'No description provided.'}</p>
+                            </td>
+                            </tr>
+                        </table>
+                        `;
+
+                    $('#content-menu-terrain-parameter').append(html);
+                    
+            } else {
+            
+                $('#content-menu-terrain-parameter').html('');
+
+                $('#content-menu-terrain-parameter').append(`
+                
+                `);   
+
+            }
+            
+        } else {
+            $('#content-menu-terrain-parameter').html('');
+
+            $('#content-menu-terrain-parameter').append(`
+            
+            `); 
+        }
+    }).catch(function (err) {
+        console.log('Error Get Terrain Parameters Content: ' + err);
+    });
+
+
+    menu('menu-terrain-parameter' , 'show' , 250);
+    menu('menu-hider' , 'hide' , 250);
+}
 
 function terrainParameterListBuilder(results) {
     if (results.data) {
@@ -69,7 +122,7 @@ function terrainParameterListBuilder(results) {
             results.data.map(terrainparam => {
 
                 $('#terrainParameterList').append(`
-                    <a href="#" data-menu="menu-transaction-1" class="d-flex mb-3">
+                    <a href="#" class="open-menu-terrain-parameter d-flex mb-3" data-id-terrain-parameter="${terrainparam.id}" >
 
                         <div class="align-self-center">
                         <h1 class="mb-n2 font-16">${terrainparam.name}</h1>
@@ -81,6 +134,14 @@ function terrainParameterListBuilder(results) {
                         </div>
                     </a>
                 `)
+
+                $('.open-menu-terrain-parameter').on('click' , function(){
+                    
+                    let idTerrainParameter = $(this).data('id-terrain-parameter');
+
+                    terrainParameterContentBuilder(idTerrainParameter);
+
+                })
 
 
             })
@@ -402,6 +463,7 @@ if (document.querySelector('#selectTerrain')) {
 ///////////////////////////////////////////////////////////////////////
 
 
+    
 ///////////////////////////////////////////////////////////////////////
 //Add Terrain
 $('#addTerrainForm').on('submit', function (event) {

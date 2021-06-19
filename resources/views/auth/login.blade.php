@@ -79,10 +79,17 @@
                                 <label class="custom-control-label" for="switch-dark-mode"></label>
                             </div>
                     
-                            <h1 class="text-center font-900 font-40 text-uppercase mb-0">Connect</h1>
+                            <h1 class="text-center font-900 font-40 text-uppercase mb-0">Pipeline of the Future (PofT)</h1>
 
-                            <p class="bottom-0 text-center color-highlight font-11">Pipeline of the Future (PofT)</p>
+                            <p class="bottom-0 text-center color-highlight font-11">Digital Twin</p>
 
+                            <div class="row text-center">
+                              
+                                <div class="col-12">
+                                    <img id="login-logo" src="images/icons/login.png" class="w-50" alt="">
+                                </div>
+                         
+                            </div>
                             <!-- Session Status -->
                             <x-auth-session-status class="mb-4 color-highlight" :status="session('status')" />
 

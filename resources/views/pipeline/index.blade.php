@@ -23,7 +23,7 @@
   </table>
 
   <div class="tab-controls tabs-small tabs-rounded" data-highlight="bg-highlight">
-    <a href="#" data-active="" data-bs-toggle="collapse" data-bs-target="#tab-1-pipe">Parameters</a>
+    <a href="#" data-active="" data-bs-toggle="collapse" data-bs-target="#tab-1-pipe">Parameter</a>
     <a href="#" data-bs-toggle="collapse" data-bs-target="#tab-2-pipe">Simulation Models</a>
   </div>
   <div class="clearfix mb-3"></div>
@@ -31,7 +31,7 @@
     <div class="content mb-0">
       <div class="row mb-2">
         <div class="col-8">
-          <h4 class="font-700 text-uppercase font-12 opacity-30 mb-1 mt-2">Parameters List</h4>
+          <h4 class="font-700 text-uppercase font-12 opacity-30 mb-1 mt-2">Parameter List</h4>
         </div>
         <div class="col-4" style="text-align:right">
           <a href="#" id="btn-menu-add-pipeline-parameter"
@@ -129,7 +129,7 @@
   </div>
 </div>
 
-<div id="menu-add-pipeline-parameter" class="menu menu-box-modal menu-box-detached rounded-m" data-menu-height="360" data-menu-width="500">
+<div id="menu-add-pipeline-parameter" class="menu menu-box-modal menu-box-detached rounded-m" data-menu-height="500" data-menu-width="500" style="max-height:500px">
   <div class="menu-title mt-n1">
     <h1>Add Pipeline Parameter</h1>
     <p class="color-highlight selected-pipeline"></p>
@@ -148,17 +148,22 @@
       </div>
 
       <div class="input-style input-style-always-active has-borders mb-4">
+        <textarea id="pipelineParameterDesc" name="pipelineParameterDesc" style="height:unset !important" class="form-control" cols="30" rows="5" placeholder="Enter parameter description"></textarea>
+        <label class="color-theme opacity-50 text-uppercase font-700 font-10">Parameter Description</label>
+      </div>
+
+      <div class="input-style input-style-always-active has-borders mb-4">
         <label class="color-theme opacity-50 text-uppercase font-700 font-10">Select Parameter Type</label>
         <select id="pipelineParameterType" name="pipelineParameterType" val="" required>
           <option value="" disabled="" selected="">Select a paramater type</option>
           <option value="integer">Integer</option>
           <option value="decimal">Decimal</option>
-          <option value="string">String</option>
+          <option value="float">Float</option>
         </select>
         <em>(required)</em>
       </div>
 
-      <div class="row">
+      <div class="row d-none">
         <div class="col-12">
           <div class="d-flex no-effect collapsed" data-trigger-switch="pipelineParameterRequired" data-bs-toggle="collapse"
           href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample2">
@@ -232,8 +237,8 @@
       <div class="input-style has-icon input-style-always-active has-borders mb-0" style="margin-bottom:0px !important">
         <i class="fas fa-equals color-highlight"></i>
         <label class="color-theme opacity-50 text-uppercase font-700 font-10">Formula</label>
-        <input id="pipelineSimulationFormula" name="pipelineSimulationFormula" type="text" class="form-control" placeholder="Input formula here"
-          required>
+        <textarea id="pipelineSimulationFormula" name="pipelineSimulationFormula" class="form-control" style="height:unset !important" cols="30" rows="5" placeholder="Input formula here"
+          required></textarea>
         <em>(required)</em>
       </div>
       <div class="text-center">
@@ -314,6 +319,18 @@
       <button type="submit" id="delete-pipeline"
           class="btn btn-m font-900 text-uppercase bg-highlight rounded-sm btn-center-l">Confirm</button>
   </form>
+</div>
+
+<div id="menu-pipeline-parameter" class="col-4 menu menu-box-bottom rounded-0" data-menu-effect="menu-over" data-menu-height="250" style="padding-left: 70px;background-color: transparent !important;">
+  <div class="card card-style me-2 border-highlight" style="overflow: scroll;margin: 0;border-radius: 0px;height: 250px;border-top-style: groove !important;border-top-width: 13px !important;">
+    <div class="content me-1 ms-1 h-100">
+      <div class="menu-title mt-n1">
+        <a href="#" class="close-menu color-invert"><i class="fa fa-times"></i></a>
+      </div>
+      <div id="content-menu-pipeline-parameter" class="content mt-0 h-100">
+      </div>
+    </div>
+  </div>
 </div>
 
 @endpush

@@ -58,6 +58,7 @@ class PipelineParameterController extends Controller
         $pipeline->id = Uuid::uuid4()->getHex();
         $pipeline->id_pipeline = $request->idPipeline;
         $pipeline->name = $request->pipelineParameterName;
+        $pipeline->desc = $request->pipelineParameterDesc;
         $pipeline->type = $request->pipelineParameterType;
         $pipeline->required = $request->pipelineParameterRequired == 0 ? 1 : 0;
         $pipeline->id_status = '1';
@@ -84,6 +85,18 @@ class PipelineParameterController extends Controller
             'status' => 'success', 
             'message' => 'Successfully get pipeline parameters.',
             'data' => $pipelineparams
+        ];
+        return json_encode($data);
+    }
+
+    public function showContent($id)
+    {
+        $pipelineparam = PipelineParameter::find($id);
+
+        $data = [
+            'status' => 'success', 
+            'message' => 'Successfully get pipeline parameters content.',
+            'data' => $pipelineparam
         ];
         return json_encode($data);
     }
