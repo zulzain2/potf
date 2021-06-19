@@ -52,11 +52,14 @@ class GeneratePipelineController extends Controller
      */
     public function store(Request $request)
     {
-      
+        $i = 0;
+        // dd($request);
         $add = new GeneratePipeline;
         $add->id = Uuid::uuid4()->getHex();
         $add->name = $request->nameConfig;
-        $add->total_km = $request->kmRange;
+        $add->total_km = $request->total;
+        $add->start_km = $request->start_km;
+        $add->end_km = $request->end_km;
 
         foreach($request->environment as $key=>$part){
             $envParam = TerrainParameter::where('id_terrain', $part)
@@ -69,12 +72,13 @@ class GeneratePipelineController extends Controller
                 $new->id_generate_pipeline = $add->id;
                 $new->id_terrain = $param->terrain->id;
                 $new->id_terrain_parameter = $param->id;
-                $new->km = $request->km[$key];
+                $new->km = $request->start[$i] . ' - '.  $request->end[$i];
                 $new->id_status = '1';
+                $new->order_by = $i;
                 $new->save();
             }
+            $i++;
         }
-
         foreach($request->pipeline as $key=>$part){
             $pipeParam = PipelineParameter::where('id_pipeline', $part)
             ->with(array('pipeline' => function($query) {
@@ -86,10 +90,12 @@ class GeneratePipelineController extends Controller
                 $newP->id_generate_pipeline = $add->id;
                 $newP->id_pipeline = $param->pipeline->id;
                 $newP->id_pipeline_parameter = $param->id;
-                $newP->km = $request->km[$key];
+                $newP->km = $request->start[$i] . ' - '.  $request->end[$i];
                 $newP->id_status = '1';
+                $newP->order_by = $i;
                 $newP->save();
             }
+            $i++;
         }
 
         foreach($request->sensor as $key=>$part){
@@ -98,15 +104,17 @@ class GeneratePipelineController extends Controller
                 $query->select('id','name');
             }))->get();
             foreach($sensorParam as $param){
-                $new = new ConfigSensor;
-                $new->id = Uuid::uuid4()->getHex();
-                $new->id_generate_pipeline = $add->id;
-                $new->id_sensor = $param->sensor->id;
-                $new->id_sensor_parameter = $param->id;
-                $new->km = $request->km[$key];
-                $new->id_status = '1';
-                $new->save();
+                $newS = new ConfigSensor;
+                $newS->id = Uuid::uuid4()->getHex();
+                $newS->id_generate_pipeline = $add->id;
+                $newS->id_sensor = $param->sensor->id;
+                $newS->id_sensor_parameter = $param->id;
+                $newS->km = $request->start[$i] . ' - '.  $request->end[$i];
+                $newS->id_status = '1';
+                $newS->order_by = $i;
+                $newS->save();
             }
+            $i++;
         }
         
         $add->id_status = '1';
@@ -168,6 +176,7 @@ class GeneratePipelineController extends Controller
     }
 
     public function storeValue(Request $request){
+        
         foreach($request->id as $key=>$id){
             
           $update = ConfigPipeline::find($id);
@@ -196,6 +205,7 @@ class GeneratePipelineController extends Controller
           ->with(array('terrain_parameter' => function($query) {
             $query->select('id','name');
           }))
+					->orderBy('order_by' , 'ASC')
           ->get();
             array_push($arr_env,$configEnv);
         }
@@ -221,6 +231,7 @@ class GeneratePipelineController extends Controller
         ->with(array('pipeline_parameter' => function($query) {
           $query->select('id','name');
         }))
+        ->orderBy('order_by' , 'ASC')
         ->get();
           array_push($arr_pipe,$configPipe);
 
@@ -248,6 +259,7 @@ class GeneratePipelineController extends Controller
         ->with(array('sensor_parameter' => function($query) {
           $query->select('id','name');
         }))
+        ->orderBy('order_by' , 'ASC')
         ->get();
           array_push($arr_sensor,$configSensor);
 
