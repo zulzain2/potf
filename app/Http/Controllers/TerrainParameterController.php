@@ -59,6 +59,7 @@ class TerrainParameterController extends Controller
         $terrain->id = Uuid::uuid4()->getHex();
         $terrain->id_terrain = $request->idTerrain;
         $terrain->name = $request->terrainParameterName;
+        $terrain->desc = $request->terrainParameterDesc;
         $terrain->type = $request->terrainParameterType;
         $terrain->required = $request->terrainParameterRequired == 0 ? 1 : 0;
         $terrain->id_status = '1';
@@ -85,6 +86,18 @@ class TerrainParameterController extends Controller
             'status' => 'success', 
             'message' => 'Successfully get terrain parameters.',
             'data' => $terrainparams
+        ];
+        return json_encode($data);
+    }
+
+    public function showContent($id)
+    {
+        $terrainparam = TerrainParameter::find($id);
+
+        $data = [
+            'status' => 'success', 
+            'message' => 'Successfully get terrain parameters content.',
+            'data' => $terrainparam
         ];
         return json_encode($data);
     }

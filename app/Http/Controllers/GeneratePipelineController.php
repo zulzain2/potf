@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Ramsey\Uuid\Uuid;
+use App\Models\Sensor;
 use App\Models\Terrain;
+use App\Models\Pipeline;
+use App\Models\ConfigSensor;
 use App\Models\SensorParams;
 use Illuminate\Http\Request;
 use App\Models\ConfigTerrain;
 use App\Models\ConfigPipeline;
-use App\Models\ConfigSensor;
 use App\Models\GeneratePipeline;
 use App\Models\TerrainParameter;
 use App\Models\PipelineParameter;
@@ -22,7 +24,14 @@ class GeneratePipelineController extends Controller
      */
     public function index()
     {
-        // dd('lol');
+        $topBarTitle = "PIPELINE OF THE FUTURE (PotF)";
+
+        $pipelines = Pipeline::where('id_status' , 1)->get();
+        $terrains = Terrain::where('id_status' , 1)->get();
+        $sensors = Sensor::where('id_status' , 1)->get();
+        $configPipeline = GeneratePipeline::where('id_status' , 1)->get();
+        
+        return view('generatePipeline.index')->with(compact('topBarTitle','sensors','terrains','pipelines','configPipeline'));
     }
 
     /**
@@ -43,7 +52,7 @@ class GeneratePipelineController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
+      
         $add = new GeneratePipeline;
         $add->id = Uuid::uuid4()->getHex();
         $add->name = $request->nameConfig;
@@ -103,7 +112,13 @@ class GeneratePipelineController extends Controller
         $add->id_status = '1';
         $add->save();
 
-        return redirect()->back()->with('success', 'New pipeline config added');  
+        $data = [
+            'status' => 'success', 
+            'message' => 'New pipeline config added'
+        ];
+        return json_encode($data);
+
+        // return redirect()->back()->with('success', 'New pipeline config added');  
 
     }
 

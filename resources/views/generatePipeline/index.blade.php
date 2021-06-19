@@ -41,7 +41,7 @@
           <tr>
             <td style="background-color:transparent !important;">
               <a href="#" class="select-pipeline hvr-grow icon icon-xs rounded-sm shadow-l me-1 bg-green-dark">
-                <i class="fas fa-eye"></i>
+                <img src="images/icons/tubes.png" class="m-2" style="width:20px" alt="">
               </a>
             </td>
             <td style="background-color:transparent !important;">  
@@ -93,7 +93,8 @@
   </div>
   <div class="content mt-2">
     <div class="divider mb-3"></div>
-    <form action="{{ route('generatepipeline.store') }}" method="post">
+    {{-- <form action="{{ route('generatepipeline.store') }}" method="post" id="submitGeneratePipelineForm"> --}}
+      <form  id="submitGeneratePipelineForm">
       @csrf
       <input type="hidden" name="kmRange" id="kmRange">
       <div class="input-style input-style-always-active has-borders no-icon validate-field mb-4">
@@ -299,6 +300,67 @@
 
 @push('scripts')
 <script>
+$( document ).ready(function() {
+
+    $('#submitGeneratePipelineForm').on('submit', function (event) {
+        console.log('masuk');
+        event.preventDefault();
+        
+        var formElement = $(this);
+        let form = formElement[0];
+        let btnSubmitForm = $('#submitGeneratePipeline');
+
+        btnSubmitForm.addClass('off-btn').trigger('classChange');
+
+        fetch("generatepipeline", {
+            method: 'post',
+            credentials: "same-origin",
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+            },
+            body: new FormData(form),
+        })
+        .then(function (response) {
+            return response.json();
+        }).then(function (resultsJSON) {
+
+            var results = resultsJSON
+
+            if (results.status == 'success') {
+
+                menu('menu-add-config', 'hide', 250);
+
+                btnSubmitForm.removeClass('off-btn').trigger('classChange');
+
+                snackbar(results.status, results.message)
+
+                form.reset();
+
+                $('#tab-create_pipeline').load('generatepipeline');
+
+            } else {
+                if (results.type == 'Validation Error') {
+                    btnSubmitForm.removeClass('off-btn').trigger('classChange');
+
+                    validationErrorBuilder(results);
+                } else {
+                    snackbar(results.status, results.message)
+                }
+            }
+
+        })
+        .catch(function (err) {
+            console.log('Error Create New Pipeline: ' + err);
+        }); 
+          
+    });
+  
+});
+
+
+
+
+
 
     function openConfig(){
       let kmrange = $('#kmrange').val();
