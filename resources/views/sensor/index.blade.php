@@ -40,7 +40,7 @@
         </div>
         <div class="col-4" style="text-align:right">
           <a href="#" data-menu="menu-add-sensor-parameter"
-            class="icon icon-xs rounded-sm shadow-l me-1 bg-highlight"><i class="fas fa-plus"></i></a>
+            class="btn btn-rounded-m shadow-l me-1 bg-highlight">ADD</a>
         </div>
       </div>
 
@@ -143,7 +143,7 @@
         <em>(required)</em>
       </div>
 
-      <div class="row">
+      {{--  <div class="row">
         <div class="col-12">
           <div class="d-flex no-effect collapsed" data-trigger-switch="sensorParameterRequired"
             data-bs-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false"
@@ -161,7 +161,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div>  --}}
 
       <div class="row">
         <div class="col-12 text-center">
