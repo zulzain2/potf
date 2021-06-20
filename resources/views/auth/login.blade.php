@@ -86,7 +86,7 @@
                             <div class="row text-center">
                               
                                 <div class="col-12">
-                                    <img id="login-logo" src="images/icons/login.png" class="w-50" alt="">
+                                    <img id="login-logo" src="images/icons/login.png" class="w-50 me-5" alt="">
                                 </div>
                          
                             </div>
