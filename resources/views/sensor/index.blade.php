@@ -185,8 +185,8 @@
   </p>
   <form class="needs-validation" novalidate id="deleteSensorForm">
       <input type="hidden" name="idSensorDelete" id="idSensorDelete">
-      <a href="#" id="delete-sensor"
-          class="btn btn-m font-900 text-uppercase bg-highlight rounded-sm btn-center-l">Confirm</a>
+      <button type="submit" id="delete-sensor"
+        class="btn btn-m font-900 text-uppercase bg-highlight rounded-sm btn-center-l">Confirm</button>
   </form>
 </div>
 
@@ -361,7 +361,7 @@
 ///////////////////////////////////////////////////////////////////////
 //Delete Sensor
       $('#deleteSensorForm').on('submit', function (event) {
-        console.log('masuk')
+        
       event.preventDefault();
       if (navigator.onLine) {
           var formElement = $(this);
@@ -380,7 +380,6 @@
                       let btnSubmitForm = $('#delete-sensor');
 
                       btnSubmitForm.addClass('off-btn').trigger('classChange');
-
                       // var deleteTerrainId = $('#idTerrainDelete').val();
 
                       fetch("sensor/" + form.get('idSensorDelete') + "/", {
@@ -550,7 +549,8 @@
                         });
 
                         $('.deleteSensor').on('click', function () {
-                            let idSensor = $(this).data('idSensor');
+                            let idSensor = $(this).data('idsensor');
+                            console.log(idSensor);
                             $('#idSensorDelete').val(idSensor);
                             menu('menu-delete-sensor', 'show', 250);
                         })
