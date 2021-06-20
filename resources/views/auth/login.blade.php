@@ -81,12 +81,12 @@
                     
                             <h1 class="text-center font-900 font-40 text-uppercase mb-0">Pipeline of the Future (PofT)</h1>
 
-                            <p class="bottom-0 text-center color-highlight font-11">Digital Twin</p>
+                            <h4 class="bottom-0 mt-1 text-center color-highlight">Digital Twin</h4>
 
                             <div class="row text-center">
                               
                                 <div class="col-12">
-                                    <img id="login-logo" src="images/icons/login.png" class="w-50" alt="">
+                                    <img id="login-logo" src="images/icons/login.png" class="w-50 me-5" alt="">
                                 </div>
                          
                             </div>

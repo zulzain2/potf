@@ -18,7 +18,7 @@
                         <div class="card-top">
                             <strong class="float-end text-center">
                                 <div class="bg-theme rounded-sm color-theme shadow-xl text-center m-1 overflow-hidden" style="background-color:black !important">
-                                    <span class="bg-highlight-dark font-10 d-block mb-1 px-3 line-height-xs py-1">KM1</span>
+                                    <span class="bg-highlight-dark font-10 d-block mb-1 px-3 line-height-xs py-1">KM 1 - KM 10</span>
                                   
                                 </div>
                             </strong>
@@ -40,7 +40,7 @@
                     <div class="card-top">
                         <strong class="float-end text-center">
                             <div class="bg-theme rounded-sm color-theme shadow-xl text-center m-1 overflow-hidden" style="background-color:black !important">
-                                <span class="bg-highlight-dark font-10 d-block mb-1 px-3 line-height-xs py-1">KM2</span>
+                                <span class="bg-highlight-dark font-10 d-block mb-1 px-3 line-height-xs py-1">KM 11 - KM 20</span>
                               
                             </div>
                         </strong>
@@ -62,7 +62,7 @@
                     <div class="card-top">
                         <strong class="float-end text-center">
                             <div class="bg-theme rounded-sm color-theme shadow-xl text-center m-1 overflow-hidden" style="background-color:black !important">
-                                <span class="bg-highlight-dark font-10 d-block mb-1 px-3 line-height-xs py-1">KM3</span>
+                                <span class="bg-highlight-dark font-10 d-block mb-1 px-3 line-height-xs py-1">KM 21 - KM 30</span>
                               
                             </div>
                         </strong>
@@ -84,7 +84,7 @@
                     <div class="card-top">
                         <strong class="float-end text-center">
                             <div class="bg-theme rounded-sm color-theme shadow-xl text-center m-1 overflow-hidden" style="background-color:black !important">
-                                <span class="bg-highlight-dark font-10 d-block mb-1 px-3 line-height-xs py-1">KM4</span>
+                                <span class="bg-highlight-dark font-10 d-block mb-1 px-3 line-height-xs py-1">KM 31 - KM 40</span>
                                 
                             </div>
                         </strong>

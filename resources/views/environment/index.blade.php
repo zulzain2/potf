@@ -24,7 +24,7 @@
 
   <div class="tab-controls tabs-small tabs-rounded" data-highlight="bg-highlight">
     <a href="#" data-active="" data-bs-toggle="collapse" data-bs-target="#tab-1-terrain">Parameter</a>
-    <a href="#" data-bs-toggle="collapse" data-bs-target="#tab-2-terrain">Simulation Models</a>
+    <a href="#" data-bs-toggle="collapse" data-bs-target="#tab-2-terrain">Simulation Model</a>
   </div>
   <div class="clearfix mb-3"></div>
   <div data-bs-parent="#tab-group-1" class="collapse show" id="tab-1-terrain">
@@ -34,12 +34,13 @@
           <h4 class="font-700 text-uppercase font-12 opacity-30 mb-1 mt-2">Parameter List</h4>
         </div>
         <div class="col-4" style="text-align:right">
-          <a href="#" id="btn-menu-add-terrain-parameter" class="icon icon-xs rounded-sm shadow-l me-1 bg-highlight"><i
-              class="fas fa-plus"></i></a>
+          {{-- <a href="#" id="btn-menu-add-terrain-parameter" class="icon icon-xs rounded-sm shadow-l me-1 bg-highlight"><i
+              class="fas fa-plus"></i></a> --}}
+              <a href="#" id="btn-menu-add-terrain-parameter" class="btn btn-m btn-full mb-3 rounded-xl text-uppercase font-900 shadow-s bg-highlight">ADD</a>
         </div>
       </div>
 
-      <div id="terrainParameterList">
+      <div id="terrainParameterList" style="height: 55vh;overflow-y: scroll;">
         <br>
         <p class="text-center">Please select environment first to view respective Parameter.</p>
         <br>
@@ -53,15 +54,16 @@
     <div class="content mb-0">
       <div class="row mb-2">
         <div class="col-8">
-          <h4 class="font-700 text-uppercase font-12 opacity-30 mb-1 mt-2">Simulation Models List</h4>
+          <h4 class="font-700 text-uppercase font-12 opacity-30 mb-1 mt-2">Simulation Model List</h4>
         </div>
         <div class="col-4" style="text-align:right">
-          <a href="#" id="btn-menu-add-terrain-simulation" class="icon icon-xs rounded-sm shadow-l me-1 bg-highlight"><i
-              class="fas fa-plus"></i></a>
+          {{-- <a href="#" id="btn-menu-add-terrain-simulation" class="icon icon-xs rounded-sm shadow-l me-1 bg-highlight"><i
+              class="fas fa-plus"></i></a> --}}
+              <a href="#" id="btn-menu-add-terrain-simulation" class="btn btn-m btn-full mb-3 rounded-xl text-uppercase font-900 shadow-s bg-highlight">ADD</a>
         </div>
       </div>
 
-      <div id="terrainSimulationList">
+      <div id="terrainSimulationList" style="height: 55vh;overflow-y: scroll;">
         <br>
         <p class="text-center">Please select environment first to view respective Simulation.</p>
         <br>
@@ -346,7 +348,7 @@
     <div class="card card-style me-2 border-highlight" style="overflow: scroll;margin: 0;border-radius: 0px;height: 250px;border-top-style: groove !important;border-top-width: 13px !important;">
       <div class="content me-1 ms-1 h-100">
         <div class="menu-title mt-n1">
-          <a href="#" class="close-menu color-invert"><i class="fa fa-times"></i></a>
+          <a href="#" class="close-menu color-invert" style="line-height:55px !important"><i class="fa fa-times font-14"></i></a>
         </div>
         <div id="content-menu-terrain-parameter" class="content mt-0 h-100">
         </div>

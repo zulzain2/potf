@@ -22,6 +22,8 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="{{ URL::to('styles/hover/hover.css') }}">
 
+ 
+
     <style>
         .sidebar-active{
             background-color:#9292924a !important
@@ -161,15 +163,6 @@
                         </div>
 
                      
-                        {{-- <div class="d-flex">
-                    
-                            <a href="#" data-active="" data-content="page-concept" class="pt-1 sidebar-item flex-fill icon icon-m text-center border-bottom border-right" style="color: unset !important;border-top: 1px solid rgba(255, 255, 255, .05) !important;border-right:none !important;border-radius: 5px;">
-                                <img src="images/icons/templates.png" style="height:40px;width:40px;padding:3px" alt="">
-                                <br>
-                                <strong style="font-size:9px">Concept</strong>
-                            </a>
-                    
-                        </div> --}}
 
 
                         <div class="d-flex">
@@ -210,6 +203,17 @@
                                 <strong style="font-size:9px">Create Pipeline</strong>
                             </a>
                       
+                        </div>
+
+                        
+                        <div class="d-flex">
+                    
+                            <a href="#" data-active="" data-content="page-concept" class="pt-1 sidebar-item flex-fill icon icon-m text-center border-bottom border-right" style="color: unset !important;border-top: 1px solid rgba(255, 255, 255, .05) !important;border-right:none !important;border-radius: 5px;">
+                                <img src="images/icons/templates.png" style="height:40px;width:40px;padding:3px" alt="">
+                                <br>
+                                <strong style="font-size:9px">3D Simulation</strong>
+                            </a>
+                    
                         </div>
                     </td>
                 </tr>
@@ -339,9 +343,17 @@
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jstat@1.9.2/dist/jstat.min.js"></script> 
     <script src="https://cdn.jsdelivr.net/gh/formulajs/formulajs@2.5.0/dist/formula.min.js"></script>
+    <script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>
 
  
+<script>
+    var myPlayer = videojs('MY_VIDEO_1');
 
+$('#videojsplay').click(function(evt){
+    evt.preventDefault();
+    myPlayer.play();
+});
+</script>
 
     @stack('scripts')
 
