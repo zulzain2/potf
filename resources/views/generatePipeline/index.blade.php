@@ -198,7 +198,7 @@
                       <table class="table table-borderless text-center rounded-sm shadow-l" style="overflow: hidden;" >
                         <thead>
                         <tr class="bg-gray-dark">
-                        <th colspan="3" scope="col" class="color-white" width="40%">Range(KM)</th>
+                        <th colspan="3" scope="col" class="color-white" width="40%">Location</th>
                         <th scope="col" class="color-white" style="width:30%">Pipeline</th>
                         </tr>
                         </thead>
@@ -248,7 +248,7 @@
                       <table class="table table-borderless text-center rounded-sm shadow-l" style="overflow: hidden;" >
                         <thead>
                         <tr class="bg-gray-dark">
-                        <th colspan="3" scope="col" class="color-white" width="40%">Range(KM)</th>
+                        <th colspan="3" scope="col" class="color-white" width="40%">Location</th>
                         <th scope="col" class="color-white" style="width:30%">Sensor</th>
                         </tr>
                         </thead>

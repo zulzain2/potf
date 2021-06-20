@@ -117,6 +117,13 @@ class SensorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $sensor = Sensor::find($id);
+        $sensor->delete();
+
+        $data = [
+            'status' => 'success', 
+            'message' => 'Successfully delete sensor.'
+        ];
+        return json_encode($data);
     }
 }

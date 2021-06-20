@@ -358,6 +358,80 @@
       })
 ///////////////////////////////////////////////////////////////////////
 
+///////////////////////////////////////////////////////////////////////
+//Delete Sensor
+      $('#deleteSensorForm').on('submit', function (event) {
+        console.log('masuk')
+      event.preventDefault();
+      if (navigator.onLine) {
+          var formElement = $(this);
+
+          var formdata = new FormData();
+          formdata.append("_method", "DELETE");
+
+          // Loop over them and prevent submission if validation fail
+          Array.prototype.slice.call(formElement)
+              .forEach(function (formValidate) {
+                  if (!formValidate.checkValidity()) {
+                      event.preventDefault()
+                      event.stopPropagation()
+                  } else {
+                      let form = new FormData(formElement[0]);
+                      let btnSubmitForm = $('#delete-sensor');
+
+                      btnSubmitForm.addClass('off-btn').trigger('classChange');
+
+                      // var deleteTerrainId = $('#idTerrainDelete').val();
+
+                      fetch("sensor/" + form.get('idSensorDelete') + "/", {
+                              method: 'DELETE',
+                              credentials: "same-origin",
+                              headers: {
+                                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                              },
+                          })
+                          .then(function (response) {
+                              return response.json();
+                          }).then(function (resultsJSON) {
+
+                              var results = resultsJSON
+                              console.log(results.status)
+                              if (results.status == 'success') {
+
+
+                                  btnSubmitForm.removeClass('off-btn').trigger('classChange');
+
+                                  menu('menu-delete-sensor', 'hide', 250);
+
+                                  snackbar(results.status, results.message)
+
+                                  getAllSensor();
+
+                              } else {
+                                  if (results.type == 'Validation Error') {
+                                      btnSubmitForm.removeClass('off-btn').trigger('classChange');
+
+                                      validationErrorBuilder(results);
+                                  } else {
+                                      snackbar(results.status, results.message)
+                                  }
+                              }
+
+                          })
+                          .catch(function (err) {
+                              console.log(err);
+                          });
+
+
+                  }
+                  formValidate.classList.add('was-validated');
+              });
+      } else {
+          menu('menu-offline', 'show', 250);
+      }
+      });
+///////////////////////////////////////////////////////////////////////
+
     })
     
     function getSensorParam(idSensor){
