@@ -63,7 +63,7 @@
         </div>
       </div>
 
-      <div id="terrainSimulationList">
+      <div id="terrainSimulationList" style="height: 55vh;overflow-y: scroll;">
         <br>
         <p class="text-center">Please select environment first to view respective Simulation.</p>
         <br>

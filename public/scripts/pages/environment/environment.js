@@ -403,7 +403,7 @@ function getTerrainSimulation(idTerrain) {
                                     </tr>
                                 </table>
                             </a>
-                            <div class="divider mb-3"></div>
+                            <div class="divider mb-2 mt-2"></div>
                         `)
                     })
 

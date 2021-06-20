@@ -64,7 +64,7 @@
         </div>
       </div>
 
-      <div id="pipelineSimulationList">
+      <div id="pipelineSimulationList" style="height: 55vh;overflow-y: scroll;">
         <br>
         <p class="text-center">Please select pipeline first to view respective Simulation.</p>
         <br>
