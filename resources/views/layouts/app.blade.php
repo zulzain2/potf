@@ -343,17 +343,9 @@
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jstat@1.9.2/dist/jstat.min.js"></script> 
     <script src="https://cdn.jsdelivr.net/gh/formulajs/formulajs@2.5.0/dist/formula.min.js"></script>
-    <script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>
 
- 
-<script>
-    var myPlayer = videojs('MY_VIDEO_1');
 
-$('#videojsplay').click(function(evt){
-    evt.preventDefault();
-    myPlayer.play();
-});
-</script>
+
 
     @stack('scripts')
 
