@@ -39,8 +39,10 @@
           <h4 class="font-700 text-uppercase font-12 opacity-30 mb-1 mt-2">Parameters List</h4>
         </div>
         <div class="col-4" style="text-align:right">
-          <a href="#" data-menu="menu-add-sensor-parameter"
-            class="btn btn-rounded-m shadow-l me-1 bg-highlight">ADD</a>
+          {{--  <a href="#" data-menu="menu-add-sensor-parameter"
+            class="icon icon-xs rounded-sm shadow-l me-1 bg-highlight"><i class="fas fa-plus"></i></a>  --}}
+            <a href="#" data-menu="menu-add-sensor-parameter" class="btn btn-m btn-full mb-3 rounded-xl text-uppercase font-900 shadow-s bg-highlight">ADD</a>
+
         </div>
       </div>
 
