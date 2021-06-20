@@ -40,7 +40,7 @@
         </div>
       </div>
 
-      <div id="terrainParameterList">
+      <div id="terrainParameterList" style="height: 55vh;overflow-y: scroll;">
         <br>
         <p class="text-center">Please select environment first to view respective Parameter.</p>
         <br>

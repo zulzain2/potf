@@ -42,7 +42,7 @@
         </div>
       </div>
 
-      <div id="pipelineParameterList">
+      <div id="pipelineParameterList" style="height: 55vh;overflow-y: scroll;">
         <br>
         <p class="text-center">Please select pipeline first to view respective Parameter.</p>
         <br>
