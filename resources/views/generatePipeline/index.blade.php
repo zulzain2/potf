@@ -148,7 +148,7 @@
                       <table class="table table-borderless text-center rounded-sm shadow-l" style="overflow: hidden;" >
                         <thead>
                         <tr class="bg-gray-dark">
-                        <th colspan="3" scope="col" class="color-white" width="40%">Location</th>
+                        <th colspan="3" scope="col" class="color-white" width="40%">Range(KM)</th>
                         <th scope="col" class="color-white">Environment</th>
                         </tr>
                         </thead>
@@ -198,7 +198,7 @@
                       <table class="table table-borderless text-center rounded-sm shadow-l" style="overflow: hidden;" >
                         <thead>
                         <tr class="bg-gray-dark">
-                        <th colspan="3" scope="col" class="color-white" width="40%">Location</th>
+                        <th colspan="3" scope="col" class="color-white" width="40%">Range(KM)</th>
                         <th scope="col" class="color-white" style="width:30%">Pipeline</th>
                         </tr>
                         </thead>
@@ -440,11 +440,10 @@
           let end = $('#end_km').val() ? parseInt($('#end_km').val()) : 0
           if(start !=0){
             start = start-0.5
-            if(end != 0){
+          }
+          if(end != 0){
             end = end-0.5
           }
-          }
-          
           let total = end - start
           $('#total').val(total)
         }
