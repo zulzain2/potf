@@ -24,7 +24,7 @@
 
   <div class="tab-controls tabs-small tabs-rounded" data-highlight="bg-highlight">
     <a href="#" data-active="" data-bs-toggle="collapse" data-bs-target="#tab-1-pipe">Parameter</a>
-    <a href="#" data-bs-toggle="collapse" data-bs-target="#tab-2-pipe">Simulation Models</a>
+    <a href="#" data-bs-toggle="collapse" data-bs-target="#tab-2-pipe">Simulation Model</a>
   </div>
   <div class="clearfix mb-3"></div>
   <div data-bs-parent="#tab-group-2" class="collapse show" id="tab-1-pipe">
@@ -52,7 +52,7 @@
     <div class="content mb-0">
       <div class="row mb-2">
         <div class="col-8">
-          <h4 class="font-700 text-uppercase font-12 opacity-30 mb-1 mt-2">Simulation Models List</h4>
+          <h4 class="font-700 text-uppercase font-12 opacity-30 mb-1 mt-2">Simulation Model List</h4>
         </div>
         <div class="col-4" style="text-align:right">
           <a href="#" id="btn-menu-add-pipeline-simulation"
