@@ -93,6 +93,7 @@ Route::resource('sensor', 'App\Http\Controllers\SensorController');
 //////////////////////////////////////////////////////////////////////////////////////////////////
 Route::post('/sensorParam/fetch', 'App\Http\Controllers\SensorParameterController@fetch')->name('sensorParam.fetch');
 Route::post('/sensorParam/store', 'App\Http\Controllers\SensorParameterController@store')->name('sensorParam.store');
+Route::get('sensorparametercontent/{id}', 'App\Http\Controllers\SensorParameterController@showContent');
 Route::resource('sensorparam', 'App\Http\Controllers\SensorParameterController');
 
 //////////////////////////////////////////////////////////////////////////////////////////////////

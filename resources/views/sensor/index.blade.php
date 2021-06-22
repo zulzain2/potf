@@ -114,8 +114,8 @@
 </div>
 
 
-<div id="menu-add-sensor-parameter" class="menu menu-box-modal menu-box-detached rounded-m" data-menu-height="360"
-  data-menu-width="500">
+<div id="menu-add-sensor-parameter" class="menu menu-box-modal menu-box-detached rounded-m" data-menu-height="500"
+style="max-height:500px" data-menu-width="500">
   <div class="menu-title mt-n1">
     <h1>Add Sensor Parameter</h1>
     <p class="color-highlight selected-sensor">Add sensor parameter to the list.</p>
@@ -132,6 +132,12 @@
         <label class="color-theme opacity-50 text-uppercase font-700 font-10">Parameter Name</label>
         <input name="sensorParameterName" id="sensorParameterName"  type="text" class="form-control" placeholder="Enter parameter name" required>
         <em>(required)</em>
+      </div>
+
+      <div class="input-style input-style-always-active has-borders mb-4">
+        <textarea id="sensorParameterDesc" name="sensorParameterDesc" style="height:unset !important"
+          class="form-control" cols="30" rows="5" placeholder="Enter parameter description"></textarea>
+        <label class="color-theme opacity-50 text-uppercase font-700 font-10">Parameter Description</label>
       </div>
 
       <div class="input-style input-style-always-active has-borders mb-4">
@@ -188,6 +194,18 @@
       <button type="submit" id="delete-sensor"
         class="btn btn-m font-900 text-uppercase bg-highlight rounded-sm btn-center-l">Confirm</button>
   </form>
+</div>
+
+<div id="menu-sensor-parameter" class="col-4 menu menu-box-bottom rounded-0" data-menu-effect="menu-over" data-menu-height="250" style="padding-left: 70px;background-color: transparent !important;">
+  <div class="card card-style me-2 border-highlight" style="overflow: scroll;margin: 0;border-radius: 0px;height: 250px;border-top-style: groove !important;border-top-width: 13px !important;">
+    <div class="content me-1 ms-1 h-100">
+      <div class="menu-title mt-n1">
+        <a href="#" class="close-menu color-invert" style="line-height:55px !important"><i class="fa fa-times font-14"></i></a>
+      </div>
+      <div id="content-menu-sensor-parameter" class="content mt-0 h-100">
+      </div>
+    </div>
+  </div>
 </div>
 
 @endpush
@@ -457,7 +475,7 @@
                       results.data.map(a => {
 
                           $('#sensorParameterList').append(`
-                              <a href="#" data-menu="menu-transaction-1" class="d-flex mb-3">
+                              <a href="#" class="open-menu-sensor-parameter d-flex mb-3" data-id-sensor-parameter="${a.id}">
 
                                   <div class="align-self-center">
                                   <h1 class="mb-n2 font-16">${a.name}</h1>
@@ -469,6 +487,14 @@
                                   </div>
                               </a>
                           `)
+
+                          $('.open-menu-sensor-parameter').on('click' , function(){
+                    
+                      let idSensorParameter = $(this).data('id-sensor-parameter');
+
+                      sensorParameterContentBuilder(idSensorParameter);
+
+                })
                       })
 
                   }
@@ -584,6 +610,63 @@
       }).catch(function (err) {
           console.log('Error Get All Sensor: ' + err);
       });
+}
+
+function sensorParameterContentBuilder(idSensorParameter){
+    fetch('/sensorparametercontent/'+idSensorParameter+'').then(function (response) {
+        return response.json();
+    }).then(function (resultsJSON) {
+
+        var results = resultsJSON
+
+        if (results.status == 'success') {
+
+            if (results.data) {
+
+                $('#content-menu-sensor-parameter').html('');
+
+                    let html = `
+                        <table class="w-100" style="background-color:transparent !important;border:none;height:90% !important">
+                            <tr>
+                            <td class="align-top" style="background-color:transparent !important;height: 28%;">
+                                <h4>${results.data.name}</h4>
+                                <p class="color-highlight">${results.data.type}</p>
+                            </td>
+                            </tr>
+                            <tr>
+                            <td class="align-middle" style="background-color:transparent !important">
+                                <p>${results.data.desc ? results.data.desc : 'No description provided.'}</p>
+                            </td>
+                            </tr>
+                        </table>
+                        `;
+
+                    $('#content-menu-sensor-parameter').append(html);
+                    
+            } else {
+            
+                $('#content-menu-sensor-parameter').html('');
+
+                $('#content-menu-sensor-parameter').append(`
+                
+                `);   
+
+            }
+            
+        } else {
+            $('#content-menu-sensor-parameter').html('');
+
+            $('#content-menu-sensor-parameter').append(`
+            
+            `); 
+        }
+    }).catch(function (err) {
+        console.log('Error Get Sensor Parameters Content: ' + err);
+    });
+
+
+    menu('menu-sensor-parameter' , 'show' , 250);
+    menu('menu-hider' , 'hide' , 250);
 }
     </script>
 @endpush
