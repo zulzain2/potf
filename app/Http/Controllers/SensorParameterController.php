@@ -54,14 +54,15 @@ class SensorParameterController extends Controller
             return json_encode($data);
         }
         
-        $terrain = New SensorParams;
-        $terrain->id = Uuid::uuid4()->getHex();
-        $terrain->id_sensors = $request->idSensor;
-        $terrain->name = $request->sensorParameterName;
-        $terrain->type = $request->sensorParameterType;
-        $terrain->required = $request->sensorParameterRequired == 0 ? 1 : 0;
-        $terrain->id_status = '1';
-        $terrain->save();
+        $sensor = New SensorParams;
+        $sensor->id = Uuid::uuid4()->getHex();
+        $sensor->id_sensors = $request->idSensor;
+        $sensor->name = $request->sensorParameterName;
+        $sensor->desc = $request->sensorParameterDesc;
+        $sensor->type = $request->sensorParameterType;
+        $sensor->required = $request->sensorParameterRequired == 0 ? 1 : 0;
+        $sensor->id_status = '1';
+        $sensor->save();
         
         $data = [
             'status' => 'success', 
@@ -132,6 +133,18 @@ class SensorParameterController extends Controller
             'status' => 'success', 
             'message' => 'Successfully get terrain parameters.',
             'data' => $sensorparams
+        ];
+        return json_encode($data);
+    }
+
+    public function showContent($id)
+    {
+        $sensorparam = SensorParams::find($id);
+
+        $data = [
+            'status' => 'success', 
+            'message' => 'Successfully get sensor parameters content.',
+            'data' => $sensorparam
         ];
         return json_encode($data);
     }
