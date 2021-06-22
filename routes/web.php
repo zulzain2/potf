@@ -105,7 +105,4 @@ Route::post('/generatepipeline/storeValue', 'App\Http\Controllers\GeneratePipeli
 Route::post('/generatepipeline/fetchEnv', 'App\Http\Controllers\GeneratePipelineController@fetchEnv')->name('generatepipeline.fetchEnv');
 Route::post('/generatepipeline/fetchPipe', 'App\Http\Controllers\GeneratePipelineController@fetchPipe')->name('generatepipeline.fetchPipe');
 Route::post('/generatepipeline/fetchSensor', 'App\Http\Controllers\GeneratePipelineController@fetchSensor')->name('generatepipeline.fetchSensor');
-
-
-
 //////////////////////////////////////////////////////////////////////////////////////////////////
