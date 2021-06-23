@@ -67,7 +67,7 @@ function pipelineParameterContentBuilder(idPipelineParameter){
 
                 $('#content-menu-pipeline-parameter').html('');
 
-                    let html = `
+                    var html = `
                         <table class="w-100" style="background-color:transparent !important;border:none;height:90% !important">
                             <tr>
                             <td class="align-top" style="background-color:transparent !important;height: 28%;">
@@ -288,6 +288,7 @@ function pipelineSimulationContentBuilder(){
     $('.open-menu-pipeline-simulation').on('click' , function(){
 
         menu('menu-pipeline-simulation' , 'show' , 250);
+        menu('menu-pipeline-simulation-bottom' , 'show' , 250)
 
         let idPipelineSimulation = $(this).data('idPipelineSimulation');
 
@@ -303,7 +304,7 @@ function pipelineSimulationContentBuilder(){
 
                     $('#content-menu-pipeline-simulation').html('');
 
-                        let html = `
+                        var html = `
                             <div class="card card-style mb-3">
                                 <div class="content">
                                     <h3 class="text-center mb-0">${results.data.name}</h3>
@@ -332,7 +333,30 @@ function pipelineSimulationContentBuilder(){
 
                         $('#content-menu-pipeline-simulation').append(html);
 
-                 
+
+                        var html = `
+                        <table class="w-100" style="background-color:transparent !important;border:none;height:90% !important">
+                            <tr>
+                            <td class="align-top" style="background-color:transparent !important;height: 28%;">
+                                <h4>${results.data.name}</h4>
+                                <p class="color-highlight">${moment(results.data.created_at).format('MMMM Do')} </p>
+                            </td>
+                            </tr>
+                            <tr>
+                            <td class="align-middle" style="background-color:transparent !important">
+                                <p>${results.data.desc ? results.data.desc : 'No description provided.'}</p>
+                            </td>
+                            </tr>
+                        </table>
+                        `;
+
+                        $('#content-menu-pipeline-simulation-bottom').html(html);
+
+                        $('#closeMenuPipelineSimulation').on('click' , function(){
+         
+                            menu('menu-pipeline-simulation-bottom' , 'show' , 250)
+                        })
+
 
                 } else {
                 

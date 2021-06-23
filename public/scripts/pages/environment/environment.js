@@ -70,7 +70,7 @@ function terrainParameterContentBuilder(idTerrainParameter){
 
                 $('#content-menu-terrain-parameter').html('');
 
-                    let html = `
+                    var html = `
                         <table class="w-100" style="background-color:transparent !important;border:none;height:90% !important">
                             <tr>
                             <td class="align-top" style="background-color:transparent !important;height: 28%;">
@@ -289,6 +289,7 @@ function terrainSimulationContentBuilder(){
     $('.open-menu-terrain-simulation').on('click' , function(){
 
         menu('menu-terrain-simulation' , 'show' , 250);
+        menu('menu-terrain-simulation-bottom' , 'show' , 250)
 
         let idTerrainSimulation = $(this).data('idTerrainSimulation');
 
@@ -304,7 +305,7 @@ function terrainSimulationContentBuilder(){
 
                     $('#content-menu-terrain-simulation').html('');
 
-                        let html = `
+                        var html = `
                             <div class="card card-style mb-3">
                                 <div class="content">
                                     <h3 class="text-center mb-0">${results.data.name}</h3>
@@ -332,6 +333,30 @@ function terrainSimulationContentBuilder(){
                                 </div>`;
 
                         $('#content-menu-terrain-simulation').append(html);
+
+
+                        var html = `
+                        <table class="w-100" style="background-color:transparent !important;border:none;height:90% !important">
+                            <tr>
+                            <td class="align-top" style="background-color:transparent !important;height: 28%;">
+                                <h4>${results.data.name}</h4>
+                                <p class="color-highlight">${moment(results.data.created_at).format('MMMM Do')} </p>
+                            </td>
+                            </tr>
+                            <tr>
+                            <td class="align-middle" style="background-color:transparent !important">
+                                <p>${results.data.desc ? results.data.desc : 'No description provided.'}</p>
+                            </td>
+                            </tr>
+                        </table>
+                        `;
+
+                        $('#content-menu-terrain-simulation-bottom').html(html);
+
+                        $('#closeMenuTerrainSimulation').on('click' , function(){
+         
+                            menu('menu-terrain-simulation-bottom' , 'show' , 250)
+                        })
 
                  
 

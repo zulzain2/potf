@@ -316,17 +316,29 @@
   </div>
 
 
-  <div id="menu-terrain-simulation" class="menu menu-box-modal menu-box-detached rounded-m" style="max-height:600px"
+  <div id="menu-terrain-simulation" class="menu menu-box-modal menu-box-detached rounded-m" style="max-height:600px;z-index:102"
     data-menu-height="450" data-menu-width="700">
     <div class="menu-title mt-n1">
       <h1>Environment Simulation</h1>
       <p class="color-highlight">Details of environment simulation.</p>
-      <a href="#" class="close-menu"><i class="fa fa-times"></i></a>
+      <a href="#" id="closeMenuTerrainSimulation" class="close-menu"><i class="fa fa-times"></i></a>
     </div>
     <div class="content mt-2">
       <div class="divider mb-3"></div>
       <div id="content-menu-terrain-simulation">
 
+      </div>
+    </div>
+  </div>
+
+  <div id="menu-terrain-simulation-bottom" class="col-4 menu menu-box-bottom rounded-0" data-menu-effect="menu-over" data-menu-height="250" style="padding-left: 70px;background-color: transparent !important;">
+    <div class="card card-style me-2 border-highlight" style="overflow: scroll;margin: 0;border-radius: 0px;height: 250px;border-top-style: groove !important;border-top-width: 13px !important;z-index:99">
+      <div class="content me-1 ms-1 h-100">
+        <div class="menu-title mt-n1">
+          <a href="#" class="close-menu color-invert" style="line-height:55px !important"><i class="fa fa-times font-14"></i></a>
+        </div>
+        <div id="content-menu-terrain-simulation-bottom" class="content mt-0 h-100">
+        </div>
       </div>
     </div>
   </div>
