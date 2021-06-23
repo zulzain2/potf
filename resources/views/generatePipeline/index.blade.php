@@ -26,20 +26,20 @@
         @foreach($configPipeline as $cp)
         <table class="w-100" style="background-color:transparent !important;border:none">
           <tr>
-            <td style="background-color:transparent !important;">
+            <td style="background-color:transparent !important;width:20%" >
               <a href="#" class="select-pipeline hvr-grow icon icon-xs rounded-sm shadow-l me-1 bg-green-dark">
                 <img src="images/icons/tubes.png" class="m-2" style="width:20px" alt="">
               </a>
             </td>
-            <td style="background-color:transparent !important;">  
+            <td style="background-color:transparent !important;width:60%">  
               <span>{{$cp->name}}</span> <br>
               <small>{{$cp->start_km}} km to {{$cp->end_km}} km</small>
             </td>
-            <td style="background-color:transparent !important;">
+            <td style="background-color:transparent !important;width:10%">
               <small class="text-right"> {{$cp->total_km}} km</small>
               
             </td>
-            <td class="ps-2"  style="background-color:transparent !important;">
+            <td class="ps-2"  style="background-color:transparent !important;width:10%">
               <a href="#" data-menu="menu-config" onclick="configPipeline('{{$cp->id}}')" class="color-invert createdPipelineConfig">
                 <i class="fas fa-cog text-right color-highlight"></i>
               </a>
