@@ -291,7 +291,10 @@ panningModelViewer();
 
 
 
-
+$('.change-poster').on('click' , function(){
+  var url = $(this).data('url');
+  $('#main-poster').attr('src' , url);
+})
 
 
 

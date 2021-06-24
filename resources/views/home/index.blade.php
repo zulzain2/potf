@@ -3,32 +3,46 @@
 @section('content')
 
 <div id="page-potf" class="main-content row pt-5 h-100 mb-0 d-none">
-  <img src="images/poster/utm-potf.png" class="p-3 pe-4 pb-0 w-100" style="padding-left:90px !important;height:95%" alt="">
-  <small class="w-100 text-center">
-    Modified from McDermott's Approach - Journal Oil & Petroleum Technology
-  </small>
+
+  <img id="main-poster" src="images/poster/utm-potf.png" class="p-3 pe-4 pb-0 w-100" style="padding-left:90px !important;height:98%"
+    alt="">
+
+  <div class="row" style="position: absolute;top: 75px;left: 80px;">
+    <div class="col-12">
+
+      <a href="#" class="change-poster me-3 hvr-grow" data-url="images/poster/utm-potf.png">
+        <img src="images/poster/utm-potf.png"  alt="" style="width:120px;height:80px;box-shadow:-5px 7px 10px 0px rgb(0 0 0 / 32%);">
+      </a>
+      
+
+      <a href="#" class="change-poster me-3 hvr-grow" data-url="images/poster/utm-potf2.jpeg">
+        <img src="images/poster/utm-potf2.jpeg" alt="" style="width:120px;height:80px;box-shadow:-5px 7px 10px 0px rgb(0 0 0 / 32%);">
+      </a>
+     
+    </div>
+  </div>
+
+
+
+
+
 </div>
 
 <div id="page-concept" class="main-content row pt-5 h-100 mb-0 d-none">
   <div class="h-100" style="padding-left: 180px !important;">
-   <div class="row h-100">
-    <div class="col-9 offset-1 h-100">
-      <table class="w-100 h-100" style="background-color:transparent !important;border:none;">
-        <tr>
-          <td style="background-color:transparent !important;border:none;">
-            {{-- <div class="card card-style h-75">
-              <div class="content h-75 p-0 m-0 pb-1">
-              
-              </div>
-            </div> --}}
-            <video id="player" controls style="width:100%;border-radius:20px">
-              <source src="video/PetronasPipingVR2021.mp4" type="video/mp4" />
-            </video>
-          </td>
-        </tr>
-      </table>
+    <div class="row h-100">
+      <div class="col-9 offset-1 h-100">
+        <table class="w-100 h-100" style="background-color:transparent !important;border:none;">
+          <tr>
+            <td style="background-color:transparent !important;border:none;">
+              <video id="player" controls style="width:100%;border-radius:20px">
+                <source src="video/PetronasPipingVR2021.mp4" type="video/mp4" />
+              </video>
+            </td>
+          </tr>
+        </table>
+      </div>
     </div>
-   </div>
   </div>
 </div>
 
@@ -48,13 +62,13 @@
           <div data-bs-parent="#tab-group-sidebar" class="collapse" id="tab-pipeline">
 
             @include('pipeline/index')
-            
+
           </div>
 
           <div data-bs-parent="#tab-group-sidebar" class="collapse" id="tab-sensor">
-            
+
             @include('sensor/index')
-            
+
           </div>
 
           <div data-bs-parent="#tab-group-sidebar" class="collapse" id="tab-create_pipeline">
@@ -81,7 +95,7 @@
       {{-- <div id="potf3d" class="d-none" style="height:100%;border-radius:5px;"> --}}
       <div id="potf3d" style="height:100%;border-radius:5px;">
         @include('3dmodel.section1')
-      </div> 
+      </div>
 
     </div>
 
@@ -101,7 +115,7 @@
       <div id="section2-3d">
         @include('3dmodel.section2')
       </div>
-      
+
     </div>
 
     <div class="" style="height:0.7%;"></div>
@@ -115,7 +129,7 @@
           </td>
         </tr>
       </table> --}}
-{{-- <style>
+      {{-- <style>
   #section3-3d{
     height: 0;
     overflow: hidden;
@@ -125,16 +139,10 @@
       <div id="section3-3d">
         @include('3dmodel.section3')
       </div>
-      
+
     </div>
   </div>
 
 </div>
 
 @endsection
-
-
-
-
-
-
