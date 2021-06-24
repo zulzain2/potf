@@ -4,6 +4,8 @@
 
 <div id="page-potf" class="main-content row pt-5 h-100 mb-0 d-none">
 
+
+
   <img id="main-poster" src="images/poster/utm-potf.png" class="p-3 pe-4 pb-0 w-100" style="padding-left:90px !important;height:98%"
     alt="">
 
@@ -21,11 +23,7 @@
      
     </div>
   </div>
-
-
-
-
-
+  
 </div>
 
 <div id="page-concept" class="main-content row pt-5 h-100 mb-0 d-none">
@@ -53,6 +51,9 @@
       <div class="content my-2 m-1">
 
         <div class="content m-1" id="tab-group-sidebar">
+
+          <div data-bs-parent="#tab-group-sidebar" class="collapse" id="tab-potf"></div>
+
           <div data-bs-parent="#tab-group-sidebar" class="collapse show" id="tab-terrain">
 
             @include('environment/index')
@@ -74,6 +75,8 @@
           <div data-bs-parent="#tab-group-sidebar" class="collapse" id="tab-create_pipeline">
             @include('generatePipeline/index')
           </div>
+
+          <div data-bs-parent="#tab-group-sidebar" class="collapse" id="tab-3dsimulation"></div>
 
         </div>
       </div>
