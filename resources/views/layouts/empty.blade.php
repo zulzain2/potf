@@ -10,7 +10,7 @@
     <title>Pipeline of the Future (PotF)</title>
 
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{URL::to('icons/72.png')}}">
+    <link rel="shortcut icon" href="{{ URL::to('icons/tubes.png') }}">
 
     <link rel="stylesheet" type="text/css" href="{{URL::to('styles/bootstrap.css')}}">
     <link rel="stylesheet" href="{{URL::to('fonts/google/googleapis.css')}}">
