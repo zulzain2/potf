@@ -57,10 +57,17 @@ if (document.querySelector('#loginPage') || document.querySelector('#registerOtp
 ///////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////////
+// Poster change
+$('.change-poster').on('click' , function(){
+  var url = $(this).data('url');
+  $('#main-poster').attr('src' , url);
+})
+///////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////
 // Enter & Exit Fullscreen function (VR Function)
 if (document.querySelector('#page-main'))
 {
-
   
 $('#enterFullScreen').on('click' , function(){
   openFullscreen();
@@ -285,16 +292,11 @@ self.addEventListener('touchend', (event) => {
 panningModelViewer();
 
 }
-
-
 ///////////////////////////////////////////////////////////////////////
 
 
 
-$('.change-poster').on('click' , function(){
-  var url = $(this).data('url');
-  $('#main-poster').attr('src' , url);
-})
+
 
 
 

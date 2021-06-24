@@ -22,22 +22,6 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="{{ URL::to('styles/hover/hover.css') }}">
 
- 
-
-    <style>
-        .sidebar-active{
-            background-color:#9292924a !important
-        }
-
-        .theme-dark select option {
-            background: #1b1d21;
-        }
-        .color-invert{
-            color:black;
-        }
-        
-
-    </style>
 
     @stack('styles')
 
@@ -139,87 +123,87 @@
         </div>
 
         <div id="menu-sidebar-left-1" class="bg-white menu menu-box-left" style="transform: none;" data-menu-width="65">
-                <div class="d-flex">
-                    <a href="#" class="flex-fill icon icon-m text-center border-bottom border-right">
-                        <img id="logo-sidebar" src="images/icons/petronas.png" style="height:45px;width:45px;padding-top:5px;margin-bottom:3px" alt="">
-                    </a>
-                </div>
+            <div class="d-flex">
+                <a href="#" class="flex-fill icon icon-m text-center border-bottom border-right">
+                    <img id="logo-sidebar" src="images/icons/petronas.png" style="height:45px;width:45px;padding-top:5px;margin-bottom:3px" alt="">
+                </a>
+            </div>
           
             
-        <div style="height:90%">
-            <table class="align-middle h-100 w-100" style="border:none;background-color: transparent !important;">
-                <tr>
-                    <td style="background-color: transparent !important;">
-                        
-                         
-                        <div class="d-flex">
-                
-                            <a href="#" data-active="" data-content="page-potf" class="pt-1 sidebar-item flex-fill icon icon-m text-center border-bottom border-right" style="color: unset !important;border-top: 1px solid rgba(255, 255, 255, .05) !important;border-right:none !important;border-radius: 5px;">
-                                <img src="images/icons/link.png" style="height:50px;width:50px;padding:3px" alt="">
-                                <br>
-                                <strong style="font-size:9px">PotF</strong>
-                            </a>
-                     
-                        </div>
-
-                     
-
-
-                        <div class="d-flex">
-                
-                                <a href="#" data-active="" data-content="page-main" data-bs-toggle="collapse" data-bs-target="#tab-terrain" class="sidebar-active pt-1 sidebar-item flex-fill icon icon-m text-center border-bottom border-right" style="color: unset !important;border-top: 1px solid rgba(255, 255, 255, .05) !important;border-right:none !important;border-radius: 5px;">
-                                    <img src="images/icons/earth.png" style="height:40px;width:40px;padding:3px" alt="">
-                                    <br>
-                                    <strong style="font-size:9px">Environment</strong>
-                                </a>
-                         
-                        </div>
-
-                        <div class="d-flex">
-                        
-                                <a href="#" data-content="page-main" data-bs-toggle="collapse" data-bs-target="#tab-pipeline" class="pt-1 sidebar-item flex-fill icon icon-m text-center border-bottom border-right" style="color: unset !important;border-right:none !important;border-radius: 5px;">
-                                    <img src="images/icons/pipe.png" style="height:40px;width:40px;padding:3px" alt="">
-                                    <br>
-                                    <strong style="font-size:9px">Pipeline</strong>
-                                </a>
-                          
-                        </div>
-
-                        <div class="d-flex">
-                   
-                                <a href="#" data-content="page-main" data-bs-toggle="collapse" data-bs-target="#tab-sensor" class="sidebar-item flex-fill icon icon-m text-center border-bottom border-right" style="color: unset !important;border-right:none !important;border-radius: 5px;">
-                                    <img src="images/icons/sensor.png" style="height:40px;width:40px;padding:3px" alt="">
-                                    <br>
-                                    <strong style="font-size:9px">Sensor</strong>
-                                </a>  
-                         
-                        </div>
-
-                        <div class="d-flex">
-                        
-                            <a href="#" data-content="page-main" data-bs-toggle="collapse" data-bs-target="#tab-create_pipeline" class="pt-1 sidebar-item flex-fill icon icon-m text-center border-bottom border-right" style="color: unset !important;border-right:none !important;border-radius: 5px;">
-                                <img src="images/icons/pipe_create.png" style="height:40px;width:40px;padding:3px" alt="">
-                                <br>
-                                <strong style="font-size:9px">Create Pipeline</strong>
-                            </a>
-                      
-                        </div>
-
-                        
-                        <div class="d-flex">
+            <div style="height:90%">
+                <table class="align-middle h-100 w-100" style="border:none;background-color: transparent !important;">
+                    <tr>
+                        <td style="background-color: transparent !important;">
+                            
+                            
+                            <div class="d-flex">
                     
-                            <a href="#" data-active="" data-content="page-concept" class="pt-1 sidebar-item flex-fill icon icon-m text-center border-bottom border-right" style="color: unset !important;border-top: 1px solid rgba(255, 255, 255, .05) !important;border-right:none !important;border-radius: 5px;">
-                                <img src="images/icons/templates.png" style="height:40px;width:40px;padding:3px" alt="">
-                                <br>
-                                <strong style="font-size:9px">3D Simulation</strong>
-                            </a>
+                                <a href="#" data-active="" data-content="page-potf" data-bs-toggle="collapse" data-bs-target="#tab-potf" class="pt-1 sidebar-item flex-fill icon icon-m text-center border-bottom border-right" style="color: unset !important;border-top: 1px solid rgba(255, 255, 255, .05) !important;border-right:none !important;border-radius: 5px;">
+                                    <img src="images/icons/link.png" style="height:50px;width:50px;padding:3px" alt="">
+                                    <br>
+                                    <strong style="font-size:9px">PotF</strong>
+                                </a>
+                        
+                            </div>
+
+                        
+
+
+                            <div class="d-flex">
                     
-                        </div>
-                    </td>
-                </tr>
-            </table>
+                                    <a href="#" data-active="" data-content="page-main" data-bs-toggle="collapse" data-bs-target="#tab-terrain" class="sidebar-active pt-1 sidebar-item flex-fill icon icon-m text-center border-bottom border-right" style="color: unset !important;border-top: 1px solid rgba(255, 255, 255, .05) !important;border-right:none !important;border-radius: 5px;">
+                                        <img src="images/icons/earth.png" style="height:40px;width:40px;padding:3px" alt="">
+                                        <br>
+                                        <strong style="font-size:9px">Environment</strong>
+                                    </a>
+                            
+                            </div>
+
+                            <div class="d-flex">
+                            
+                                    <a href="#" data-content="page-main" data-bs-toggle="collapse" data-bs-target="#tab-pipeline" class="pt-1 sidebar-item flex-fill icon icon-m text-center border-bottom border-right" style="color: unset !important;border-right:none !important;border-radius: 5px;">
+                                        <img src="images/icons/pipe.png" style="height:40px;width:40px;padding:3px" alt="">
+                                        <br>
+                                        <strong style="font-size:9px">Pipeline</strong>
+                                    </a>
+                            
+                            </div>
+
+                            <div class="d-flex">
+                    
+                                    <a href="#" data-content="page-main" data-bs-toggle="collapse" data-bs-target="#tab-sensor" class="sidebar-item flex-fill icon icon-m text-center border-bottom border-right" style="color: unset !important;border-right:none !important;border-radius: 5px;">
+                                        <img src="images/icons/sensor.png" style="height:40px;width:40px;padding:3px" alt="">
+                                        <br>
+                                        <strong style="font-size:9px">Sensor</strong>
+                                    </a>  
+                            
+                            </div>
+
+                            <div class="d-flex">
+                            
+                                <a href="#" data-content="page-main" data-bs-toggle="collapse" data-bs-target="#tab-create_pipeline" class="pt-1 sidebar-item flex-fill icon icon-m text-center border-bottom border-right" style="color: unset !important;border-right:none !important;border-radius: 5px;">
+                                    <img src="images/icons/pipe_create.png" style="height:40px;width:40px;padding:3px" alt="">
+                                    <br>
+                                    <strong style="font-size:9px">Create Pipeline</strong>
+                                </a>
+                        
+                            </div>
+
+                            
+                            <div class="d-flex">
+                        
+                                <a href="#" data-active="" data-content="page-concept" data-bs-toggle="collapse" data-bs-target="#tab-3dsimulation" class="pt-1 sidebar-item flex-fill icon icon-m text-center border-bottom border-right" style="color: unset !important;border-top: 1px solid rgba(255, 255, 255, .05) !important;border-right:none !important;border-radius: 5px;">
+                                    <img src="images/icons/templates.png" style="height:40px;width:40px;padding:3px" alt="">
+                                    <br>
+                                    <strong style="font-size:9px">3D Simulation</strong>
+                                </a>
+                        
+                            </div>
+                        </td>
+                    </tr>
+                </table>
             
-        </div>
+            </div>
                 
         </div>
 

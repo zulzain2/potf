@@ -94,4 +94,19 @@ ul.no-bullet{
   margin: 0;
 }
 
+.sidebar-active{
+  background-color:#9292924a !important;
+  pointer-events: none;
+  cursor: default;
+}
+
+.theme-dark select option {
+  background: #1b1d21;
+}
+.color-invert{
+  color:black;
+}
+
+
+
 
