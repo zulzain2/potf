@@ -1538,7 +1538,7 @@ function textErrorBuilder(id_element , textErr){
         
         var _0xce56x121 = '/';
         let _0xce56x122 = [
-            //SCRIPTS/STYLES FOR PAGES
+            //SCRIPTS/STYLES FOR COMPONENTS
             {
                 id: 'custom',
                 call: 'scripts/custom.js',
@@ -1547,13 +1547,33 @@ function textErrorBuilder(id_element , textErr){
             },
             {
                 id: 'environment',
-                call: 'scripts/pages/environment/environment.js',
+                call: 'scripts/components/environment/index.js',
                 trigger: '#environment'
             },
             {
+                id: 'environment_parameter',
+                call: 'scripts/components/environment_parameter/index.js',
+                trigger: '#environment_parameter'
+            },
+            {
+                id: 'environment_simulation',
+                call: 'scripts/components/environment_simulation/index.js',
+                trigger: '#environment_simulation'
+            },
+            {
                 id: 'pipeline',
-                call: 'scripts/pages/pipeline/pipeline.js',
+                call: 'scripts/components/pipeline/index.js',
                 trigger: '#pipeline'
+            },
+            {
+                id: 'pipeline_parameter',
+                call: 'scripts/components/pipeline_parameter/index.js',
+                trigger: '#pipeline_parameter'
+            },
+            {
+                id: 'pipeline_simulation',
+                call: 'scripts/components/pipeline_simulation/index.js',
+                trigger: '#pipeline_simulation'
             },
             //SCRIPTS/STYLES FOR PLUGINS
             {
