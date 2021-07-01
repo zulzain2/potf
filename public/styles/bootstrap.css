@@ -13707,7 +13707,7 @@ img.mx-auto {
     right: 0;
     bottom: 0;
     z-index: 99999;
-    transition: all 200ms ease
+    /* transition: all 200ms ease */
 }
 
 #preloader .spinner-border {
