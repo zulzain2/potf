@@ -13724,11 +13724,13 @@ img.mx-auto {
 }
 
 .theme-light #preloader {
-    background-color: transparent
+    /* background-color: transparent */
+    background-color: white
 }
 
 .theme-dark #preloader {
-    background-color: transparent
+    /* background-color: transparent */
+    background-color: #0f1117
 }
 
 .btn {
