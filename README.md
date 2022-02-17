@@ -1,4 +1,4 @@
-<p align="center"><a href="http://167.99.76.116/"><img src="http://167.99.76.116/images/icons/login.png" width="400"></a></p>
+<p align="center"><a href="https://potf.tvetxr.ga/"><img src="http://potf.tvetxr.ga/images/icons/login.png" width="400"></a></p>
 
 <p align="center">
 <a href="https://gitlab.com/ImranShamm/hse-magicx/-/pipelines"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
