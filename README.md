@@ -4,6 +4,10 @@
 <a href="https://gitlab.com/ImranShamm/hse-magicx/-/pipelines"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
 </p>
 
+<p align="center">
+Link: <a href="https://potf.tvetxr.ga" target="_blank">potf.tvetxr.ga</a>
+</p>
+
 ## PIPELINE OF THE FUTURE (PotF) - DIGITAL TWIN
 The purpose of this PotF system is to solve the problem of the access limitation to the pipeline environment and the unpredicted potential geohazard threat which may affect the performance on the SSGP pipeline site.
 
